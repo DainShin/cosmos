@@ -23,7 +23,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Brief()
+	public IActionResult Brief()
     {
         return View();
     }

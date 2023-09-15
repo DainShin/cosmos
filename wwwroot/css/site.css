@@ -15,8 +15,12 @@ html {
 html {
   position: relative;
   min-height: 100%;
-}
+} 
 
-body {
-  margin-bottom: 60px;
+/** BRIEF **/
+.brief-icons {
+  max-width: 30%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
