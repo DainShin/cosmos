@@ -3,7 +3,6 @@ for details on configuring this project to bundle and minify static web assets. 
 
 main {
 	min-height: 800px;
-	padding: 60px 0;
 }
 
 a.navbar-brand {
