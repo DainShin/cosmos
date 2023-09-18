@@ -23,6 +23,10 @@ html {
   min-height: 100%;
 } 
 
+.bg-brand-dark {
+	background-color: #222222;
+}
+
 /** Slide **/
 .slide {
 	width: 100%;
@@ -84,6 +88,7 @@ html {
 
 /** Socials Section **/
 .socials-section {
+	background-color: #222222;
 	width: 300px;
 	height: 150px;
 }
@@ -102,7 +107,8 @@ html {
 }
 
 footer {
-  background-color: #eee;
+  background-color: #222222;
+  border-top: 1px solid #545454;
 }
 
 .copyright {
