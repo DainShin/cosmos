@@ -1,3 +1,5 @@
+@import url('~/css/global.css');
+
 html {
   font-size: 14px;
 }
@@ -38,6 +40,48 @@ html {
 	height: 600px;
 }
 
+.subscription-tier-card {
+	background: #222222;
+	color: #EBEBEB;
+	border: 1px solid #666666;
+	border-radius: 0;
+}
+
+.subscription-tier-card h4{
+	font-size: 2rem;
+}
+
+.subscription-tier-card .card-header {
+	background: #1A1A1A;
+}
+
+.subscription-tier-card-content-sm{
+	height: 450px;
+}
+
+.subscription-tier-card-content-lg{
+	height: 550px;
+}
+
+.subscription-tier-card ul {
+	margin: 0;
+	padding: 1em;
+	list-style: none;
+}
+
+.subscription-tier-card ul li {
+	margin-bottom: 1em;
+}
+
+.subscription-tier-price span:nth-of-type(1){
+	font-size: 4rem;
+}
+
+.subscription-tier-price span:nth-of-type(2){
+	font-size: 1rem;
+	padding-top: 0.85em;
+}
+
 /** Socials Section **/
 .socials-section {
 	width: 300px;
@@ -55,4 +99,23 @@ html {
 	height: auto;
 	display: block;
 	margin: 0 auto;
+}
+
+footer {
+  background-color: #eee;
+}
+
+.copyright {
+  white-space: nowrap;
+  line-height: 60px;
+}
+
+.footer-nav {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.footer-nav li {
+	padding: 8px 0;
 }

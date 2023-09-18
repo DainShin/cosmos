@@ -1,0 +1,22 @@
+:root {
+  --brand-primary: #0b8491;
+  --brand-secondary: #f60e49;
+}
+
+.brand-gradient {
+  background: #0b8491; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #000000,
+    #0b8491
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #000000,
+    #0b8491
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.text-brand-primary {
+	color: var(--brand-primary);
+}
