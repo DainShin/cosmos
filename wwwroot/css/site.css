@@ -46,7 +46,7 @@ html {
 
 .subscription-tier-card {
 	background: #222222;
-	color: #EBEBEB;
+	/* color: #EBEBEB; */
 	border: 1px solid #666666;
 	border-radius: 0;
 }
@@ -107,19 +107,35 @@ html {
 }
 
 footer {
-  background-color: #222222;
-  border-top: 1px solid #545454;
+  background-color: #222222; /* Make this global */
+  border-top: 1px solid #545454; 
+  color: #EBEBEB; /* Make this global */
 }
 
 .copyright {
   white-space: nowrap;
-  line-height: 60px;
+  line-height: 30px;
+  font-size: 0.8rem;
 }
 
 .footer-nav {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+.footer-nav a,
+.footer-nav a:link,
+.footer-nav a:visited {
+	color: #EBEBEB; /* Make this global */
+	text-decoration: none;
+	transition: all 0.3s ease-in-out; /* Make this global */
+}
+
+.footer-nav a:hover,
+.footer-nav a:active,
+.footer-nav a:focus {
+	color: #FC28A0; /* Make this global brand color */
 }
 
 .footer-nav li {
