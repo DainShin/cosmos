@@ -1,0 +1,88 @@
+:root {
+  --brand-primary: #75B900;
+  --brand-secondary: #FC28A0;
+  --brand-tertiary: #191C20;
+  --brand-dark: #222222;
+  --brand-light-gray: #545454;
+  --transition: all 0.3s ease-in-out;
+}
+
+.brand-gradient {
+  background: #0b8491; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #191C20,
+    #75B900
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #191C20,
+    #75B900
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.text-brand-primary {
+	color: var(--brand-primary);
+}
+
+.text-brand-secondary {
+	color: var(--brand-secondary);
+}
+
+.bg-brand-dark {
+	background-color: var(--brand-dark);
+}
+
+.hr-brand-primary {
+	border-color: var(--brand-primary);
+}
+
+.bg-black {
+	background-color: #000000;
+}
+
+.btn-brand-primary {
+	background-color: var(--brand-primary);
+	border-radius: 0;
+	color: #ffffff;
+	transition: var(--transition);
+}
+
+.btn-brand-primary:hover {
+	background-color: #5d8f07;
+	color: #ffffff;
+}
+
+.btn-brand-outline-primary {
+	background-color: transparent;
+	border: 1px solid var(--brand-primary);
+	border-radius: 0;
+	color: var(--brand-primary);
+	transition: var(--transition);
+}
+
+.btn-brand-outline-primary:hover {
+	background-color: var(--brand-primary);
+	color: #ffffff;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.btn-brand-outline-secondary {
+	background-color: transparent;
+	border: 1px solid var(--brand-secondary);
+	border-radius: 0;
+	color: var(--brand-secondary);
+	transition: var(--transition);
+}
+
+.btn-brand-outline-secondary:hover {
+	background-color: var(--brand-secondary);
+	color: #ffffff;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.table {
+	color: #ebebeb; /* Make this global */
+  }
+  
+
