@@ -25,8 +25,12 @@
 	color: var(--brand-primary);
 }
 
+.text-brand-secondary {
+	color: var(--brand-secondary);
+}
+
 .bg-brand-dark {
-	background-color: #222222;
+	background-color: var(--brand-dark);
 }
 
 .hr-brand-primary {
@@ -36,4 +40,49 @@
 .bg-black {
 	background-color: #000000;
 }
+
+.btn-brand-primary {
+	background-color: var(--brand-primary);
+	border-radius: 0;
+	color: #ffffff;
+	transition: var(--transition);
+}
+
+.btn-brand-primary:hover {
+	background-color: #5d8f07;
+	color: #ffffff;
+}
+
+.btn-brand-outline-primary {
+	background-color: transparent;
+	border: 1px solid var(--brand-primary);
+	border-radius: 0;
+	color: var(--brand-primary);
+	transition: var(--transition);
+}
+
+.btn-brand-outline-primary:hover {
+	background-color: var(--brand-primary);
+	color: #ffffff;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.btn-brand-outline-secondary {
+	background-color: transparent;
+	border: 1px solid var(--brand-secondary);
+	border-radius: 0;
+	color: var(--brand-secondary);
+	transition: var(--transition);
+}
+
+.btn-brand-outline-secondary:hover {
+	background-color: var(--brand-secondary);
+	color: #ffffff;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.table {
+	color: #ebebeb; /* Make this global */
+  }
+  
 
