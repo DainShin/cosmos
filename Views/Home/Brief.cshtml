@@ -1,12 +1,23 @@
-@{
-	ViewData["Title"] = "My Project Brief";
-}
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="container px-2 page-padding">
-	<div class="row">
-		<div class="col-12 mb-5">
-			<h1 class="mb-3">Company Information</h1>
-			<table class="table table-bordered table-stripe">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="~/css/brief.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish&family=Poppins:wght@500&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<section class="section-info">
+			<h3>Company Info</h3>
+			<table class="table table-bordered table-stripe table-borderd">
 				<tr>
 					<th>Company/Business Name</th>
 					<td>Cosmos</td>
@@ -20,45 +31,96 @@
 				</tr>
 				<tr>
 					<th rowspan="4">Group Members and Roles</th>
-					<td>
-						<p>Basil Barnaby - Full Stack Developer</p>
-						<p>Dain Shin - Full Stack Developer</p>
-						<p>Matthew - Full Stack Developer</p>
-						<p class="mb-0">Michael Anthony - Full Stack Developer</p>
+					<td>Basil - Full Stack</td>
+				</tr>
+				<tr>
+					<td>Dain - Full Stack</td>
+				</tr>
+				<tr>
+					<td>Matthew - Full Stack</td>
+				</tr>
+				<tr>
+					<td>Michael - Full Stack</td>
 				</tr>
 			</table>
-		</div>
-		<div class="col-12 mb-5">
-			<h2 class="text-center">Proposal</h2>
-			<p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus maiores eos amet
-				error vel eum tempora vero, sed hic delectus facere? Saepe autem nobis, non ipsum deleniti quia vero
-				alias.</p>
-		</div>
-		<div class="col-md-4 mb-4 text-center">
-			<img src="~/images/wasd.png" class="brief-icons" alt="Games">
-			<h3 class="mt-3">1000+ Games</h3>
-			<p>
-				Cosomos connects to digital PC game stores so you can stream the
-				games you already own. Plus, game purchases you make on your
-				personal store accounts will always stay with you.
-			</p>
-		</div>
-		<div class="col-md-4 mb-4 text-center">
-			<img src="~/images/cloud.png" class="brief-icons" alt="Cloud">
-			<h3 class="mt-3">No More Downloads</h3>
-			<p>
-				Cosomos offers you various games without downloads. Games are
-				always up to date, so users can spend less time wating and more
-				time gaming.
-			</p>
-		</div>
-		<div class="col-md-4 mb-4 text-center">
-			<img src="~/images/gpu.png" class="brief-icons" alt="Devices">
-			<h3 class="mt-3">On All Your Devices</h3>
-			<p>
-				Transforms your laptop, desktop, Mac, TV, Android device, iPhone,
-				or iPad into the powerful PC gaming rig you’ve always dreamed of.
-			</p>
-		</div>
+		</section>
+
+		<section class="section-proposal">
+			<h3>Proposal</h3>
+			<div class="proposal-box">
+				<p>
+					With Cosmos, no need for expensive gaming hardware or lengthy downloads. Our platform provides stunning graphics, minimal latency, and support for both single-player and multiplayer experiences. 
+				</p>
+			</div>
+
+			<div class="content-box">
+
+				<div class="content">
+					<div class="image-box">
+						<img src="~/images/cloud.jpg" alt="" />
+					</div>
+					<h4>No download</h4>
+					<p>
+						Cosomos offers you various games without downloads. Games are
+						always up to date, so users can spend less time wating and more
+						time gaming.
+					</p>
+				</div>
+
+				<div class="content">
+					<!-- content -->
+					<div class="image-box">
+						<img src="~/images/game-control-icon-28.jpg" alt="" />
+					</div>
+					<h4>Various Games</h4>
+					<p>
+						Cosomos connects to digital PC game stores so you can stream the
+						games you already own. Plus, game purchases you make on your
+						personal store accounts will always stay with you.
+					</p>
+				</div>
+
+				<div class="content">
+					<div class="image-box">
+						<img src="~/images/all-devices-icon-10.jpg" alt="" />
+					</div>
+					<h4>All Your Devices</h4>
+					<p>
+						transforms your laptop, desktop, Mac, TV, Android device, iPhone,
+						or iPad into the powerful PC gaming rig you’ve always dreamed of.
+					</p>
+				</div>
+			</div>
+			<!--// content-->
+
+			<div class="text-box">
+				<div class="text">
+					<h4>Industry</h4>
+					<p>
+					   At Cosmos, we are addressing the evolving needs of the gaming industry. Traditional gaming setups often require significant investments in gaming consoles or high-end PCs, making gaming less accessible to many. Moreover, gamers often face compatibility issues and long download times. We're here to eliminate these barriers by offering a cloud-based gaming solution that democratizes gaming. By leveraging the power of the cloud, we're fulfilling the industry's need for accessibility, affordability, and convenience. Gamers can now enjoy their favorite titles on a wide range of devices, ensuring that gaming is for everyone.
+					</p>
+				</div>
+
+				<div class="text">
+					<h4>Roles</h4>
+				  <div class="inner">  
+					<div class="role-content">
+						<div>Administrators</div>
+						<p>oversee and manage the overall operation of the platform. They handle user accounts, system maintenance, and content curation.</p>
+					</div>
+					<div class="role-content">
+						<div>Customers</div>    
+						<p>are the primary users of the service. They subscribe to access the cloud gaming platform, select and play games, and enjoy the gaming experience.</p>
+					</div>
+					<div class="role-content">
+						 <div>Members</div>   
+						<p>are registered users who have access to additional features, such as personalized game recommendations, social interactions within the platform, and access to special events or promotions.</p>
+					</div>
+				</div>
+				</div>
+			</div> <!-- //text-box -->
+		</section>
 	</div>
-</div>
+</body>
+
+</html>
