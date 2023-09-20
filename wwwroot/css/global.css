@@ -33,3 +33,7 @@
 	border-color: var(--brand-primary);
 }
 
+.bg-black {
+	background-color: #000000;
+}
+
