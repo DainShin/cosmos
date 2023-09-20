@@ -4,6 +4,7 @@
   --brand-tertiary: #191C20;
   --brand-dark: #222222;
   --brand-light-gray: #545454;
+  --transition: all 0.3s ease-in-out;
 }
 
 .brand-gradient {
