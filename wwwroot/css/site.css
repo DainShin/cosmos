@@ -56,6 +56,10 @@ html {
 
 /** Membership Section **/
 .membership-section {
+	background-image: url('../images/home-art-1.png');
+	background-size: cover;
+	background-position: top -300px left 0px;
+	background-repeat: no-repeat;
 	height: 600px;
 }
 
@@ -155,4 +159,8 @@ footer {
 
 .footer-nav li {
 	padding: 8px 0;
+}
+
+.table {
+	color: #EBEBEB; /* Make this global */
 }
