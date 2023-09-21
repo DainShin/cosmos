@@ -3,6 +3,7 @@
 
 // Write your JavaScript code.
 
+// Main navigation bar Sticky on scroll
 let mainNav = document.querySelector('#main-navbar');
 let secondaryNav = document.querySelector('#secondary-navbar');
 
