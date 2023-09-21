@@ -68,9 +68,10 @@ html {
 .membership-section {
   background-image: url("../images/home-art-1.png");
   background-size: cover;
-  background-position: top -300px left 0px;
+  background-position: center;
   background-repeat: no-repeat;
-  height: 600px;
+  background-attachment: fixed;
+  height: 350px;
 }
 
 .subscription-tier-card {

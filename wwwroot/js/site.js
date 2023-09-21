@@ -20,3 +20,10 @@ function toggleSticky() {
 window.onscroll = () => {toggleSticky()};
 
 window.onresize = () => {stickyPosition = mainNav.offsetTop};
+
+
+// 3D Card Effect
+VanillaTilt.init(document.querySelector(".subscription-tier-ultimate"), {
+	max: 15,
+	speed: 250
+});
