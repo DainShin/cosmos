@@ -38,11 +38,11 @@ html {
 }
 
 /** Slide **/
-.brand-slide {
+/* .brand-slide {
   width: 100%;
   height: 600px;
   background-image: url("../images/slides/slide1.png");
-}
+} */
 
 .hero-slider-img {
   filter: brightness(0.6);
@@ -214,7 +214,7 @@ footer {
   padding: 8px 0;
 }
 
-@keyframes steam {
+/* @keyframes steam {
   0% {
     background-position: 0 0;
   }
@@ -224,4 +224,39 @@ footer {
   100% {
     background-position: 0 0;
   }
+} */
+
+.art-separator-1 {
+  background-image: url("../images/art-separator-1.jpg");
+  background-size: cover;
+  background-position: top -300px left 0px;
+  background-repeat: no-repeat;
+  height: 250px;
+  filter: brightness(0.8);
+}
+
+.industry-art {
+  background-image: url("../images/art-industry.jpg");
+  background-repeat: no-repeat;
+  height: 240px;
+}
+
+.primary-box,
+.secondary-box,
+.tertiary-box {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.primary-box {
+	background-color: var(--brand-primary);
+}
+
+.secondary-box {
+	background-color: var(--brand-secondary);
+}
+
+.tertiary-box {
+	background-color: var(--brand-tertiary);
 }
