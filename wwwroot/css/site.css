@@ -28,14 +28,6 @@ a {
   font-family: "Mulish", sans-serif;
 }
 
-/* .btn:focus,
-.btn:active:focus,
-.btn-link.nav-link:focus,
-.form-control:focus,
-.form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-} */
-
 .page-padding {
   padding: 60px 0;
 }
@@ -44,10 +36,6 @@ html {
   position: relative;
   min-height: 100%;
 }
-/* 
-.bg-brand-dark {
-  background-color: #222222;
-} */
 
 /** Slide **/
 .brand-slide {
@@ -87,7 +75,6 @@ html {
 
 .subscription-tier-card {
   background: #222222;
-  /* color: #EBEBEB; */
   border: 1px solid #666666;
   border-radius: 0;
 }
@@ -97,8 +84,52 @@ html {
 }
 
 .subscription-tier-card .card-header {
-  background: #1a1a1a;
+  background-color: #1a1a1a;
 }
+
+.subscription-tier-ultimate {
+  border-color: var(--brand-secondary);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transition: var(--transition);
+}
+
+.subscription-tier-ultimate .card-header {
+  background-color: var(--brand-secondary) !important;
+}
+
+/* .subscription-tier-ultimate:hover {
+	box-shadow: 0 0 5px #FC28A0, 0 0 5px #c5197b, 0 0 60px #FC28A0;
+}
+
+.subscription-tier-glow:before,
+.subscription-tier-glow:after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(
+    45deg,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000,
+    #fb0094,
+    #0000ff,
+    #00ff00,
+    #ffff00,
+    #ff0000
+  );
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  z-index: -1;
+  animation: steam 20s linear infinite;
+}
+
+.subscription-tier-glow:after {
+  filter: blur(50px);
+} */
 
 .subscription-tier-card-content-sm {
   height: 450px;
@@ -181,4 +212,16 @@ footer {
 
 .footer-nav li {
   padding: 8px 0;
+}
+
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
