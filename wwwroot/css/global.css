@@ -53,6 +53,18 @@
 	color: #ffffff;
 }
 
+.btn-brand-secondary {
+	background-color: var(--brand-secondary);
+	border-radius: 0;
+	color: #ffffff;
+	transition: var(--transition);
+}
+
+.btn-brand-secondary:hover {
+	background-color: #c92481;
+	color: #ffffff;
+}
+
 .btn-brand-outline-primary {
 	background-color: transparent;
 	border: 1px solid var(--brand-primary);
