@@ -5,6 +5,8 @@
   --brand-dark: #222222;
   --brand-light-gray: #545454;
   --transition: all 0.3s ease-in-out;
+  --text-brand-light: #EBEBEB;
+  --text-brand-muted: #8a8a8a;
 }
 
 .brand-gradient {
@@ -21,12 +23,24 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.bg-brand-primary {
+  background-color: var(--brand-primary);
+}
+
+.bg-brand-secondary {
+  background-color: var(--brand-secondary);
+}
+
 .text-brand-primary {
 	color: var(--brand-primary);
 }
 
 .text-brand-secondary {
 	color: var(--brand-secondary);
+}
+
+.text-brand-muted {
+	color: var(--text-brand-muted);
 }
 
 .bg-brand-dark {
@@ -50,6 +64,18 @@
 
 .btn-brand-primary:hover {
 	background-color: #5d8f07;
+	color: #ffffff;
+}
+
+.btn-brand-secondary {
+	background-color: var(--brand-secondary);
+	border-radius: 0;
+	color: #ffffff;
+	transition: var(--transition);
+}
+
+.btn-brand-secondary:hover {
+	background-color: #c92481;
 	color: #ffffff;
 }
 

@@ -3,6 +3,7 @@
 
 // Write your JavaScript code.
 
+// Main navigation bar Sticky on scroll
 let mainNav = document.querySelector('#main-navbar');
 let secondaryNav = document.querySelector('#secondary-navbar');
 
@@ -19,3 +20,10 @@ function toggleSticky() {
 window.onscroll = () => {toggleSticky()};
 
 window.onresize = () => {stickyPosition = mainNav.offsetTop};
+
+
+// 3D Card Effect
+VanillaTilt.init(document.querySelector(".subscription-tier-ultimate"), {
+	max: 15,
+	speed: 250
+});
