@@ -1,5 +1,9 @@
 @import url("global.css");
 
+.table {
+  color: #ebebeb; /* Make this global */
+}
+
 /** Slide **/
 /* .brand-slide {
   width: 100%;
@@ -214,13 +218,13 @@ footer {
 }
 
 .primary-box {
-	background-color: var(--brand-primary);
+  background-color: var(--brand-primary);
 }
 
 .secondary-box {
-	background-color: var(--brand-secondary);
+  background-color: var(--brand-secondary);
 }
 
 .tertiary-box {
-	background-color: var(--brand-tertiary);
+  background-color: var(--brand-tertiary);
 }

@@ -1,14 +1,6 @@
-main {
-  height: 100vh;
-  background-color: aqua;
-}
+@import url("global.css");
 
-aside {
-  width: 280px;
-  height: 100vh;
-  background-color: red;
-}
-
-#sidebar {
-  height: 100%;
-}
+.table {
+	color: var(--text-brand-dark); /* Make this global */
+  }
+  

@@ -9,6 +9,7 @@
   --transition: all 0.3s ease-in-out;
   --text-brand-light: #EBEBEB;
   --text-brand-muted: #8a8a8a;
+  --text-brand-dark: #212529;
 }
 
 /** General **/
@@ -150,9 +151,3 @@ html {
 	color: #ffffff;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
-
-.table {
-	color: #ebebeb; /* Make this global */
-  }
-  
-
