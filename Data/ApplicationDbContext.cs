@@ -8,8 +8,11 @@ namespace Cosmos.Models
         {
         }
 
-        public DbSet<Genre> Genres { get; set; }
         public DbSet<Game> Games { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+		public DbSet<Mode> Modes { get; set; }
+		public DbSet<Developer> Developers {get; set;}
+		public DbSet<Publisher> Publishers {get; set;}
         public DbSet<Subscription> Subscriptions {get; set;}
     }
 }

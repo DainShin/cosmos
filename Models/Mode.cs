@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cosmos.Models
 {
-    public class Subscription
+    public class Mode
     {
         [Key]
         public int Id {get; set;} = 0;
@@ -12,11 +12,6 @@ namespace Cosmos.Models
 		[StringLength(300)]
         public string Name {get; set;} = String.Empty;
 
-        [Required]
-        [Range(0.01, 999999.99)]
-        [DataType(DataType.Currency)]
-        public decimal Price {get; set;} = 0.01M;
-        
 		public DateTime CreatedAt {get; set;} = DateTime.Now;
 
 		public virtual ICollection<Game>? Games {get; set;} = new List<Game>();
