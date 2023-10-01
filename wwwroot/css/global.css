@@ -10,6 +10,8 @@
   --text-brand-light: #EBEBEB;
   --text-brand-muted: #8a8a8a;
   --text-brand-dark: #212529;
+  --brand-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  --brand-shadow-lg: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 /** General **/
@@ -151,3 +153,13 @@ html {
 	color: #ffffff;
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
+
+.brand-shadow {
+	box-shadow: var(--brand-shadow);
+	transition: all 0.3s ease-in-out;
+}
+
+
+.brand-shadow:hover {
+	box-shadow: var(--brand-shadow-lg);
+}	

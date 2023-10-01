@@ -1,10 +1,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Cosmos.Models.Interfaces;
 
 namespace Cosmos.Models
 {
-    public class Game
+    public class Game : IEntity
     {
         [Key]
         public int Id {get; set;} = 0;

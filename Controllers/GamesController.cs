@@ -22,6 +22,8 @@ namespace Cosmos.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Games.Include(g => g.Developer).Include(g => g.Publisher);
+			ViewData["ControllerName"] = "Game";
+			// ViewBag.ControllerName = "Game";
             return View(await applicationDbContext.ToListAsync());
         }
 

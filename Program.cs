@@ -33,10 +33,20 @@ app.MapControllerRoute(
 	pattern: "brief",
 	defaults: new { controller = "Home", action = "Brief" });
 
-
 /**
  * ADMIN ROUTES
  */
+
+ // Games
+app.MapControllerRoute(
+	name: "games",
+	pattern: "admin/games",
+	defaults: new { controller = "Games", action = "Index" });
+
+app.MapControllerRoute(
+	name: "games",
+	pattern: "admin/games/create",
+	defaults: new { controller = "Games", action = "Create" });
 
  // Developers
 app.MapControllerRoute(
