@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;700&family=Poppins:wght@100;200;300;400;700&family=Ubuntu:wght@300;400;700&display=swap");
+
 :root {
   --brand-primary: #75B900;
   --brand-secondary: #FC28A0;
@@ -7,7 +9,52 @@
   --transition: all 0.3s ease-in-out;
   --text-brand-light: #EBEBEB;
   --text-brand-muted: #8a8a8a;
+  --text-brand-dark: #212529;
+  --brand-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  --brand-shadow-lg: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
+
+/** General **/
+
+html {
+	font-size: 14px;
+  }
+  
+  @media (min-width: 768px) {
+	html {
+	  font-size: 16px;
+	}
+  }
+
+  html {
+	position: relative;
+	min-height: 100%;
+  }
+
+  .page-padding {
+	padding: 60px 0;
+  }
+
+  /** Typography **/
+  
+  h1,
+  h2 {
+	font-family: "Poppins", sans-serif;
+  }
+  
+  h3,
+  h4,
+  h5,
+  h6 {
+	font-family: "Ubuntu", sans-serif;
+  }
+  
+  p,
+  a {
+	font-family: "Mulish", sans-serif;
+  }
+
+  /** Colors **/
 
 .brand-gradient {
   background: #0b8491; /* fallback for old browsers */
@@ -107,8 +154,12 @@
 	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
-.table {
-	color: #ebebeb; /* Make this global */
-  }
-  
+.brand-shadow {
+	box-shadow: var(--brand-shadow);
+	transition: all 0.3s ease-in-out;
+}
 
+
+.brand-shadow:hover {
+	box-shadow: var(--brand-shadow-lg);
+}	
