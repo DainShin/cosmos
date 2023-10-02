@@ -48,6 +48,34 @@ app.MapControllerRoute(
 	pattern: "admin/games/create",
 	defaults: new { controller = "Games", action = "Create" });
 
+// Genres
+
+ // Modes
+app.MapControllerRoute(
+	name: "modes",
+	pattern: "admin/modes",
+	defaults: new { controller = "Modes", action = "Index" });
+
+app.MapControllerRoute(
+	name: "modes",
+	pattern: "admin/modes/create",
+	defaults: new { controller = "Modes", action = "Create" });
+
+app.MapControllerRoute(
+	name: "modes",
+	pattern: "admin/modes/edit",
+	defaults: new { controller = "Modes", action = "Edit" });
+
+app.MapControllerRoute(
+	name: "modes",
+	pattern: "admin/modes/details",
+	defaults: new { controller = "Modes", action = "Details" });
+
+app.MapControllerRoute(
+	name: "modes",
+	pattern: "admin/modes/delete",
+	defaults: new { controller = "Modes", action = "Delete" });
+
  // Developers
 app.MapControllerRoute(
 	name: "developers",
