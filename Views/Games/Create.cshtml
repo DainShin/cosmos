@@ -14,7 +14,7 @@
 
 <div class="row">
 	<div class="col-md-4 d-block mx-auto">
-		<form asp-action="Create">
+		<form asp-action="Create" method="post" enctype="multipart/form-data">
 			<div class="card border-0 shadow">
 				<div class="card-body p-4">
 					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -29,9 +29,19 @@
 						<span asp-validation-for="Description" class="text-danger"></span>
 					</div>
 					<div class="form-group mb-3">
-						<label asp-for="Image" class="control-label"></label>
-						<input asp-for="Image" class="form-control" />
-						<span asp-validation-for="Image" class="text-danger"></span>
+						<label asp-for="Modes" class="control-label">Game Modes</label>
+						<select name="selectedModes" asp-items="ViewBag.Modes" multiple="multiple" class="form-control"></select>
+						<span asp-validation-for="Modes" class="text-danger"></span>
+					</div>
+					<div class="form-group mb-3">
+						<label asp-for="Genres" class="control-label"></label>
+						<select name="selectedGenres" asp-items="ViewBag.Genres" multiple="multiple" class="form-control"></select>
+						<span asp-validation-for="Genres" class="text-danger"></span>
+					</div>
+					<div class="form-group mb-3">
+						<label asp-for="GameArtUpload" class="control-label">Game Art</label>
+						<input type="file" asp-for="GameArtUpload" class="form-control" />
+						<span asp-validation-for="GameArtUpload" class="text-danger"></span>
 					</div>
 					<div class="form-group mb-3">
 						<label asp-for="ReleaseDate" class="control-label"></label>
@@ -45,6 +55,12 @@
 					<div class="form-group mb-3">
 						<label asp-for="PublisherId" class="control-label"></label>
 						<select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
+					</div>
+					<hr>
+					<div class="form-group mb-3">
+						<label asp-for="Subscriptions" class="control-label text-info fw-bold">Subscription Level</label>
+						<select name="selectedSubscriptions" asp-items="ViewBag.Subscriptions" multiple="multiple" class="form-control"></select>
+						<span asp-validation-for="Subscriptions" class="text-danger"></span>
 					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end align-items-center py-3">

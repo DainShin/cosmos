@@ -479,3 +479,4 @@ $RECYCLE.BIN/
 appsettings.Development.json
 .vscode
 **/.DS_Store
+/Data/Uploads

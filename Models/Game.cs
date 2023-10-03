@@ -16,6 +16,8 @@ namespace Cosmos.Models
         [StringLength(1000)]
         public string? Description {get; set;} = string.Empty;
 
+		public IFormFile? GameArtUpload { get; set; }
+
         [Required]
 		[StringLength(300)]
         public string Image {get; set;} = string.Empty;
