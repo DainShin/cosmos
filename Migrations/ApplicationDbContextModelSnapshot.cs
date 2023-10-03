@@ -57,6 +57,11 @@ namespace Cosmos.Migrations
                     b.Property<bool>("Enabled")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("varchar(300)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(300)

@@ -24,9 +24,9 @@ namespace Cosmos.Controllers
 			var applicationDbContext = _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher);
-				// .Include(g => g.Modes)
-				// .Include(g => g.Genres)
-				// .Include(g => g.Subscriptions);
+			// .Include(g => g.Modes)
+			// .Include(g => g.Genres)
+			// .Include(g => g.Subscriptions);
 			return View(await applicationDbContext.ToListAsync());
 		}
 
@@ -67,7 +67,7 @@ namespace Cosmos.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		// public async Task<IActionResult> Create([Bind("Id,Name,Description,Image,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
-		public async Task<IActionResult> Create([Bind("Id,Name,Description,ReleaseDate,DeveloperId,PublisherId")] Game game)
+		public async Task<IActionResult> Create([Bind("Id,Name,Description,ReleaseDate,DeveloperId,PublisherId")] Game game, IFormFile gameArt)
 		{
 			if (ModelState.IsValid)
 			{
@@ -77,7 +77,7 @@ namespace Cosmos.Controllers
 				// 	var modesToAttach = _context.Modes.Where(m => selectedModes.Contains(m.Id)).ToList();
 				// 	game.Modes = modesToAttach;
 				// }
-				
+
 				// if (selectedGenres != null && selectedGenres.Any())
 				// {
 				// 	// Getting the selected genres from the database
@@ -93,25 +93,26 @@ namespace Cosmos.Controllers
 				// }
 
 				// Handle game image upload
-				// if (game.GameArtUpload != null && game.GameArtUpload.Length > 0)
-				// {
-				// 	// Use the game's Name (or another unique identifier) as a prefix for the filename.
-				// 	var formattedGameName = game.Name.ToLower().Replace(' ', '-');
-				// 	var fileName = $"{formattedGameName}_{Path.GetFileName(game.GameArtUpload.FileName)}";
-				// 	var filePath = Path.Combine("Data/Uploads/GameArt", fileName); // replace "path_to_your_directory" with your actual path
+				if (gameArt != null && gameArt.Length > 0)
+				{
+					// Use the game's Name (or another unique identifier) as a prefix for the filename.
+					var formattedGameName = game.Name.ToLower().Replace(' ', '-');
+					var fileName = $"{formattedGameName}_{Path.GetFileName(gameArt.FileName)}";
+					var filePath = Path.Combine("Data/Uploads/GameArt/", fileName); // replace "path_to_your_directory" with your actual path
 
-				// 	using (var stream = new FileStream(filePath, FileMode.Create))
-				// 	{
-				// 		await game.GameArtUpload.CopyToAsync(stream);
-				// 	}
+					using (var stream = new FileStream(filePath, FileMode.Create))
+					{
+						await gameArt.CopyToAsync(stream);
+					}
 
-				// 	game.Image = filePath; // Store the path to the game image in the database
-				// }
+					game.Image = filePath; // Store the path to the game image in the database
+				}
 
 				_context.Add(game);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
 			}
+			// PopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions, true);
 			// ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
 			// ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name", selectedGenres);
 			// ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
@@ -217,6 +218,15 @@ namespace Cosmos.Controllers
 		private bool GameExists(int id)
 		{
 			return (_context.Games?.Any(e => e.Id == id)).GetValueOrDefault();
+		}
+
+		private void PopulateViewBags(Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions, Boolean repopulate = false)
+		{
+			// ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
+			// ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name", selectedGenres);
+			// ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
+			ViewData["DeveloperId"] = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
+			ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
 		}
 	}
 }
