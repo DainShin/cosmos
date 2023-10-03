@@ -1,8 +1,8 @@
 @model Cosmos.Models.Subscription
 
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Delete";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Delete";
 }
 
 
@@ -20,18 +20,18 @@
 	<div class="col-md-4 d-block mx-auto">
 		<div class="card">
 			<div class="card-body">
-				<h4>Mode</h4>
+				<h4>Subscription</h4>
 				<hr />
-				   <dl class="row">
-                        <dt class="col-sm-3">Name:</dt>
-                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+				<dl class="row">
+					<dt class="col-sm-3">Name:</dt>
+					<dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
 
-                        <dt class="col-sm-3">Price:</dt>
-                        <dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
+					<dt class="col-sm-3">Price:</dt>
+					<dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
 
-                        <dt class="col-sm-3">Created At:</dt>
-                        <dd class="col-sm-9">@Html.DisplayFor(model => model.CreatedAt)</dd>
-                    </dl>
+					<dt class="col-sm-3">Created At:</dt>
+					<dd class="col-sm-9">@Html.DisplayFor(model => model.CreatedAt)</dd>
+				</dl>
 			</div>
 			<div class="card-footer d-flex justify-content-end align-items-center py-3">
 				<form asp-action="Delete">
@@ -43,5 +43,4 @@
 			</div>
 		</div>
 	</div>
-
 </div>
