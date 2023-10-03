@@ -100,7 +100,6 @@ namespace Cosmos.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
                     Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: true),
-                    Image = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Enabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
@@ -125,91 +124,6 @@ namespace Cosmos.Migrations
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "GameGenre",
-                columns: table => new
-                {
-                    GamesId = table.Column<int>(type: "int", nullable: false),
-                    GenresId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GameGenre", x => new { x.GamesId, x.GenresId });
-                    table.ForeignKey(
-                        name: "FK_GameGenre_Games_GamesId",
-                        column: x => x.GamesId,
-                        principalTable: "Games",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GameGenre_Genres_GenresId",
-                        column: x => x.GenresId,
-                        principalTable: "Genres",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "GameMode",
-                columns: table => new
-                {
-                    GamesId = table.Column<int>(type: "int", nullable: false),
-                    ModesId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GameMode", x => new { x.GamesId, x.ModesId });
-                    table.ForeignKey(
-                        name: "FK_GameMode_Games_GamesId",
-                        column: x => x.GamesId,
-                        principalTable: "Games",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GameMode_Modes_ModesId",
-                        column: x => x.ModesId,
-                        principalTable: "Modes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "GameSubscription",
-                columns: table => new
-                {
-                    GamesId = table.Column<int>(type: "int", nullable: false),
-                    SubscriptionsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_GameSubscription", x => new { x.GamesId, x.SubscriptionsId });
-                    table.ForeignKey(
-                        name: "FK_GameSubscription_Games_GamesId",
-                        column: x => x.GamesId,
-                        principalTable: "Games",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_GameSubscription_Subscriptions_SubscriptionsId",
-                        column: x => x.SubscriptionsId,
-                        principalTable: "Subscriptions",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySQL:Charset", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GameGenre_GenresId",
-                table: "GameGenre",
-                column: "GenresId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GameMode_ModesId",
-                table: "GameMode",
-                column: "ModesId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_Games_DeveloperId",
                 table: "Games",
@@ -219,33 +133,19 @@ namespace Cosmos.Migrations
                 name: "IX_Games_PublisherId",
                 table: "Games",
                 column: "PublisherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_GameSubscription_SubscriptionsId",
-                table: "GameSubscription",
-                column: "SubscriptionsId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "GameGenre");
-
-            migrationBuilder.DropTable(
-                name: "GameMode");
-
-            migrationBuilder.DropTable(
-                name: "GameSubscription");
+                name: "Games");
 
             migrationBuilder.DropTable(
                 name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Modes");
-
-            migrationBuilder.DropTable(
-                name: "Games");
 
             migrationBuilder.DropTable(
                 name: "Subscriptions");

@@ -16,11 +16,8 @@ namespace Cosmos.Models
         [StringLength(1000)]
         public string? Description {get; set;} = string.Empty;
 
-		public IFormFile? GameArtUpload { get; set; }
-
-        [Required]
-		[StringLength(300)]
-        public string Image {get; set;} = string.Empty;
+		// [StringLength(300)]
+        // public string Image {get; set;} = string.Empty;
 
 		[Required]
 		public DateTime ReleaseDate {get; set;} = DateTime.Now;
@@ -39,16 +36,16 @@ namespace Cosmos.Models
 		public int PublisherId {get; set;} = 0;
 
 		[ForeignKey("DeveloperId")]
-		public virtual Developer Developer {get; set;} = new Developer();
+		public virtual Developer? Developer {get; set;}
 
 		[ForeignKey("PublisherId")]
-		public virtual Publisher Publisher {get; set;} = new Publisher();
+		public virtual Publisher? Publisher {get; set;}
 
-		public virtual ICollection<Genre> Genres {get; set;} = new List<Genre>();
+		// public virtual ICollection<Genre>? Genres {get; set;} = new List<Genre>();
 
-		public virtual ICollection<Mode> Modes {get; set;} = new List<Mode>();
+		// public virtual ICollection<Mode>? Modes {get; set;} = new List<Mode>();
 
-		public virtual ICollection<Subscription> Subscriptions {get; set;} = new List<Subscription>();
+		// public virtual ICollection<Subscription>? Subscriptions {get; set;} = new List<Subscription>();
 
     }
 }
