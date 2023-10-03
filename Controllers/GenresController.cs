@@ -35,6 +35,7 @@ namespace Cosmos.Controllers
             }
 
             var genre = await _context.Genres
+                .Include(g => g.Games.OrderBy(game => game.Name))
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (genre == null)
             {
@@ -126,6 +127,7 @@ namespace Cosmos.Controllers
             }
 
             var genre = await _context.Genres
+                .Include(g => g.Games.OrderBy(game => game.Name))
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (genre == null)
             {
