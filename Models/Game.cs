@@ -19,7 +19,7 @@ namespace Cosmos.Models
 
 		[Display(Name = "Game Art")]
 		[StringLength(300)]
-		public string Image { get; set; } = string.Empty;
+		public string ImagePath { get; set; } = string.Empty;
 
 		[Required]
 		[Display(Name = "Release")]

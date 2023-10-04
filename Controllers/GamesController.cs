@@ -65,7 +65,7 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		// public async Task<IActionResult> Create([Bind("Id,Name,Description,Image,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
+		// public async Task<IActionResult> Create([Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
 		public async Task<IActionResult> Create([Bind("Id,Name,Description,ReleaseDate,DeveloperId,PublisherId")] Game game, IFormFile gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			if (ModelState.IsValid)
@@ -91,7 +91,7 @@ namespace Cosmos.Controllers
 					game.Subscriptions = subscriptionsToAttach;
 				}
 
-				// Handle game image upload
+				// Handle game imagePath upload
 				if (gameArt != null && gameArt.Length > 0)
 				{
 					// Use the game's Name (or another unique identifier) as a prefix for the filename.
@@ -115,7 +115,7 @@ namespace Cosmos.Controllers
 					}
 
 					// Store the path to the game image in the database
-					game.Image = filePath;
+					game.ImagePath = filePath;
 				}
 
 				_context.Add(game);
@@ -157,7 +157,7 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Image,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			if (id != game.Id)
 			{

@@ -9,7 +9,7 @@
 						@Html.DisplayNameFor(model => model.Id)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Image)
+						@Html.DisplayNameFor(model => model.ImagePath)
 					</th>
 					<th>
 						@Html.DisplayNameFor(model => model.Name)
@@ -46,7 +46,7 @@
 							@Html.DisplayFor(modelItem => item.Id)
 						</td>
 						<td>
-							<img src="~/@item.Image" alt="@Html.DisplayFor(modelItem => item.Name)" srcset=""
+							<img src="~/@item.ImagePath" alt="@Html.DisplayFor(modelItem => item.Name)" srcset=""
 								class="game-art-thumbnail">
 						</td>
 						<td>

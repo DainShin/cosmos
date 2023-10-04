@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cosmos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231003233814_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20231004154818_IntialMigration")]
+    partial class IntialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,7 +60,7 @@ namespace Cosmos.Migrations
                     b.Property<bool>("Enabled")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("varchar(300)");
