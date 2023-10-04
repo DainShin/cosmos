@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Cosmos.Controllers
 {
@@ -95,7 +96,7 @@ namespace Cosmos.Controllers
 				if (gameArt != null && gameArt.Length > 0)
 				{
 					// Use the game's Name (or another unique identifier) as a prefix for the filename.
-					var formattedGameName = game.Name.ToLower().Replace(' ', '-');
+					var formattedGameName = game.Name.ToLower().Replace(' ', '-') + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
 					// Checks if file path exists, if not, create it.
 					var wwwRootPath = "wwwroot/";
@@ -199,6 +200,9 @@ namespace Cosmos.Controllers
 			var game = await _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
 				.FirstOrDefaultAsync(m => m.Id == id);
 			if (game == null)
 			{
@@ -220,6 +224,13 @@ namespace Cosmos.Controllers
 			var game = await _context.Games.FindAsync(id);
 			if (game != null)
 			{
+				// Delete the associated image from the file system.
+				var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", game.ImagePath);
+				if (System.IO.File.Exists(imagePath))
+				{
+					System.IO.File.Delete(imagePath);
+				}
+
 				_context.Games.Remove(game);
 			}
 
@@ -236,7 +247,7 @@ namespace Cosmos.Controllers
 		 * Helper methods for populating the view bags.
 		 */
 
-		 //	Populate the view bags with the modes, genres, subscriptions, developers, and publishers.
+		//	Populate the view bags with the modes, genres, subscriptions, developers, and publishers.
 		private void PopulateViewBags()
 		{
 			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name");
@@ -252,7 +263,7 @@ namespace Cosmos.Controllers
 			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
 			ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name", selectedGenres);
 			ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
-			ViewBag.DeveloperId  = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
+			ViewBag.DeveloperId = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
 			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
 		}
 	}
