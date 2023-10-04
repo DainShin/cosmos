@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 

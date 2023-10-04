@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace Cosmos.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class IntialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -100,7 +100,7 @@ namespace Cosmos.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
                     Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: true),
-                    Image = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
+                    ImagePath = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Enabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),

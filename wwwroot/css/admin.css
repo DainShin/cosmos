@@ -11,3 +11,25 @@
   font-weight: 400;
   padding: 0.5em 1.5em;
 }
+
+.data-table tbody td {
+  padding: 0.5em 1.5em;
+  vertical-align: middle;
+}
+
+.data-table .badge {
+	font-size: 0.6em;
+	padding: 0.5em 1em;
+	border-radius: 10px;
+  }
+
+.game-art-thumbnail {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.game-art {
+	border-radius: 25px;
+}

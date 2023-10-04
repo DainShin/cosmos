@@ -2,10 +2,10 @@
 
 @{
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
-	ViewData["Title"] = "Create";
+	ViewData["Title"] = "Add Game";
 }
 <div class="row mb-3">
-	<div class="col-md-4 d-block mx-auto d-flex justify-content-between align-items-center">
+	<div class="col-12 d-block mx-auto d-flex justify-content-between align-items-center">
 		<h1>Add a Game</h1>
 		<a asp-action="Index" class="btn btn-light brand-shadow"><i class="fa-solid fa-chevron-left me-2"></i>Go
 			back</a>
@@ -13,38 +13,65 @@
 </div>
 
 <div class="row">
-	<div class="col-md-4 d-block mx-auto">
-		<form asp-action="Create">
+	<div class="col-12 d-block mx-auto">
+		<form asp-action="Create" method="post" enctype="multipart/form-data">
 			<div class="card border-0 shadow">
 				<div class="card-body p-4">
-					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-					<div class="form-group mb-3">
-						<label asp-for="Name" class="control-label"></label>
-						<input asp-for="Name" class="form-control" />
-						<span asp-validation-for="Name" class="text-danger"></span>
-					</div>
-					<div class="form-group mb-3">
-						<label asp-for="Description" class="control-label"></label>
-						<input asp-for="Description" class="form-control" />
-						<span asp-validation-for="Description" class="text-danger"></span>
-					</div>
-					<div class="form-group mb-3">
-						<label asp-for="Image" class="control-label"></label>
-						<input asp-for="Image" class="form-control" />
-						<span asp-validation-for="Image" class="text-danger"></span>
-					</div>
-					<div class="form-group mb-3">
-						<label asp-for="ReleaseDate" class="control-label"></label>
-						<input asp-for="ReleaseDate" class="form-control" />
-						<span asp-validation-for="ReleaseDate" class="text-danger"></span>
-					</div>
-					<div class="form-group mb-3">
-						<label asp-for="DeveloperId" class="control-label"></label>
-						<select asp-for="DeveloperId" class="form-control" asp-items="ViewBag.DeveloperId"></select>
-					</div>
-					<div class="form-group mb-3">
-						<label asp-for="PublisherId" class="control-label"></label>
-						<select asp-for="PublisherId" class="form-control" asp-items="ViewBag.PublisherId"></select>
+					<div class="row">
+						<div class="col-md-6">
+							<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+							<div class="form-group mb-3">
+								<label asp-for="Name" class="control-label mb-1"></label>
+								<input asp-for="Name" class="form-control" />
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+							<div class="form-group mb-3">
+								<label asp-for="Description" class="control-label mb-1"></label>
+								<textarea rows="3" asp-for="Description" class="form-control"></textarea>
+								<span asp-validation-for="Description" class="text-danger"></span>
+							</div>
+							<div class="form-group mb-3">
+								<label asp-for="ImagePath" class="control-label mb-1">Game Art</label>
+								<input type="file" name="gameArt" class="form-control" />
+								<span asp-validation-for="ImagePath" class="text-danger"></span>
+							</div>
+							<div class="form-group mb-3">
+								<label asp-for="ReleaseDate" class="control-label mb-1"></label>
+								<input asp-for="ReleaseDate" class="form-control" />
+								<span asp-validation-for="ReleaseDate" class="text-danger"></span>
+							</div>
+							<div class="form-group mb-3">
+								<label asp-for="DeveloperId" class="control-label mb-1"></label>
+								<select asp-for="DeveloperId" class="form-control"
+									asp-items="ViewBag.DeveloperId"></select>
+							</div>
+							<div class="form-group mb-3">
+								<label asp-for="PublisherId" class="control-label mb-1"></label>
+								<select asp-for="PublisherId" class="form-control"
+									asp-items="ViewBag.PublisherId"></select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group mb-3">
+								<label asp-for="Modes" class="control-label mb-1">Game Modes</label>
+								<select name="selectedModes" asp-items="ViewBag.Modes" multiple="multiple"
+									class="form-control"></select>
+								<span asp-validation-for="Modes" class="text-danger"></span>
+							</div>
+							<div class="form-group mb-3">
+								<label asp-for="Genres" class="control-label mb-1"></label>
+								<select name="selectedGenres" asp-items="ViewBag.Genres" multiple="multiple"
+									class="form-control"></select>
+								<span asp-validation-for="Genres" class="text-danger"></span>
+							</div>
+							<div class="form-group mb-3">
+								<label asp-for="Subscriptions" class="control-label mb-1 text-primary fw-bold">Subscription
+									Level</label>
+								<select name="selectedSubscriptions" asp-items="ViewBag.Subscriptions"
+									multiple="multiple" class="form-control"></select>
+								<span asp-validation-for="Subscriptions" class="text-danger"></span>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end align-items-center py-3">
