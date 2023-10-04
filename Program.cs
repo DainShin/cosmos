@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +38,7 @@ app.MapControllerRoute(
  * ADMIN ROUTES
  */
 
- // Games
+// Games
 app.MapControllerRoute(
 	name: "games",
 	pattern: "admin/games",
@@ -50,7 +51,7 @@ app.MapControllerRoute(
 
 // Genres
 
- // Modes
+// Modes
 app.MapControllerRoute(
 	name: "modes",
 	pattern: "admin/modes",
@@ -76,7 +77,7 @@ app.MapControllerRoute(
 	pattern: "admin/modes/delete",
 	defaults: new { controller = "Modes", action = "Delete" });
 
- // Developers
+// Developers
 app.MapControllerRoute(
 	name: "developers",
 	pattern: "admin/developers",

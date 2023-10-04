@@ -5,7 +5,7 @@
   }
   
   aside {
-	width: 280px;
+	min-width: 280px;
 	height: 100vh;
 	border-right: 10px solid var(--brand-primary);
   }

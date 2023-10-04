@@ -23,10 +23,10 @@ namespace Cosmos.Controllers
 		{
 			var applicationDbContext = _context.Games
 				.Include(g => g.Developer)
-				.Include(g => g.Publisher);
-			// .Include(g => g.Modes)
-			// .Include(g => g.Genres)
-			// .Include(g => g.Subscriptions);
+				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions);
 			return View(await applicationDbContext.ToListAsync());
 		}
 
@@ -40,7 +40,7 @@ namespace Cosmos.Controllers
 
 			var game = await _context.Games
 				.Include(g => g.Developer)
-				// .Include(g => g.Publisher)
+				.Include(g => g.Publisher)
 				.FirstOrDefaultAsync(m => m.Id == id);
 			if (game == null)
 			{
@@ -53,11 +53,7 @@ namespace Cosmos.Controllers
 		// GET: Games/Create
 		public IActionResult Create()
 		{
-			// ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name");
-			// ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name");
-			// ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name");
-			ViewData["DeveloperId"] = new SelectList(_context.Developers, "Id", "Name");
-			ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name");
+			PopulateViewBags();
 			return View();
 		}
 
@@ -67,57 +63,63 @@ namespace Cosmos.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		// public async Task<IActionResult> Create([Bind("Id,Name,Description,Image,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
-		public async Task<IActionResult> Create([Bind("Id,Name,Description,ReleaseDate,DeveloperId,PublisherId")] Game game, IFormFile gameArt)
+		public async Task<IActionResult> Create([Bind("Id,Name,Description,ReleaseDate,DeveloperId,PublisherId")] Game game, IFormFile gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			if (ModelState.IsValid)
 			{
-				// if (selectedModes != null && selectedModes.Any())
-				// {
-				// 	// Getting the selected modes from the database
-				// 	var modesToAttach = _context.Modes.Where(m => selectedModes.Contains(m.Id)).ToList();
-				// 	game.Modes = modesToAttach;
-				// }
+				if (selectedModes != null && selectedModes.Any())
+				{
+					// Getting the selected modes from the database
+					var modesToAttach = _context.Modes.Where(m => selectedModes.Contains(m.Id)).ToList();
+					game.Modes = modesToAttach;
+				}
 
-				// if (selectedGenres != null && selectedGenres.Any())
-				// {
-				// 	// Getting the selected genres from the database
-				// 	var genresToAttach = _context.Genres.Where(g => selectedGenres.Contains(g.Id)).ToList();
-				// 	game.Genres = genresToAttach;
-				// }
+				if (selectedGenres != null && selectedGenres.Any())
+				{
+					// Getting the selected genres from the database
+					var genresToAttach = _context.Genres.Where(g => selectedGenres.Contains(g.Id)).ToList();
+					game.Genres = genresToAttach;
+				}
 
-				// if (selectedSubscriptions != null && selectedSubscriptions.Any())
-				// {
-				// 	// Getting the selected subscriptions from the database
-				// 	var subscriptionsToAttach = _context.Subscriptions.Where(s => selectedSubscriptions.Contains(s.Id)).ToList();
-				// 	game.Subscriptions = subscriptionsToAttach;
-				// }
+				if (selectedSubscriptions != null && selectedSubscriptions.Any())
+				{
+					// Getting the selected subscriptions from the database
+					var subscriptionsToAttach = _context.Subscriptions.Where(s => selectedSubscriptions.Contains(s.Id)).ToList();
+					game.Subscriptions = subscriptionsToAttach;
+				}
 
 				// Handle game image upload
 				if (gameArt != null && gameArt.Length > 0)
 				{
 					// Use the game's Name (or another unique identifier) as a prefix for the filename.
 					var formattedGameName = game.Name.ToLower().Replace(' ', '-');
-					var fileName = $"{formattedGameName}_{Path.GetFileName(gameArt.FileName)}";
-					var filePath = Path.Combine("Data/Uploads/GameArt/", fileName); // replace "path_to_your_directory" with your actual path
 
-					using (var stream = new FileStream(filePath, FileMode.Create))
+					// Checks if file path exists, if not, create it.
+					var wwwRootPath = "wwwroot/";
+					var directoryPath = "uploads/game-art/";
+					if (!Directory.Exists(wwwRootPath + directoryPath))
+					{
+						Directory.CreateDirectory(wwwRootPath + directoryPath);
+					}
+
+					// Combine the directory path and the formatted game name to create the full file path.
+					var filePath = Path.Combine(directoryPath, formattedGameName);
+
+					// Copy the file to the file path.
+					using (var stream = new FileStream(wwwRootPath + filePath, FileMode.Create))
 					{
 						await gameArt.CopyToAsync(stream);
 					}
 
-					game.Image = filePath; // Store the path to the game image in the database
+					// Store the path to the game image in the database
+					game.Image = filePath;
 				}
 
 				_context.Add(game);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
 			}
-			// PopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions, true);
-			// ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
-			// ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name", selectedGenres);
-			// ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
-			ViewData["DeveloperId"] = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
-			ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
+			RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
 			return View(game);
 		}
 
@@ -129,13 +131,21 @@ namespace Cosmos.Controllers
 				return NotFound();
 			}
 
-			var game = await _context.Games.FindAsync(id);
+			// var game = await _context.Games.FindAsync(id);
+			var game = await _context.Games
+				.Include(g => g.Developer)
+				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
+				.FirstOrDefaultAsync(g => g.Id == id);
+
 			if (game == null)
 			{
 				return NotFound();
 			}
-			ViewData["DeveloperId"] = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
-			ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
+
+			RepopulateViewBags(game, game.Modes.Select(m => m.Id).ToList(), game.Genres.Select(g => g.Id).ToList(), game.Subscriptions.Select(s => s.Id).ToList());
 			return View(game);
 		}
 
@@ -144,7 +154,7 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Image,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Image,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			if (id != game.Id)
 			{
@@ -171,8 +181,7 @@ namespace Cosmos.Controllers
 				}
 				return RedirectToAction(nameof(Index));
 			}
-			ViewData["DeveloperId"] = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
-			ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
+			RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
 			return View(game);
 		}
 
@@ -220,13 +229,28 @@ namespace Cosmos.Controllers
 			return (_context.Games?.Any(e => e.Id == id)).GetValueOrDefault();
 		}
 
-		private void PopulateViewBags(Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions, Boolean repopulate = false)
+		/**
+		 * Helper methods for populating the view bags.
+		 */
+
+		 //	Populate the view bags with the modes, genres, subscriptions, developers, and publishers.
+		private void PopulateViewBags()
 		{
-			// ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
-			// ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name", selectedGenres);
-			// ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
-			ViewData["DeveloperId"] = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
-			ViewData["PublisherId"] = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
+			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name");
+			ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name");
+			ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name");
+			ViewBag.DeveloperId = new SelectList(_context.Developers, "Id", "Name");
+			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name");
+		}
+
+		// Populate the view bags with previously entered modes, genres, subscriptions, developers, and publishers.
+		private void RepopulateViewBags(Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
+		{
+			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
+			ViewBag.Genres = new MultiSelectList(_context.Genres, "Id", "Name", selectedGenres);
+			ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
+			ViewBag.DeveloperId  = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
+			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
 		}
 	}
 }

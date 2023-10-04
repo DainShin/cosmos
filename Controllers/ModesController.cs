@@ -35,7 +35,7 @@ namespace Cosmos.Controllers
 			}
 
 			var mode = await _context.Modes
-				// .Include(mode => mode.Games.OrderBy(game => game.Name))
+				.Include(mode => mode.Games.OrderBy(game => game.Name))
 				.FirstOrDefaultAsync(m => m.Id == id);
 			if (mode == null)
 			{
