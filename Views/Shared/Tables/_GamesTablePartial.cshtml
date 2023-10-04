@@ -46,8 +46,8 @@
 							@Html.DisplayFor(modelItem => item.Id)
 						</td>
 						<td>
-							<img src="~/uploads/game-art/starfield.jpg" alt="@Html.DisplayFor(modelItem => item.Name)"
-								srcset="" class="game-art-thumbnail">
+							<img src="~/@item.Image" alt="@Html.DisplayFor(modelItem => item.Name)" srcset=""
+								class="game-art-thumbnail">
 						</td>
 						<td>
 							@Html.DisplayFor(modelItem => item.Name)
@@ -55,22 +55,28 @@
 						<td>
 							@foreach (var genre in item.Genres)
 							{
-								<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(genreItem => genre.Name)</span>
+								<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(genreItem =>
+							genre.Name)</span>
 							}
 						</td>
 						<td>
 							@foreach (var mode in item.Modes)
 							{
-								<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(modeItem => mode.Name)</span>
+								<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(modeItem =>
+							mode.Name)</span>
 							}
 						</td>
 						<td>
 							@Html.DisplayFor(modelItem => item.Developer.Name)
 						</td>
+						@{
+							// TODO: Additional stytling for subscription levels
+						}
 						<td>
 							@foreach (var subscription in item.Subscriptions)
 							{
-								<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(subscriptionItem => subscription.Name)</span>
+								<span class="badge rounded-pill bg-primary text-light mb-1">@Html.DisplayFor(subscriptionItem =>
+							subscription.Name)</span>
 							}
 						</td>
 						<td>

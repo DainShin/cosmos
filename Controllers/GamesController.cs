@@ -41,6 +41,9 @@ namespace Cosmos.Controllers
 			var game = await _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
 				.FirstOrDefaultAsync(m => m.Id == id);
 			if (game == null)
 			{
@@ -103,7 +106,7 @@ namespace Cosmos.Controllers
 					}
 
 					// Combine the directory path and the formatted game name to create the full file path.
-					var filePath = Path.Combine(directoryPath, formattedGameName);
+					var filePath = Path.Combine(directoryPath, formattedGameName + Path.GetExtension(gameArt.FileName));
 
 					// Copy the file to the file path.
 					using (var stream = new FileStream(wwwRootPath + filePath, FileMode.Create))
