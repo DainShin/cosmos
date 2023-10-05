@@ -1,4 +1,8 @@
 @import url("global.css");
+.active {
+  background-color: var(--brand-primary) !important;
+  color: var(--text-brand-light) !important;
+}
 
 .table {
   color: var(--text-brand-dark); /* Make this global */
