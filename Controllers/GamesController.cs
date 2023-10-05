@@ -94,28 +94,7 @@ namespace Cosmos.Controllers
 				// Handle game imagePath upload
 				if (gameArt != null && gameArt.Length > 0)
 				{
-					// Use the game's Name (or another unique identifier) as a prefix for the filename.
-					var formattedGameName = game.Name.ToLower().Replace(' ', '-') + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-
-					// Checks if file path exists, if not, create it.
-					var wwwRootPath = "wwwroot/";
-					var directoryPath = "uploads/game-art/";
-					if (!Directory.Exists(wwwRootPath + directoryPath))
-					{
-						Directory.CreateDirectory(wwwRootPath + directoryPath);
-					}
-
-					// Combine the directory path and the formatted game name to create the full file path.
-					var filePath = Path.Combine(directoryPath, formattedGameName + Path.GetExtension(gameArt.FileName));
-
-					// Copy the file to the file path.
-					using (var stream = new FileStream(wwwRootPath + filePath, FileMode.Create))
-					{
-						await gameArt.CopyToAsync(stream);
-					}
-
-					// Store the path to the game image in the database
-					game.ImagePath = filePath;
+					UploadGameArt(game, gameArt);
 				}
 
 				_context.Add(game);
@@ -264,6 +243,36 @@ namespace Cosmos.Controllers
 			ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
 			ViewBag.DeveloperId = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
 			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
+		}
+
+		private async void UploadGameArt(Game game, IFormFile gameArt)
+		{
+			// Handle game imagePath upload
+			if (gameArt != null && gameArt.Length > 0)
+			{
+				// Use the game's Name (or another unique identifier) as a prefix for the filename.
+				var formattedGameName = game.Name.ToLower().Replace(' ', '-') + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+				// Checks if file path exists, if not, create it.
+				var wwwRootPath = "wwwroot/";
+				var directoryPath = "uploads/game-art/";
+				if (!Directory.Exists(wwwRootPath + directoryPath))
+				{
+					Directory.CreateDirectory(wwwRootPath + directoryPath);
+				}
+
+				// Combine the directory path and the formatted game name to create the full file path.
+				var filePath = Path.Combine(directoryPath, formattedGameName + Path.GetExtension(gameArt.FileName));
+
+				// Copy the file to the file path.
+				using (var stream = new FileStream(wwwRootPath + filePath, FileMode.Create))
+				{
+					await gameArt.CopyToAsync(stream);
+				}
+
+				// Store the path to the game image in the database
+				game.ImagePath = filePath;
+			}
 		}
 	}
 }
