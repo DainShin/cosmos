@@ -201,13 +201,7 @@ namespace Cosmos.Controllers
 			var game = await _context.Games.FindAsync(id);
 			if (game != null)
 			{
-				// Delete the associated image from the file system.
-				var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", game.ImagePath);
-				if (System.IO.File.Exists(imagePath))
-				{
-					System.IO.File.Delete(imagePath);
-				}
-
+				DeleteGameArt(game);
 				_context.Games.Remove(game);
 			}
 
@@ -222,9 +216,8 @@ namespace Cosmos.Controllers
 
 		/**
 		 * Helper methods for populating the view bags.
+		 * Populate the view bags with the modes, genres, subscriptions, developers, and publishers.
 		 */
-
-		//	Populate the view bags with the modes, genres, subscriptions, developers, and publishers.
 		private void PopulateViewBags()
 		{
 			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name");
@@ -234,7 +227,10 @@ namespace Cosmos.Controllers
 			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name");
 		}
 
-		// Populate the view bags with previously entered modes, genres, subscriptions, developers, and publishers.
+		/**
+		 * Helper methods for repopulating the view bags.
+		 * Populate the view bags with previously entered modes, genres, subscriptions, developers, and publishers.
+		 */
 		private void RepopulateViewBags(Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
@@ -274,6 +270,21 @@ namespace Cosmos.Controllers
 
 				// Store the path to the game image in the database
 				game.ImagePath = filePath;
+			}
+		}
+
+		/**
+		* Helper methods for deleting game art.
+		*/
+		private static void DeleteGameArt(Game game)
+		{
+			// Gets absolute path to the game image.
+			var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", game.ImagePath);
+
+			if (System.IO.File.Exists(imagePath))
+			{
+				// Deletes the game image.
+				System.IO.File.Delete(imagePath);
 			}
 		}
 	}
