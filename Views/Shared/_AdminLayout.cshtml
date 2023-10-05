@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+	var currentController = ViewContext.RouteData.Values["controller"].ToString();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,15 +18,13 @@
 		<aside>
 			<div id="sidebar" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
 				<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-					<svg class="bi me-2" width="40" height="32">
-						<use xlink:href="#bootstrap" />
-					</svg>
-					<span class="fs-4">Logo</span>
+					<img src="~/images/logo-white.png" alt="Cosmos" class="image-fluid" />
 				</a>
 				<hr>
 				<ul class="nav nav-pills flex-column mb-auto">
 					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" asp-area="" asp-controller="Games" asp-action="Index">
+						<a class="nav-link text-white @(currentController == "Games" ? "active" : "")" asp-area=""
+							asp-controller="Games" asp-action="Index">
 							<svg class="bi me-2" width="16" height="16">
 								<use xlink:href="#home" />
 							</svg>
@@ -31,7 +32,8 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white" asp-area="" asp-controller="Genres" asp-action="Index">
+						<a class="nav-link text-white @(currentController == "Genres" ? "active" : "")" asp-area=""
+							asp-controller="Genres" asp-action="Index">
 							<svg class="bi me-2" width="16" height="16">
 								<use xlink:href="#speedometer2" />
 							</svg>
@@ -39,7 +41,8 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white" asp-area="" asp-controller="Modes" asp-action="Index">
+						<a class="nav-link text-white @(currentController == "Modes" ? "active" : "")" asp-area=""
+							asp-controller="Modes" asp-action="Index">
 							<svg class="bi me-2" width="16" height="16">
 								<use xlink:href="#table" />
 							</svg>
@@ -47,7 +50,8 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white" asp-area="" asp-controller="Subscriptions" asp-action="Index">
+						<a class="nav-link text-white @(currentController == "Subscriptions" ? "active" : "")" asp-area=""
+							asp-controller="Subscriptions" asp-action="Index">
 							<svg class="bi me-2" width="16" height="16">
 								<use xlink:href="#grid" />
 							</svg>
@@ -55,7 +59,8 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white" asp-area="" asp-controller="Developers" asp-action="Index">
+						<a class="nav-link text-white @(currentController == "Developers" ? "active" : "")" asp-area=""
+							asp-controller="Developers" asp-action="Index">
 							<svg class="bi me-2" width="16" height="16">
 								<use xlink:href="#people-circle" />
 							</svg>
@@ -63,7 +68,8 @@
 						</a>
 					</li>
 					<li>
-						<a class="nav-link text-white" asp-area="" asp-controller="Publishers" asp-action="Index">
+						<a class="nav-link text-white @(currentController == "Publishers" ? "active" : "")" asp-area=""
+							asp-controller="Publishers" asp-action="Index">
 							<svg class="bi me-2" width="16" height="16">
 								<use xlink:href="#people-circle" />
 							</svg>
