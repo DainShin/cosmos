@@ -113,7 +113,6 @@ namespace Cosmos.Controllers
 				return NotFound();
 			}
 
-			// var game = await _context.Games.FindAsync(id);
 			var game = await _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
@@ -245,13 +244,16 @@ namespace Cosmos.Controllers
 			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
 		}
 
+		/**
+		 * Helper methods for uploading game art.
+		 */
 		private async void UploadGameArt(Game game, IFormFile gameArt)
 		{
 			// Handle game imagePath upload
 			if (gameArt != null && gameArt.Length > 0)
 			{
 				// Use the game's Name (or another unique identifier) as a prefix for the filename.
-				var formattedGameName = game.Name.ToLower().Replace(' ', '-') + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+				var formattedGameName = game.Name.ToLower().Replace(' ', '-') + "-" + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
 				// Checks if file path exists, if not, create it.
 				var wwwRootPath = "wwwroot/";
