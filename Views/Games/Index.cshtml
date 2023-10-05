@@ -1,0 +1,16 @@
+@model IEnumerable<Cosmos.Models.Game>
+
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Games";
+}
+
+<div class="row mb-3">
+	<div class="col-12 d-flex justify-content-between align-items-center">
+		<h1>Games</h1>
+		<a asp-action="Create" class="btn btn-brand-primary brand-shadow"><i class="fa-solid fa-plus me-2"></i>Add
+			Game</a>
+	</div>
+</div>
+
+<partial name="~/Views/Shared/Tables/_GamesTablePartial.cshtml" model="Model" />

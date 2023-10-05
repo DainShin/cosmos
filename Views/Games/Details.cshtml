@@ -1,0 +1,95 @@
+@model Cosmos.Models.Game
+
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Game Mode Details";
+}
+
+<div class="row mb-3">
+	<div class="col-12 d-block mx-auto d-flex justify-content-between align-items-center">
+		<h1>@Html.DisplayFor(model => model.Name)</h1>
+		<div>
+			<a asp-action="Index" class="btn btn-light brand-shadow me-3"><i
+					class="fa-solid fa-chevron-left me-2"></i>Go
+				back</a>
+			<a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning brand-shadow"><i
+					class="fa-solid fa-pencil me-2"></i>Edit
+			</a>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-12 mb-3">
+		<hr>
+	</div>
+	<div class="col-md-4 mb-3">
+		<img src="~/@Model.ImagePath" alt="@Model.Name" class="img-fluid game-art shadow" />
+	</div>
+	<div class="col-md-8">
+		<h3>About</h3>
+		<p>@Html.DisplayFor(model => model.Description)</p>
+		<dl class="row mt-3">
+			<dt class="col-lg-2 col-md-6">
+				Initial release date
+			</dt>
+			<dd class="col-lg-10 col-md-6">
+				@Model.ReleaseDate.ToString("MMMM dd, yyyy a\\t hh:mm tt")
+			</dd>
+			<dt class="col-lg-2 col-md-6">
+				@Html.DisplayNameFor(model => model.Genres)
+			</dt>
+			<dd class="col-lg-10 col-md-6">
+				@foreach (var genre in @Model.Genres)
+				{
+					<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(genreItem =>
+					genre.Name)</span>
+				}
+			</dd>
+			<dt class="col-lg-2 col-md-6">
+				@Html.DisplayNameFor(model => model.Modes)
+			</dt>
+			<dd class="col-lg-10 col-md-6">
+				@foreach (var mode in @Model.Modes)
+				{
+					<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(modeItem =>
+					mode.Name)</span>
+				}
+			</dd>
+			<dt class="col-lg-2 col-md-6">
+				@Html.DisplayNameFor(model => model.Subscriptions)
+			</dt>
+			@{
+				// TODO: Additional stytling for subscription levels
+			}
+			<dd class="col-lg-10 col-md-6">
+				@foreach (var subscription in @Model.Subscriptions)
+				{
+					<span class="badge rounded-pill bg-primary text-light mb-1">@Html.DisplayFor(subscriptionItem =>
+					subscription.Name)</span>
+				}
+			</dd>
+			<dt class="col-lg-2 col-md-6">
+				@Html.DisplayNameFor(model => model.Developer)
+			</dt>
+			<dd class="col-lg-10 col-md-6">
+				@Html.DisplayFor(model => model.Developer.Name)
+			</dd>
+			<dt class="col-lg-2 col-md-6">
+				@Html.DisplayNameFor(model => model.Publisher)
+			</dt>
+			<dd class="col-lg-10 col-md-6">
+				@Html.DisplayFor(model => model.Publisher.Name)
+			</dd>
+		</dl>
+		<hr>
+		<dl class="row mt-3">
+			<dt class="col-lg-2 col-md-6">
+				@Html.DisplayNameFor(model => model.CreatedAt)
+			</dt>
+			<dd class="col-lg-10 col-md-6">
+				@Html.DisplayFor(model => model.CreatedAt)
+			</dd>
+		</dl>
+	</div>
+</div>

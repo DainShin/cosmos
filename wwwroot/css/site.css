@@ -1,40 +1,7 @@
 @import url("global.css");
-@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;700&family=Poppins:wght@100;200;300;400;700&family=Ubuntu:wght@300;400;700&display=swap");
 
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-h1,
-h2 {
-  font-family: "Poppins", sans-serif;
-}
-
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Ubuntu", sans-serif;
-}
-
-p,
-a {
-  font-family: "Mulish", sans-serif;
-}
-
-.page-padding {
-  padding: 60px 0;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+.table {
+  color: #ebebeb; /* Make this global */
 }
 
 /** Slide **/
@@ -251,13 +218,13 @@ footer {
 }
 
 .primary-box {
-	background-color: var(--brand-primary);
+  background-color: var(--brand-primary);
 }
 
 .secondary-box {
-	background-color: var(--brand-secondary);
+  background-color: var(--brand-secondary);
 }
 
 .tertiary-box {
-	background-color: var(--brand-tertiary);
+  background-color: var(--brand-tertiary);
 }
