@@ -57,7 +57,7 @@ namespace Cosmos.Migrations
                     b.Property<bool>("Enabled")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("ImagePath")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("varchar(300)");

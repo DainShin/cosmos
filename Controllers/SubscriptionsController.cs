@@ -35,6 +35,7 @@ namespace Cosmos.Controllers
             }
 
             var subscription = await _context.Subscriptions
+                .Include(s => s.Games.OrderBy(game => game.Name))
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (subscription == null)
             {
@@ -126,6 +127,7 @@ namespace Cosmos.Controllers
             }
 
             var subscription = await _context.Subscriptions
+                 .Include(s => s.Games.OrderBy(game => game.Name))
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (subscription == null)
             {

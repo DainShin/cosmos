@@ -13,7 +13,7 @@ namespace Cosmos.Models
         public string Name {get; set;} = String.Empty;
 
         [Required]
-        [Range(0.01, 999999.99)]
+        [Range(0.00, 999999.99)]
         [DataType(DataType.Currency)]
         public decimal Price {get; set;} = 0.01M;
         
