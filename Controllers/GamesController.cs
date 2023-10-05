@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
-using Google.Protobuf.WellKnownTypes;
 
 namespace Cosmos.Controllers
 {
@@ -139,9 +138,9 @@ namespace Cosmos.Controllers
 			var game = await _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
-				.Include(g => g.Modes)
-				.Include(g => g.Genres)
-				.Include(g => g.Subscriptions)
+				// .Include(g => g.Modes)
+				// .Include(g => g.Genres)
+				// .Include(g => g.Subscriptions)
 				.FirstOrDefaultAsync(g => g.Id == id);
 
 			if (game == null)
@@ -158,7 +157,7 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
 		{
 			if (id != game.Id)
 			{
@@ -185,7 +184,7 @@ namespace Cosmos.Controllers
 				}
 				return RedirectToAction(nameof(Index));
 			}
-			RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
+			// RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
 			return View(game);
 		}
 
