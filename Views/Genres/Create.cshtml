@@ -1,12 +1,12 @@
 @model Cosmos.Models.Genre
 
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Add Genre";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Add Genre";
 }
 
 <div class="row mb-3">
-	<div class="col-md-4 d-block mx-auto d-flex justify-content-between align-items-center">
+	<div class="col-lg-4 col-md-12 d-block mx-auto d-flex justify-content-between align-items-center">
 		<h1>Add a Genre</h1>
 		<a asp-action="Index" class="btn btn-light brand-shadow"><i class="fa-solid fa-chevron-left me-2"></i>Go
 			back</a>
@@ -14,32 +14,35 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4 d-block mx-auto">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group mb-3">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group mb-3">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group mb-3">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group mb-3">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+	<div class="col-lg-4 col-md-12 d-block mx-auto">
+		<form asp-action="Create">
+			<div class="card border-0 shadow">
+				<div class="card-body p-4">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group mb-3">
+						<label asp-for="Name" class="control-label"></label>
+						<input asp-for="Name" class="form-control" />
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+					<div class="form-group mb-3">
+						<label asp-for="Description" class="control-label"></label>
+						<textarea rows="3" asp-for="Description" class="form-control"></textarea>
+						<span asp-validation-for="Description" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="card-footer d-flex justify-content-end align-items-center py-3">
+					<div class="form-group mb-0">
+						<input type="submit" value="Save" class="btn btn-success brand-shadow" />
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

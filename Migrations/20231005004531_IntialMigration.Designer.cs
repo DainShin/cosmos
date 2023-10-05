@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cosmos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231004154818_IntialMigration")]
+    [Migration("20231005004531_IntialMigration")]
     partial class IntialMigration
     {
         /// <inheritdoc />
