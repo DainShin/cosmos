@@ -2,7 +2,7 @@
 
 @{
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
-	ViewData["Title"] = "Delete";
+	ViewData["Title"] = "Delete Subscription";
 }
 
 
@@ -18,19 +18,19 @@
 
 <div class="row">
 	<div class="col-md-4 d-block mx-auto">
-		<div class="card">
+		<div class="card border-0 shadow">
 			<div class="card-body">
 				<h4>Subscription</h4>
 				<hr />
 				<dl class="row">
-					<dt class="col-sm-3">Name:</dt>
-					<dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+					<dt class="col-lg-4 col-md-6">Name:</dt>
+					<dd class="col-lg-8 col-md-6">@Html.DisplayFor(model => model.Name)</dd>
 
-					<dt class="col-sm-3">Price:</dt>
-					<dd class="col-sm-9">@Html.DisplayFor(model => model.Price)</dd>
+					<dt class="col-lg-4 col-md-6">Price:</dt>
+					<dd class="col-lg-8 col-md-6">@Html.DisplayFor(model => model.Price)</dd>
 
-					<dt class="col-sm-3">Created At:</dt>
-					<dd class="col-sm-9">@Html.DisplayFor(model => model.CreatedAt)</dd>
+					<dt class="col-lg-4 col-md-6">Created At:</dt>
+					<dd class="col-lg-8 col-md-6">@Html.DisplayFor(model => model.CreatedAt)</dd>
 				</dl>
 			</div>
 			<div class="card-footer d-flex justify-content-end align-items-center py-3">
