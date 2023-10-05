@@ -135,7 +135,7 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, IFormFile gameArt)
 		{
 			if (id != game.Id)
 			{
@@ -146,6 +146,13 @@ namespace Cosmos.Controllers
 			{
 				try
 				{
+					// Handle game imagePath upload
+					if (gameArt != null && gameArt.Length > 0)
+					{
+						DeleteGameArt(game);
+						UploadGameArt(game, gameArt);
+					}
+
 					_context.Update(game);
 					await _context.SaveChangesAsync();
 				}
@@ -160,7 +167,7 @@ namespace Cosmos.Controllers
 						throw;
 					}
 				}
-				return RedirectToAction(nameof(Index));
+				return RedirectToAction(nameof(Details), new { id = game.Id });
 			}
 			// RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
 			return View(game);
