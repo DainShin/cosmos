@@ -41,16 +41,16 @@ namespace Cosmos.Models
 		public int PublisherId { get; set; } = 0;
 
 		[ForeignKey("DeveloperId")]
-		public virtual Developer? Developer { get; set; }
+		public virtual Developer Developer { get; set; } = new Developer();
 
 		[ForeignKey("PublisherId")]
-		public virtual Publisher? Publisher { get; set; }
+		public virtual Publisher Publisher { get; set; } = new Publisher();
 
-		public virtual ICollection<Genre>? Genres { get; set; } = new List<Genre>();
+		public virtual ICollection<Genre> Genres { get; set; } = new List<Genre>();
 
-		public virtual ICollection<Mode>? Modes { get; set; } = new List<Mode>();
+		public virtual ICollection<Mode> Modes { get; set; } = new List<Mode>();
 
-		public virtual ICollection<Subscription>? Subscriptions { get; set; } = new List<Subscription>();
+		public virtual ICollection<Subscription> Subscriptions { get; set; } = new List<Subscription>();
 
 	}
 }
