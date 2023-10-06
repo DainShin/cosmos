@@ -116,7 +116,7 @@ namespace Cosmos.Controllers
 			var game = await _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
-				// .Include(g => g.Modes)
+				.Include(g => g.Modes)
 				// .Include(g => g.Genres)
 				// .Include(g => g.Subscriptions)
 				.FirstOrDefaultAsync(g => g.Id == id);
@@ -135,12 +135,22 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, IFormFile? gameArt)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, IFormFile? gameArt, List<int> selectedModes)
 		{
-			if (id != game.Id)
+			// Load the existing game entity from the database
+			var existingGame = await _context.Games
+				.Include(g => g.Modes)
+				.SingleOrDefaultAsync(g => g.Id == id);
+
+			if(existingGame == null)
 			{
 				return NotFound();
 			}
+
+			// if (id != game.Id)
+			// {
+			// 	return NotFound();
+			// }
 
 			if (ModelState.IsValid)
 			{
@@ -149,16 +159,30 @@ namespace Cosmos.Controllers
 					// Handle game imagePath upload
 					if (gameArt != null && gameArt.Length > 0)
 					{
-						DeleteGameArt(game);
-						UploadGameArt(game, gameArt);
+						DeleteGameArt(existingGame);
+						UploadGameArt(existingGame, gameArt);
 					}
 
-					_context.Update(game);
+					// Clear the existing modes
+					existingGame.Modes.Clear();
+
+					// Add the new modes
+					var modesToAttach = _context.Modes.Where(m => selectedModes.Contains(m.Id)).ToList();
+					existingGame.Modes = modesToAttach;
+
+					// Update the existing game entity with the new values
+					existingGame.Name = game.Name;
+					existingGame.Description = game.Description;
+					existingGame.ReleaseDate = game.ReleaseDate;
+					existingGame.DeveloperId = game.DeveloperId;
+					existingGame.PublisherId = game.PublisherId;
+
+					_context.Update(existingGame);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!GameExists(game.Id))
+					if (!GameExists(existingGame.Id))
 					{
 						return NotFound();
 					}
@@ -167,10 +191,10 @@ namespace Cosmos.Controllers
 						throw;
 					}
 				}
-				return RedirectToAction(nameof(Details), new { id = game.Id });
+				return RedirectToAction(nameof(Details), new { id = existingGame.Id });
 			}
 			// RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
-			return View(game);
+			return View(existingGame);
 		}
 
 		// GET: Games/Delete/5
