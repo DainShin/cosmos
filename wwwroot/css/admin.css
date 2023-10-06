@@ -8,8 +8,27 @@
   color: var(--text-brand-dark); /* Make this global */
 }
 
-.data-table  {
-	border-radius: 10px 10px 0 0;
+.table.rounded {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+}
+
+.table.rounded thead tr:first-child th:first-child {
+  border-top-left-radius: 0.5rem;
+}
+
+.table.rounded thead tr:first-child th:last-child {
+  border-top-right-radius: 0.5rem;
+}
+
+.table.rounded tfoot tr:last-child td:first-child {
+  border-bottom-left-radius: 0.5rem;
+}
+
+.table.rounded tfoot tr:last-child td:last-child {
+  border-bottom-right-radius: 0.5rem;
 }
 
 .data-table thead th {
@@ -23,16 +42,16 @@
 }
 
 .data-table .badge {
-	font-size: 0.6em;
-	padding: 0.5em 1em;
-	border-radius: 10px;
-  }
+  font-size: 0.6em;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+}
 
 .icon-btn {
-	padding: 0.5em;
-	background-color: transparent;
-	border: none;
-	margin: 0 0.25em;
+  padding: 0.5em;
+  background-color: transparent;
+  border: none;
+  margin: 0 0.5em;
 }
 
 .game-art-thumbnail {
@@ -40,8 +59,15 @@
   height: 75px;
   object-fit: cover;
   border-radius: 10px;
+  transition: var(--transition);
+}
+
+.game-art-thumbnail:hover {
+  /* transform: scale(1.025); */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
 }
 
 .game-art {
-	border-radius: 25px;
+  border-radius: 25px;
 }
