@@ -104,7 +104,7 @@ html {
 
 .btn-brand-primary {
 	background-color: var(--brand-primary);
-	border-radius: 0;
+	/* border-radius: 0; */
 	color: #ffffff;
 	transition: var(--transition);
 }
@@ -116,7 +116,7 @@ html {
 
 .btn-brand-secondary {
 	background-color: var(--brand-secondary);
-	border-radius: 0;
+	/* border-radius: 0; */
 	color: #ffffff;
 	transition: var(--transition);
 }
@@ -129,7 +129,7 @@ html {
 .btn-brand-outline-primary {
 	background-color: transparent;
 	border: 1px solid var(--brand-primary);
-	border-radius: 0;
+	/* border-radius: 0; */
 	color: var(--brand-primary);
 	transition: var(--transition);
 }
@@ -143,7 +143,7 @@ html {
 .btn-brand-outline-secondary {
 	background-color: transparent;
 	border: 1px solid var(--brand-secondary);
-	border-radius: 0;
+	/* border-radius: 0; */
 	color: var(--brand-secondary);
 	transition: var(--transition);
 }
@@ -162,4 +162,9 @@ html {
 
 .brand-shadow:hover {
 	box-shadow: var(--brand-shadow-lg);
-}	
+}
+
+.brand-text-right {	
+	text-align: right;
+	padding-right: 2.25em !important;
+}

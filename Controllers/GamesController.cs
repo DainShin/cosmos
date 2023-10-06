@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
-using Google.Protobuf.WellKnownTypes;
 
 namespace Cosmos.Controllers
 {
@@ -95,28 +94,7 @@ namespace Cosmos.Controllers
 				// Handle game imagePath upload
 				if (gameArt != null && gameArt.Length > 0)
 				{
-					// Use the game's Name (or another unique identifier) as a prefix for the filename.
-					var formattedGameName = game.Name.ToLower().Replace(' ', '-') + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
-
-					// Checks if file path exists, if not, create it.
-					var wwwRootPath = "wwwroot/";
-					var directoryPath = "uploads/game-art/";
-					if (!Directory.Exists(wwwRootPath + directoryPath))
-					{
-						Directory.CreateDirectory(wwwRootPath + directoryPath);
-					}
-
-					// Combine the directory path and the formatted game name to create the full file path.
-					var filePath = Path.Combine(directoryPath, formattedGameName + Path.GetExtension(gameArt.FileName));
-
-					// Copy the file to the file path.
-					using (var stream = new FileStream(wwwRootPath + filePath, FileMode.Create))
-					{
-						await gameArt.CopyToAsync(stream);
-					}
-
-					// Store the path to the game image in the database
-					game.ImagePath = filePath;
+					UploadGameArt(game, gameArt);
 				}
 
 				_context.Add(game);
@@ -135,7 +113,6 @@ namespace Cosmos.Controllers
 				return NotFound();
 			}
 
-			// var game = await _context.Games.FindAsync(id);
 			var game = await _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
@@ -158,23 +135,70 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, IFormFile? gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
-			if (id != game.Id)
+			// Load the existing game entity from the database
+			var existingGame = await _context.Games
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
+				.SingleOrDefaultAsync(g => g.Id == id);
+
+			if(existingGame == null)
 			{
 				return NotFound();
 			}
+
+			// if (id != game.Id)
+			// {
+			// 	return NotFound();
+			// }
 
 			if (ModelState.IsValid)
 			{
 				try
 				{
-					_context.Update(game);
+					// Handle game imagePath upload
+					if (gameArt != null && gameArt.Length > 0)
+					{
+						DeleteGameArt(existingGame);
+						UploadGameArt(existingGame, gameArt);
+					}
+
+					// Clear the existing modes
+					existingGame.Modes.Clear();
+
+					// Clear the existing genres
+					existingGame.Genres.Clear();
+
+					// Clear the existing subscriptions
+					existingGame.Subscriptions.Clear();
+
+					// Add the new modes
+					var modesToAttach = _context.Modes.Where(m => selectedModes.Contains(m.Id)).ToList();
+					existingGame.Modes = modesToAttach;
+
+					// Add the new genres
+					var genresToAttach = _context.Genres.Where(g => selectedGenres.Contains(g.Id)).ToList();
+					existingGame.Genres = genresToAttach;
+
+					// Add the new subscriptions
+					var subscriptionsToAttach = _context.Subscriptions.Where(s => selectedSubscriptions.Contains(s.Id)).ToList();
+					existingGame.Subscriptions = subscriptionsToAttach;
+
+					// Update the existing game entity with the new values
+					existingGame.Name = game.Name;
+					existingGame.Description = game.Description;
+					existingGame.ReleaseDate = game.ReleaseDate;
+					existingGame.DeveloperId = game.DeveloperId;
+					existingGame.PublisherId = game.PublisherId;
+
+					_context.Update(existingGame);
 					await _context.SaveChangesAsync();
 				}
 				catch (DbUpdateConcurrencyException)
 				{
-					if (!GameExists(game.Id))
+					if (!GameExists(existingGame.Id))
 					{
 						return NotFound();
 					}
@@ -183,10 +207,10 @@ namespace Cosmos.Controllers
 						throw;
 					}
 				}
-				return RedirectToAction(nameof(Index));
+				return RedirectToAction(nameof(Details), new { id = existingGame.Id });
 			}
-			RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
-			return View(game);
+			RepopulateViewBags(existingGame, selectedModes, selectedGenres, selectedSubscriptions);
+			return View(existingGame);
 		}
 
 		// GET: Games/Delete/5
@@ -224,13 +248,7 @@ namespace Cosmos.Controllers
 			var game = await _context.Games.FindAsync(id);
 			if (game != null)
 			{
-				// Delete the associated image from the file system.
-				var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", game.ImagePath);
-				if (System.IO.File.Exists(imagePath))
-				{
-					System.IO.File.Delete(imagePath);
-				}
-
+				DeleteGameArt(game);
 				_context.Games.Remove(game);
 			}
 
@@ -245,9 +263,8 @@ namespace Cosmos.Controllers
 
 		/**
 		 * Helper methods for populating the view bags.
+		 * Populate the view bags with the modes, genres, subscriptions, developers, and publishers.
 		 */
-
-		//	Populate the view bags with the modes, genres, subscriptions, developers, and publishers.
 		private void PopulateViewBags()
 		{
 			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name");
@@ -257,7 +274,10 @@ namespace Cosmos.Controllers
 			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name");
 		}
 
-		// Populate the view bags with previously entered modes, genres, subscriptions, developers, and publishers.
+		/**
+		 * Helper methods for repopulating the view bags.
+		 * Populate the view bags with previously entered modes, genres, subscriptions, developers, and publishers.
+		 */
 		private void RepopulateViewBags(Game game, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			ViewBag.Modes = new MultiSelectList(_context.Modes, "Id", "Name", selectedModes);
@@ -265,6 +285,54 @@ namespace Cosmos.Controllers
 			ViewBag.Subscriptions = new MultiSelectList(_context.Subscriptions, "Id", "Name", selectedSubscriptions);
 			ViewBag.DeveloperId = new SelectList(_context.Developers, "Id", "Name", game.DeveloperId);
 			ViewBag.PublisherId = new SelectList(_context.Publishers, "Id", "Name", game.PublisherId);
+		}
+
+		/**
+		 * Helper methods for uploading game art.
+		 */
+		private async void UploadGameArt(Game game, IFormFile gameArt)
+		{
+			// Handle game imagePath upload
+			if (gameArt != null && gameArt.Length > 0)
+			{
+				// Use the game's Name (or another unique identifier) as a prefix for the filename.
+				var formattedGameName = game.Name.ToLower().Replace(' ', '-') + "-" + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+				// Checks if file path exists, if not, create it.
+				var wwwRootPath = "wwwroot/";
+				var directoryPath = "uploads/game-art/";
+				if (!Directory.Exists(wwwRootPath + directoryPath))
+				{
+					Directory.CreateDirectory(wwwRootPath + directoryPath);
+				}
+
+				// Combine the directory path and the formatted game name to create the full file path.
+				var filePath = Path.Combine(directoryPath, formattedGameName + Path.GetExtension(gameArt.FileName));
+
+				// Copy the file to the file path.
+				using (var stream = new FileStream(wwwRootPath + filePath, FileMode.Create))
+				{
+					await gameArt.CopyToAsync(stream);
+				}
+
+				// Store the path to the game image in the database
+				game.ImagePath = filePath;
+			}
+		}
+
+		/**
+		* Helper methods for deleting game art.
+		*/
+		private static void DeleteGameArt(Game game)
+		{
+			// Gets absolute path to the game image.
+			var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", game.ImagePath);
+
+			if (System.IO.File.Exists(imagePath))
+			{
+				// Deletes the game image.
+				System.IO.File.Delete(imagePath);
+			}
 		}
 	}
 }
