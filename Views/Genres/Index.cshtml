@@ -1,54 +1,60 @@
 @model IEnumerable<Cosmos.Models.Genre>
 
 @{
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Index";
 }
 
 <div class="row mb-3">
-    <div class="col-12 d-flex justify-content-between align-items-center">
-        <div>
-            <h1>Genres</h1>
-            <p class="text-muted fst-italic fs-6">Action adventure, Shooter, etc.
-            </p>
+	<div class="col-12 d-flex justify-content-between align-items-center">
+		<div>
+			<h1>Genres</h1>
+			<p class="text-muted fst-italic fs-6">Action adventure, Shooter, etc.
+			</p>
 
-        </div>
-        <a asp-action="Create" class="btn btn-brand-primary brand-shadow"><i class="fa-solid fa-plus me-2"></i>Add Genre</a>
-    </div>
+		</div>
+		<a asp-action="Create" class="btn btn-brand-primary brand-shadow"><i class="fa-solid fa-plus me-2"></i>Add
+			Genre</a>
+	</div>
 </div>
 
 <div class="row">
-    <div class="col-12">
-        <table class="table table-hover table-striped rounded data-table">
-            <thead class = "bg-dark text-light rounded-top">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.CreatedAt)
-                    </th>
-                    <th class="brand-text-right">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreatedAt)
-                        </td>
-                        <div class="d-flex justify-content-end">
-							<a asp-action="Details" asp-route-id="@item.Id" class="icon-btn text-info"><i class="fa-solid fa-desktop fa-sm"></i></a>
-							<a asp-action="Edit" asp-route-id="@item.Id" class="icon-btn text-dark"><i class="fa-solid fa-pencil fa-sm"></i></a>
-							<a asp-action="Delete" asp-route-id="@item.Id" class="icon-btn text-danger"><i class="fa-solid fa-trash fa-sm"></i></a>
-						</div>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+	<div class="col-12">
+		<table class="table table-hover table-striped rounded data-table">
+			<thead class="bg-dark text-light rounded-top">
+				<tr>
+					<th>
+						@Html.DisplayNameFor(model => model.Name)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.CreatedAt)
+					</th>
+					<th class="brand-text-right">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.CreatedAt)
+						</td>
+						<td>
+							<div class="d-flex justify-content-end">
+								<a asp-action="Details" asp-route-id="@item.Id" class="icon-btn text-info"><i
+										class="fa-solid fa-desktop fa-sm"></i></a>
+								<a asp-action="Edit" asp-route-id="@item.Id" class="icon-btn text-dark"><i
+										class="fa-solid fa-pencil fa-sm"></i></a>
+								<a asp-action="Delete" asp-route-id="@item.Id" class="icon-btn text-danger"><i
+										class="fa-solid fa-trash fa-sm"></i></a>
+							</div>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
 </div>
