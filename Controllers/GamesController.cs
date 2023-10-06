@@ -117,8 +117,8 @@ namespace Cosmos.Controllers
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
 				.Include(g => g.Modes)
-				// .Include(g => g.Genres)
-				// .Include(g => g.Subscriptions)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
 				.FirstOrDefaultAsync(g => g.Id == id);
 
 			if (game == null)
@@ -135,11 +135,13 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, IFormFile? gameArt, List<int> selectedModes)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, IFormFile? gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			// Load the existing game entity from the database
 			var existingGame = await _context.Games
 				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
 				.SingleOrDefaultAsync(g => g.Id == id);
 
 			if(existingGame == null)
@@ -166,9 +168,23 @@ namespace Cosmos.Controllers
 					// Clear the existing modes
 					existingGame.Modes.Clear();
 
+					// Clear the existing genres
+					existingGame.Genres.Clear();
+
+					// Clear the existing subscriptions
+					existingGame.Subscriptions.Clear();
+
 					// Add the new modes
 					var modesToAttach = _context.Modes.Where(m => selectedModes.Contains(m.Id)).ToList();
 					existingGame.Modes = modesToAttach;
+
+					// Add the new genres
+					var genresToAttach = _context.Genres.Where(g => selectedGenres.Contains(g.Id)).ToList();
+					existingGame.Genres = genresToAttach;
+
+					// Add the new subscriptions
+					var subscriptionsToAttach = _context.Subscriptions.Where(s => selectedSubscriptions.Contains(s.Id)).ToList();
+					existingGame.Subscriptions = subscriptionsToAttach;
 
 					// Update the existing game entity with the new values
 					existingGame.Name = game.Name;
@@ -193,7 +209,7 @@ namespace Cosmos.Controllers
 				}
 				return RedirectToAction(nameof(Details), new { id = existingGame.Id });
 			}
-			// RepopulateViewBags(game, selectedModes, selectedGenres, selectedSubscriptions);
+			RepopulateViewBags(existingGame, selectedModes, selectedGenres, selectedSubscriptions);
 			return View(existingGame);
 		}
 

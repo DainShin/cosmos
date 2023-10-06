@@ -68,21 +68,20 @@
 											class="form-control"></select>
 										<span asp-validation-for="Modes" class="text-danger"></span>
 									</div>
-									@* <div class="form-group mb-3">
-									<label asp-for="Genres" class="control-label mb-1"></label>
-									<select name="selectedGenres" asp-items="ViewBag.Genres" multiple="multiple"
-									class="form-control"></select>
-									<span asp-validation-for="Genres" class="text-danger"></span>
-									</div> *@
-									@* <div class="form-group mb-3">
-									<label asp-for="Subscriptions"
-									class="control-label mb-1 text-primary fw-bold">Subscription
-									Level</label>
-									<select name="selectedSubscriptions" asp-items="ViewBag.Subscriptions"
-									multiple="multiple" class="form-control"></select>
-									<span asp-validation-for="Subscriptions" class="text-danger"></span>
-									</div> *@
-
+									<div class="form-group mb-3">
+										<label asp-for="Genres" class="control-label mb-1"></label>
+										<select name="selectedGenres" asp-items="ViewBag.Genres" multiple="multiple"
+											class="form-control"></select>
+										<span asp-validation-for="Genres" class="text-danger"></span>
+									</div>
+									<div class="form-group mb-3">
+										<label asp-for="Subscriptions"
+											class="control-label mb-1 text-primary fw-bold">Subscription
+											Level</label>
+										<select name="selectedSubscriptions" asp-items="ViewBag.Subscriptions"
+											multiple="multiple" class="form-control"></select>
+										<span asp-validation-for="Subscriptions" class="text-danger"></span>
+									</div>
 								</div>
 							</div>
 						</div>
