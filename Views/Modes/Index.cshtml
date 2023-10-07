@@ -6,7 +6,7 @@
 }
 
 <div class="row mb-3">
-	<div class="col-12 d-flex justify-content-between align-items-center">
+	<div class="col-12 d-flex justify-content-between align-items-center shadow">
 		<div>
 		<h1>Game Modes</h1>
 		<p class="text-muted fst-italic fs-6">Hint: Single-player, multiplayer, etc.</p>
@@ -23,6 +23,9 @@
 			<thead class="bg-dark text-light rounded-top">
 				<tr>
 					<th>
+						@Html.DisplayNameFor(model => model.Id)
+					</th>
+					<th>
 						@Html.DisplayNameFor(model => model.Name)
 					</th>
 					<th>
@@ -35,6 +38,9 @@
 				@foreach (var item in Model)
 				{
 					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.Id)
+						</td>
 						<td>
 							@Html.DisplayFor(modelItem => item.Name)
 						</td>
