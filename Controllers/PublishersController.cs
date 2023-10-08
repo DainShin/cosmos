@@ -35,6 +35,7 @@ namespace Cosmos.Controllers
             }
 
             var publisher = await _context.Publishers
+				.Include(publisher => publisher.Games.OrderBy(game => game.Name))
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (publisher == null)
             {

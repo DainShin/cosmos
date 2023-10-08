@@ -24,7 +24,10 @@
 		<hr>
 	</div>
 	<div class="col-md-4 mb-3">
-		<img src="~/@Model.ImagePath" alt="@Model.Name" class="img-fluid game-art shadow" />
+		@{
+			// TODO : Add default image if null
+		}
+		<img src="~/@Model?.ImagePath" alt="@Model?.Name" class="img-fluid game-art shadow" />
 	</div>
 	<div class="col-md-8">
 		<h3>About</h3>
@@ -34,26 +37,35 @@
 				Initial release date
 			</dt>
 			<dd class="col-lg-10 col-md-6">
-				@Model.ReleaseDate.ToString("MMMM dd, yyyy a\\t hh:mm tt")
+				@if (Model != null)
+				{
+					@Model.ReleaseDate.ToString("MMMM dd, yyyy a\\t hh:mm tt")
+				}
 			</dd>
 			<dt class="col-lg-2 col-md-6">
 				@Html.DisplayNameFor(model => model.Genres)
 			</dt>
 			<dd class="col-lg-10 col-md-6">
-				@foreach (var genre in @Model.Genres)
+				@if (Model != null)
 				{
-					<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(genreItem =>
+					@foreach (var genre in @Model.Genres)
+					{
+						<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(genreItem =>
 					genre.Name)</span>
+					}
 				}
 			</dd>
 			<dt class="col-lg-2 col-md-6">
 				@Html.DisplayNameFor(model => model.Modes)
 			</dt>
 			<dd class="col-lg-10 col-md-6">
-				@foreach (var mode in @Model.Modes)
+				@if (Model != null)
 				{
-					<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(modeItem =>
+					@foreach (var mode in @Model.Modes)
+					{
+						<span class="badge rounded-pill bg-dark text-light mb-1">@Html.DisplayFor(modeItem =>
 					mode.Name)</span>
+					}
 				}
 			</dd>
 			<dt class="col-lg-2 col-md-6">
@@ -63,23 +75,31 @@
 				// TODO: Additional stytling for subscription levels
 			}
 			<dd class="col-lg-10 col-md-6">
-				@foreach (var subscription in @Model.Subscriptions)
+				@if (Model != null)
 				{
-					<span class="badge rounded-pill bg-primary text-light mb-1">@Html.DisplayFor(subscriptionItem =>
-					subscription.Name)</span>
+					@foreach (var subscription in @Model.Subscriptions)
+					{
+						<span class="badge rounded-pill bg-primary text-light mb-1">@subscription.Name</span>
+					}
 				}
 			</dd>
 			<dt class="col-lg-2 col-md-6">
 				@Html.DisplayNameFor(model => model.Developer)
 			</dt>
 			<dd class="col-lg-10 col-md-6">
-				@Html.DisplayFor(model => model.Developer.Name)
+				@if (Model != null && Model.Developer != null)
+				{
+					@Model.Developer.Name
+				}
 			</dd>
 			<dt class="col-lg-2 col-md-6">
 				@Html.DisplayNameFor(model => model.Publisher)
 			</dt>
 			<dd class="col-lg-10 col-md-6">
-				@Html.DisplayFor(model => model.Publisher.Name)
+				@if (Model != null && Model.Publisher != null)
+				{
+					@Model.Publisher.Name
+				}
 			</dd>
 		</dl>
 		<hr>
