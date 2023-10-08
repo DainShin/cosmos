@@ -37,6 +37,7 @@ namespace Cosmos.Controllers
 			var developer = await _context.Developers
 				.Include(developer => developer.Games.OrderBy(game => game.Name))
 				.FirstOrDefaultAsync(m => m.Id == id);
+				
 			if (developer == null)
 			{
 				return NotFound();

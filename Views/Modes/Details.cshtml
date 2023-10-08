@@ -43,4 +43,16 @@
 		<h2>Games</h2>
 	</div>
 </div>
-<partial name="~/Views/Shared/Tables/_GamesTablePartial.cshtml" model="Model.Games" />
+
+@if (Model?.Games.Count > 0)
+{
+	<partial name="~/Views/Shared/Tables/_GamesTablePartial.cshtml" model="Model.Games" />
+}
+else
+{
+	<div class="row">
+		<div class="col-12">
+			<p class="text-muted">No games added as yet.</p>
+		</div>
+	</div>
+}
