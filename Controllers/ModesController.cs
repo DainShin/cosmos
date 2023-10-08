@@ -34,9 +34,28 @@ namespace Cosmos.Controllers
 				return NotFound();
 			}
 
+			// var mode = await _context.Modes
+			// 	.Include(mode => mode.Games.OrderBy(game => game.Name))
+			// 	.FirstOrDefaultAsync(m => m.Id == id);
+
 			var mode = await _context.Modes
+				.Include(mode => mode.Games)
+					.ThenInclude(game => game.Developer)
+				
+				.Include(mode => mode.Games)
+					.ThenInclude(game => game.Publisher)
+				
+				.Include(mode => mode.Games)
+					.ThenInclude(game => game.Genres)
+				
+				.Include(mode => mode.Games)
+					.ThenInclude(game => game.Subscriptions)
+
 				.Include(mode => mode.Games.OrderBy(game => game.Name))
+				
 				.FirstOrDefaultAsync(m => m.Id == id);
+
+
 			if (mode == null)
 			{
 				return NotFound();
