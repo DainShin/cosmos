@@ -35,9 +35,22 @@ namespace Cosmos.Controllers
 			}
 
 			var developer = await _context.Developers
-				.Include(developer => developer.Games.OrderBy(game => game.Name))
-				.FirstOrDefaultAsync(m => m.Id == id);
+				.Include(developer => developer.Games)
+					.ThenInclude(game => game.Genres)
 				
+				.Include(developer => developer.Games)
+					.ThenInclude(game => game.Publisher)
+				
+				.Include(developer => developer.Games)
+					.ThenInclude(game => game.Modes)
+				
+				.Include(developer => developer.Games)
+					.ThenInclude(game => game.Subscriptions)
+
+				.Include(developer => developer.Games.OrderBy(game => game.Name))
+				
+				.FirstOrDefaultAsync(m => m.Id == id);
+
 			if (developer == null)
 			{
 				return NotFound();
