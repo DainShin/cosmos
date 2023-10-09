@@ -6,6 +6,7 @@ namespace Cosmos.Models
     public class Mode
     {
         [Key]
+		[Display(Name = "ID")]
         public int Id {get; set;} = 0;
 
         [Required]
