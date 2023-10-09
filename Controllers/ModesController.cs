@@ -34,10 +34,6 @@ namespace Cosmos.Controllers
 				return NotFound();
 			}
 
-			// var mode = await _context.Modes
-			// 	.Include(mode => mode.Games.OrderBy(game => game.Name))
-			// 	.FirstOrDefaultAsync(m => m.Id == id);
-
 			var mode = await _context.Modes
 				.Include(mode => mode.Games)
 					.ThenInclude(game => game.Developer)

@@ -34,10 +34,6 @@ namespace Cosmos.Controllers
                 return NotFound();
             }
 
-            // var subscription = await _context.Subscriptions
-            //     .Include(s => s.Games.OrderBy(game => game.Name))
-            //     .FirstOrDefaultAsync(m => m.Id == id);
-
 			var subscription = await _context.Subscriptions
 				.Include(subscription => subscription.Games)
 					.ThenInclude(game => game.Developer)
