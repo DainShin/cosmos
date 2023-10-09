@@ -6,6 +6,7 @@ namespace Cosmos.Models
     public class Genre
     {
         [Key]
+		[Display(Name = "ID")]
         public int Id {get; set;} = 0;
 
         [Required]
