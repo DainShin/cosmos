@@ -17,7 +17,8 @@ namespace Cosmos.Models
         [Range(0.00, 999999.99)]
         [DataType(DataType.Currency)]
         public decimal Price {get; set;} = 0.01M;
-        
+
+        [Display(Name = "Created At")]        
 		public DateTime CreatedAt {get; set;} = DateTime.Now;
 
 		public virtual ICollection<Game> Games {get; set;} = new List<Game>();
