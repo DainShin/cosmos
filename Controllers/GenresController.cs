@@ -35,8 +35,22 @@ namespace Cosmos.Controllers
             }
 
             var genre = await _context.Genres
-                .Include(g => g.Games.OrderBy(game => game.Name))
-                .FirstOrDefaultAsync(m => m.Id == id);
+				.Include(genre => genre.Games)
+					.ThenInclude(game => game.Developer)
+				
+				.Include(genre => genre.Games)
+					.ThenInclude(game => game.Publisher)
+				
+				.Include(genre => genre.Games)
+					.ThenInclude(game => game.Modes)
+				
+				.Include(genre => genre.Games)
+					.ThenInclude(game => game.Subscriptions)
+
+				.Include(genre => genre.Games.OrderBy(game => game.Name))
+				
+				.FirstOrDefaultAsync(m => m.Id == id);
+
             if (genre == null)
             {
                 return NotFound();

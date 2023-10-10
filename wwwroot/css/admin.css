@@ -4,6 +4,10 @@
   color: var(--text-brand-light) !important;
 }
 
+.nav-icon {
+	fill: #fff;
+}
+
 .table {
   color: var(--text-brand-dark); /* Make this global */
 }

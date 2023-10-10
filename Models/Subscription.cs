@@ -6,6 +6,7 @@ namespace Cosmos.Models
     public class Subscription
     {
         [Key]
+		[Display(Name = "ID")]
         public int Id {get; set;} = 0;
 
         [Required]
@@ -19,6 +20,6 @@ namespace Cosmos.Models
         
 		public DateTime CreatedAt {get; set;} = DateTime.Now;
 
-		public virtual ICollection<Game>? Games {get; set;} = new List<Game>();
+		public virtual ICollection<Game> Games {get; set;} = new List<Game>();
     }
 }
