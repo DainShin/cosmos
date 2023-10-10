@@ -1,0 +1,9 @@
+@model List<ActionButton>
+
+
+<div class="d-flex justify-content-end">
+    @foreach(var actionButtonItem in Model){
+        <a asp-controller="@actionButtonItem.Controller" asp-action="@actionButtonItem.Action" asp-route-id="@actionButtonItem.Id" class="icon-btn @actionButtonItem.Color"><i class="@actionButtonItem.Icon fa-sm"></i></a>
+    }
+    
+</div>
