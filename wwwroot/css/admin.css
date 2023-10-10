@@ -28,6 +28,41 @@
   fill: #fff;
 }
 
+.documentation-menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.documentation-menu ul {
+  list-style: none;
+}
+
+.documentation-menu li {
+  padding-bottom: 0.5em;
+}
+
+.documentation-menu li a,
+.documentation-menu ul li a {
+  padding: 5px 15px;
+  text-decoration: none;
+}
+
+.documentation-menu ul li a,
+.documentation-menu ul li a:link,
+.documentation-menu ul li a:visited {
+  border-left: 3px solid #eee;
+  color: var(--text-brand-muted);
+  transition: all 0.25s ease;
+}
+
+.documentation-menu ul li a:focus,
+.documentation-menu ul li a:hover,
+.documentation-menu ul li a:active {
+  border-left: 3px solid var(--brand-primary);
+  color: var(--brand-primary);
+}
+
 .table {
   color: var(--text-brand-dark); /* Make this global */
 }
@@ -97,9 +132,9 @@
 }
 
 .changelog > li {
-	padding-bottom: 1em;
+  padding-bottom: 1em;
 }
 
 .changelog-details > li {
-	padding-bottom: 0.5em;
+  padding-bottom: 0.5em;
 }

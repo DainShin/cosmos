@@ -1,0 +1,87 @@
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Documentation";
+}
+
+<div class="row mb-3">
+	<div class="col-12 d-flex justify-content-between align-items-center">
+		<h1>Documentation Overview</h1>
+	</div>
+	<div class="col-12">
+		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-3 col-md-4">
+		<aside>
+			<ul class="documentation-menu">
+				<li>
+					<h5>Getting Started</h5>
+					<ul>
+						<li><a href="">Overview</a></li>
+						<li><a href="">Configuration</a></li>
+						<li><a href="">Database</a></li>
+						<li><a href="">Sample Images</a></li>
+					</ul>
+				</li>
+			</ul>
+		</aside>
+	</div>
+	<div class="col-lg-9 col-md-8">
+		<div class="container">
+			<h2 class="mb-4">Cosmos Administrator Documentation</h2>
+			<p>Welcome to the administrator documentation for the Cosmos Game Catalog. This comprehensive guide is
+				tailored specifically for those responsible for managing and maintaining the Cosmos platform. Our aim is
+				to equip you with a clear understanding of the application's architecture, functionality, and how you
+				can effectively leverage its features to ensure a seamless user experience for your audience.</p>
+
+			<h3 class="mt-4">Core Modules:</h3>
+			<ul class="list-group list-group-flush mb-4">
+				<li class="list-group-item"><strong>Games</strong>: Central to the application, this module lets you
+					input, update, or remove details related to each game. This includes titles, descriptions, and
+					associated images. Additionally, you can establish relationships between games and other modules,
+					such as genres, modes, and subscriptions.</li>
+				<li class="list-group-item"><strong>Genres</strong>: Define and categorize games by their core gameplay
+					characteristics. Whether it's an action, strategy, RPG, or any other genre, this module enables you
+					to manage game categorizations efficiently.</li>
+				<li class="list-group-item"><strong>Modes</strong>: Different games offer varied player experiences,
+					from single-player quests to multiplayer arenas. The modes module allows you to detail the types of
+					gameplay experiences a game provides.</li>
+				<li class="list-group-item"><strong>Publishers</strong>: This module lets you maintain records of all
+					game publishers, tracking which company was behind the distribution and promotion of a game.</li>
+				<li class="list-group-item"><strong>Developers</strong>: An essential part of game creation, here you
+					can manage and list the developers who crafted each game, from indie creators to major development
+					studios.</li>
+				<li class="list-group-item"><strong>Subscriptions</strong>: With the rise of subscription-based gaming,
+					this module assists in tracking which games are available on specific subscription platforms,
+					helping keep your catalog current with evolving gaming trends.</li>
+			</ul>
+
+			<h3 class="mt-4">Application Functionality:</h3>
+			<ul class="list-group list-group-flush mb-4">
+				<li class="list-group-item"><strong>Relational Structure</strong>: At its core, Cosmos employs a
+					relational database setup. This ensures efficient data organization and accessibility, especially
+					when establishing relationships between games and other entities like genres or developers.</li>
+				<li class="list-group-item"><strong>MVC Architecture</strong>: Adopting the MVC paradigm, you can
+					seamlessly oversee the input, update, or deletion of entries in any category. The application's
+					architecture ensures immediate reflection of any changes, maintaining data accuracy and consistency.
+				</li>
+				<li class="list-group-item"><strong>Responsive Administration UI</strong>: The Bootstrap framework
+					powers the application's UI, providing a sleek, modern, and intuitive interface. This ensures easy
+					navigation and effective management of data across all modules.</li>
+				<li class="list-group-item"><strong>Modular Design</strong>: Each entity, whether games, genres, or
+					publishers, is designed as a distinct module. This modular approach enhances scalability and eases
+					maintenance. Reusable view components, such as action buttons, further streamline the administrative
+					experience.</li>
+				<li class="list-group-item"><strong>UX Enhancements for Administrators</strong>: While customer UX is
+					crucial, the admin panel isn't left behind. You'll find UI elements like rounded table corners,
+					distinct icons for functionalities, and an organized sidebar for swift navigation.</li>
+			</ul>
+
+			<p>As an administrator, it's crucial to understand the ins and outs of the Cosmos Game Catalog. This
+				documentation is your comprehensive guide, ensuring you can effectively manage, update, and optimize the
+				platform to cater to your audience's evolving needs.</p>
+		</div>
+	</div>
+
+</div>

@@ -181,14 +181,14 @@ app.MapControllerRoute(
 
  // Pages
 app.MapControllerRoute(
-	name: "documentation",
-	pattern: "admin/documentation",
-	defaults: new { controller = "Home", action = "Documentation" });
-
-app.MapControllerRoute(
 	name: "changelog",
 	pattern: "admin/changelog",
 	defaults: new { controller = "Home", action = "Changelog" });
+
+app.MapControllerRoute(
+	name: "overview",
+	pattern: "admin/documentation/overview",
+	defaults: new { controller = "Home", action = "Overview" });
 
 app.MapControllerRoute(
 	name: "default",
