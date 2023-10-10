@@ -1,7 +1,4 @@
-﻿@{
-	var currentController = ViewContext?.RouteData.Values["controller"]?.ToString();
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,62 +18,7 @@
 					<img src="~/images/logo-white.png" alt="Cosmos" class="image-fluid" />
 				</a>
 				<hr>
-				<ul class="nav nav-pills flex-column mb-auto">
-					<li class="nav-item">
-						<a class="nav-link text-white @(currentController == "Games" ? "active" : "")" asp-area=""
-							asp-controller="Games" asp-action="Index">
-							<svg class="bi me-2" width="16" height="16">
-								<use xlink:href="#home" />
-							</svg>
-							Games
-						</a>
-					</li>
-					<li>
-						<a class="nav-link text-white @(currentController == "Genres" ? "active" : "")" asp-area=""
-							asp-controller="Genres" asp-action="Index">
-							<svg class="bi me-2" width="16" height="16">
-								<use xlink:href="#speedometer2" />
-							</svg>
-							Genres
-						</a>
-					</li>
-					<li>
-						<a class="nav-link text-white @(currentController == "Modes" ? "active" : "")" asp-area=""
-							asp-controller="Modes" asp-action="Index">
-							<svg class="bi me-2" width="16" height="16">
-								<use xlink:href="#table" />
-							</svg>
-							Modes
-						</a>
-					</li>
-					<li>
-						<a class="nav-link text-white @(currentController == "Subscriptions" ? "active" : "")" asp-area=""
-							asp-controller="Subscriptions" asp-action="Index">
-							<svg class="bi me-2" width="16" height="16">
-								<use xlink:href="#grid" />
-							</svg>
-							Subscriptions
-						</a>
-					</li>
-					<li>
-						<a class="nav-link text-white @(currentController == "Developers" ? "active" : "")" asp-area=""
-							asp-controller="Developers" asp-action="Index">
-							<svg class="bi me-2" width="16" height="16">
-								<use xlink:href="#people-circle" />
-							</svg>
-							Developers
-						</a>
-					</li>
-					<li>
-						<a class="nav-link text-white @(currentController == "Publishers" ? "active" : "")" asp-area=""
-							asp-controller="Publishers" asp-action="Index">
-							<svg class="bi me-2" width="16" height="16">
-								<use xlink:href="#people-circle" />
-							</svg>
-							Publishers
-						</a>
-					</li>
-				</ul>
+				 @await Component.InvokeAsync("AdminNavigationMenu")
 				<hr>
 				<div class="dropdown">
 					<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
