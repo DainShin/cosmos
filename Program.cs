@@ -127,7 +127,6 @@ app.MapControllerRoute(
 	pattern: "admin/developers/delete",
 	defaults: new { controller = "Developers", action = "Delete" });
 
-
 // Publishers
 app.MapControllerRoute(
 	name: "publishers",
@@ -180,6 +179,26 @@ app.MapControllerRoute(
 	pattern: "admin/subscriptions/delete",
 	defaults: new { controller = "Subscriptions", action = "Delete" });
 
+ // Pages
+app.MapControllerRoute(
+	name: "changelog",
+	pattern: "admin/changelog",
+	defaults: new { controller = "Home", action = "Changelog" });
+
+app.MapControllerRoute(
+	name: "overview",
+	pattern: "admin/documentation/overview",
+	defaults: new { controller = "Home", action = "Overview" });
+
+app.MapControllerRoute(
+	name: "database",
+	pattern: "admin/documentation/database",
+	defaults: new { controller = "Home", action = "Database" });
+
+app.MapControllerRoute(
+	name: "sample-game-art",
+	pattern: "admin/documentation/sample-game-art",
+	defaults: new { controller = "Home", action = "SampleGameArt" });
 
 app.MapControllerRoute(
 	name: "default",
