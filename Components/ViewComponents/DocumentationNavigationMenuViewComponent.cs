@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Cosmos.Models;
+using System.Collections.Generic;
 
 namespace Cosmos.Components.ViewComponents
 {
@@ -9,9 +10,16 @@ namespace Cosmos.Components.ViewComponents
 		{
 			var documentationMenuItems = new List<DocumentationMenuItem>
 			{
-				// new DocumentationMenuItem { Controller = "Home", Action = "Overview", Label = "Overview"},
-				// new DocumentationMenuItem { Controller = "Home", Action = "Database", Label = "Database"},
-				// new DocumentationMenuItem { Controller = "Home", Action = "SampleGameArt", Label = "Sample Game Art"},
+				new DocumentationMenuItem { 
+					Title = "Getting Started",
+					SubMenuItems = new List<DocumentationSubMenuItem>
+					{
+						new DocumentationSubMenuItem { Controller = "Home", Action = "Overview", Label = "Overview" },
+						new DocumentationSubMenuItem { Controller = "Home", Action = "Database", Label = "Database" },
+						new DocumentationSubMenuItem { Controller = "Home", Action = "SampleGameArt", Label = "Sample Game Art" },
+					}
+				},
+				
 			};
 
 			return View(documentationMenuItems);

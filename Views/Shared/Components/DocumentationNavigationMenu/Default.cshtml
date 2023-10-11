@@ -1,10 +1,16 @@
+@model List<DocumentationMenuItem>
+
 <ul class="documentation-menu">
-	<li>
-		<h5>Getting Started</h5>
-		<ul>
-			<li><a href="">Overview</a></li>
-			<li><a href="">Database</a></li>
-			<li><a href="">Sample Images</a></li>
-		</ul>
-	</li>
+	@foreach (var documentationMenuItem in Model)
+	{
+		<li>
+			<h5>@documentationMenuItem.Title</h5>
+			<ul>
+				@foreach (var subItem in documentationMenuItem.SubMenuItems)
+				{
+					<li><a asp-controller="@subItem.Controller" asp-action="@subItem.Action">@subItem.Label</a></li>
+				}
+			</ul>
+		</li>
+	}
 </ul>

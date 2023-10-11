@@ -1,6 +1,6 @@
 @{
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
-	ViewData["Title"] = "Documentation";
+	ViewData["Title"] = "Documentation | Database";
 }
 
 <div class="row mb-3">
@@ -12,21 +12,12 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-lg-3 col-md-4">
+	<div class="col-lg-2 col-md-4">
 		<aside>
-			<ul class="documentation-menu">
-				<li>
-					<h5>Getting Started</h5>
-					<ul>
-						<li><a href="">Overview</a></li>
-						<li><a href="">Database</a></li>
-						<li><a href="">Sample Images</a></li>
-					</ul>
-				</li>
-			</ul>
+			@await Component.InvokeAsync("DocumentationNavigationMenu")
 		</aside>
 	</div>
-	<div class="col-lg-9 col-md-8">
+	<div class="col-lg-10 col-md-8">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">

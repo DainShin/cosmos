@@ -1,7 +1,8 @@
 namespace Cosmos.Models
 {
-	public struct DocumentationMenuItem
+	public class DocumentationMenuItem
 	{
-		public List<DocumentationMenuItem> DocumentationSubMenuItems { get; set; }
+		public string? Title { get; set; }
+		public List<DocumentationSubMenuItem> SubMenuItems { get; set; } = new List<DocumentationSubMenuItem>();
 	}
 }

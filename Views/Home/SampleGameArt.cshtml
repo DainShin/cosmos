@@ -1,6 +1,6 @@
 @{
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
-	ViewData["Title"] = "Documentation";
+	ViewData["Title"] = "Documentation | Sample Game Art";
 }
 
 <div class="row mb-3">
@@ -12,21 +12,12 @@
 	</div>
 </div>
 <div class="row">
-	<div class="col-lg-3 col-md-4">
+	<div class="col-lg-2 col-md-4">
 		<aside>
-			<ul class="documentation-menu">
-				<li>
-					<h5>Getting Started</h5>
-					<ul>
-						<li><a href="">Overview</a></li>
-						<li><a href="">Database</a></li>
-						<li><a href="">Sample Images</a></li>
-					</ul>
-				</li>
-			</ul>
+			@await Component.InvokeAsync("DocumentationNavigationMenu")
 		</aside>
 	</div>
-	<div class="col-lg-9 col-md-8">
+	<div class="col-lg-10 col-md-8">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 mb-3">
@@ -36,19 +27,33 @@
 						a consistent and visually appealing experience even during testing.</p>
 				</div>
 				<div class="col-md-3 mb-3">
-					<img src="~/images/sample-game-art/starfield.jpeg" alt="Starfield" srcset="" class="img-fluid game-art shadow">
+					<img src="~/images/sample-game-art/starfield.jpeg" alt="Starfield" srcset=""
+						class="img-fluid game-art shadow">
 				</div>
 				<div class="col-md-3 mb-3">
-					<img src="~/images/sample-game-art/diablo.jpg" alt="Diablo 4" srcset="" class="img-fluid game-art shadow">
+					<img src="~/images/sample-game-art/diablo.jpg" alt="Diablo 4" srcset=""
+						class="img-fluid game-art shadow">
 				</div>
 				<div class="col-md-3 mb-3">
-					<img src="~/images/sample-game-art/forza.jpg" alt="Forza" srcset="" class="img-fluid game-art shadow">
+					<img src="~/images/sample-game-art/forza.jpg" alt="Forza" srcset=""
+						class="img-fluid game-art shadow">
 				</div>
 				<div class="col-md-3 mb-3">
-					<img src="~/images/sample-game-art/2k23.jpg" alt="NBA 2K23" srcset="" class="img-fluid game-art shadow">
+					<img src="~/images/sample-game-art/2k23.jpg" alt="NBA 2K23" srcset=""
+						class="img-fluid game-art shadow">
 				</div>
 			</div>
+			<div class="col-12 mb-3">
+				<h2 class="mb-4">Image Specifications</h2>
+			</div>
+			<dl class="row">
+				<dt class="col-sm-3">Dimensions</dt>
+				<dd class="col-sm-9">480px by 640px</dd>
+				<dt class="col-sm-3">File type</dt>
+				<dd class="col-sm-9">JPEG, JPG or PNG</dd>
+			</dl>
 		</div>
 	</div>
+</div>
 
 </div>
