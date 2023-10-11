@@ -1,0 +1,37 @@
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Documentation | Database";
+}
+
+<div class="row mb-3">
+	<div class="col-12 d-flex justify-content-between align-items-center">
+		<h1>Documentation: Database</h1>
+	</div>
+	<div class="col-12">
+		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-2 col-md-4">
+		<aside>
+			@await Component.InvokeAsync("DocumentationNavigationMenu")
+		</aside>
+	</div>
+	<div class="col-lg-10 col-md-8">
+		<div class="container">
+			<div class="row mb-4">
+				<div class="col-12">
+					<h2 class="mb-4">The Database Structure</h2>
+					<h3 class="mb-4">Evolving Entity Relationship Diagram</h3>
+					<img src="~/images/erd.png" alt="ERD" class="w-100">
+				</div>
+			</div>
+			@* <div class="row">
+				<div class="col-12">
+					<h3 class="mb-4">Startup Script</h3>
+				</div>
+			</div> *@
+		</div>
+	</div>
+
+</div>
