@@ -1,6 +1,6 @@
 namespace Cosmos.Models
 {
-    public struct SecondaryMenuItem
+    public struct MainMenuItem
     {
         public string Controller {get; set;}
         public string Action {get; set;}

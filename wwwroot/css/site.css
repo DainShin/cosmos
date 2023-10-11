@@ -1,5 +1,9 @@
 @import url("global.css");
 
+#main-navbar {
+  background-color: var(--brand-tertiary);
+}
+
 .table {
   color: #ebebeb; /* Make this global */
 }
