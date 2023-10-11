@@ -1,0 +1,54 @@
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Documentation";
+}
+
+<div class="row mb-3">
+	<div class="col-12 d-flex justify-content-between align-items-center">
+		<h1>Documentation Overview</h1>
+	</div>
+	<div class="col-12">
+		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-3 col-md-4">
+		<aside>
+			<ul class="documentation-menu">
+				<li>
+					<h5>Getting Started</h5>
+					<ul>
+						<li><a href="">Overview</a></li>
+						<li><a href="">Database</a></li>
+						<li><a href="">Sample Images</a></li>
+					</ul>
+				</li>
+			</ul>
+		</aside>
+	</div>
+	<div class="col-lg-9 col-md-8">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 mb-3">
+					<h2 class="mb-4">Sameple Game Art</h2>
+					<p>For ease of testing and validation, we have provided a collection of sample images tailored for
+						game art. These images can be used when performing CRUD operations on the Games module, ensuring
+						a consistent and visually appealing experience even during testing.</p>
+				</div>
+				<div class="col-md-3 mb-3">
+					<img src="~/images/sample-game-art/starfield.jpeg" alt="Starfield" srcset="" class="img-fluid game-art shadow">
+				</div>
+				<div class="col-md-3 mb-3">
+					<img src="~/images/sample-game-art/diablo.jpg" alt="Diablo 4" srcset="" class="img-fluid game-art shadow">
+				</div>
+				<div class="col-md-3 mb-3">
+					<img src="~/images/sample-game-art/forza.jpg" alt="Forza" srcset="" class="img-fluid game-art shadow">
+				</div>
+				<div class="col-md-3 mb-3">
+					<img src="~/images/sample-game-art/2k23.jpg" alt="NBA 2K23" srcset="" class="img-fluid game-art shadow">
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

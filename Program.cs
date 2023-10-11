@@ -191,6 +191,16 @@ app.MapControllerRoute(
 	defaults: new { controller = "Home", action = "Overview" });
 
 app.MapControllerRoute(
+	name: "database",
+	pattern: "admin/documentation/database",
+	defaults: new { controller = "Home", action = "Database" });
+
+app.MapControllerRoute(
+	name: "sample-game-art",
+	pattern: "admin/documentation/sample-game-art",
+	defaults: new { controller = "Home", action = "SampleGameArt" });
+
+app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
 
