@@ -138,3 +138,12 @@
 .changelog-details > li {
   padding-bottom: 0.5em;
 }
+
+.code-block {
+	font-family: 'Fira Code', monospace;
+	padding: 8px 15px;
+	background-color: #2e2e2e;
+	color: #c5c8c6;
+	border-radius: 5px;
+	display: block;
+}
