@@ -63,6 +63,11 @@
   color: var(--brand-primary);
 }
 
+.documentation-link-active {
+  border-left: 3px solid var(--brand-primary) !important;
+  color: var(--brand-primary) !important;
+}
+
 .table {
   color: var(--text-brand-dark); /* Make this global */
 }

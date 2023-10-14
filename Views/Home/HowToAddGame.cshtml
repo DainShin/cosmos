@@ -1,0 +1,38 @@
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Documentation | Adding a Game";
+}
+
+<div class="row mb-3">
+	<div class="col-12 d-flex justify-content-between align-items-center">
+		<h1>Games Management</h1>
+	</div>
+	<div class="col-12">
+		<hr>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-2 col-md-4">
+		<aside>
+			@await Component.InvokeAsync("DocumentationNavigationMenu")
+		</aside>
+	</div>
+	<div class="col-lg-10 col-md-8">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="mb-4">How to add a game</h2>
+					<img src="~/images/documentation/add-a-game.png" alt="Adding a game" class="image-fluid w-100">
+					<ul class="list-group list-group-flush mb-4">
+						<li class="list-group-item"><strong>1</strong>: Choose an image for your game art. Sample artwork and specificattions are on the <a href="">Sample Game Art</a> page</li>
+						<li class="list-group-item"><strong>2</strong>: Games can be associated with multiple modes. Use <strong>Control + Click </strong> to select multiple options.</li>
+						<li class="list-group-item"><strong>3</strong>: Games can be associated with multiple genres. Use <strong>Control + Click </strong> to select multiple options.</li>
+						<li class="list-group-item"><strong>4</strong>: Games can be in multiple subscription tiers. Use <strong>Control + Click </strong> to select multiple options.</li>
+						<li class="list-group-item"><strong>5</strong>: Click <strong>Save</strong> to add the game to the databse.</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -19,6 +19,13 @@ namespace Cosmos.Components.ViewComponents
 						new DocumentationSubMenuItem { Controller = "Home", Action = "SampleGameArt", Label = "Sample Game Art" },
 					}
 				},
+				new DocumentationMenuItem { 
+					Title = "Core Features",
+					SubMenuItems = new List<DocumentationSubMenuItem>
+					{
+						new DocumentationSubMenuItem { Controller = "Home", Action = "HowToAddGame", Label = "How to Add a Game" },
+					}
+				},
 				
 			};
 
