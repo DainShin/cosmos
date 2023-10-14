@@ -201,6 +201,11 @@ app.MapControllerRoute(
 	defaults: new { controller = "Home", action = "SampleGameArt" });
 
 app.MapControllerRoute(
+	name: "how-to-add-game",
+	pattern: "admin/documentation/how-to-add-game",
+	defaults: new { controller = "Home", action = "HowToAddGame" });
+
+app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
 

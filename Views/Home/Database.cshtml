@@ -23,14 +23,19 @@
 				<div class="col-12">
 					<h2 class="mb-4">The Database Structure</h2>
 					<h3 class="mb-4">Evolving Entity Relationship Diagram</h3>
-					<img src="~/images/erd.png" alt="ERD" class="w-100">
+					<img src="~/images/documentation/erd.png" alt="ERD" class="w-100">
 				</div>
 			</div>
-			@* <div class="row">
+			<div class="row">
 				<div class="col-12">
-					<h3 class="mb-4">Startup Script</h3>
+					<h3 class="mb-4">Database Seeding</h3>
+					<p>For testing purposes, we've seeded the Genres, Modes, Publishers, Developers, and Subscriptions models. If you are building the project for the first time or you want to reset the datbase at any point please run the following commands:</p>
+					<p class="fw-bold">Step 1</p>
+					<p class="code-block mb-3">dotnet ef database drop</p>
+					<p class="fw-bold">Step 2</p>
+					<p class="code-block">dotnet ef database update</p>
 				</div>
-			</div> *@
+			</div>
 		</div>
 	</div>
 
