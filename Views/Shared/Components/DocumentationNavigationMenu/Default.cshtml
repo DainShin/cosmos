@@ -1,4 +1,7 @@
 @model List<DocumentationMenuItem>
+@{
+	var currentAction = ViewContext?.RouteData.Values["action"]?.ToString();
+}
 
 <ul class="documentation-menu">
 	@foreach (var documentationMenuItem in Model)
@@ -8,7 +11,9 @@
 			<ul>
 				@foreach (var subItem in documentationMenuItem.SubMenuItems)
 				{
-					<li><a asp-controller="@subItem.Controller" asp-action="@subItem.Action">@subItem.Label</a></li>
+					<li><a asp-controller="@subItem.Controller" asp-action="@subItem.Action"
+							class="@(currentAction == @subItem.Action ? "documentation-link-active" : "")">@subItem.Label</a>
+					</li>
 				}
 			</ul>
 		</li>

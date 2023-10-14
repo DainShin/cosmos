@@ -47,6 +47,10 @@ public class HomeController : Controller
 	{
 		return View();
 	}
+	public IActionResult HowToAddGame()
+	{
+		return View();
+	}
 
 
 	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
