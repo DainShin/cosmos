@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
 using Microsoft.Extensions.FileProviders;
+using Cosmos.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +42,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+// Seed the database
+ApplicationDbInitializer.Seed(app);
 
 app.MapControllerRoute(
 	name: "brief",
