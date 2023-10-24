@@ -12,7 +12,20 @@ var connectionString = builder.Configuration.GetConnectionString("Default") ?? t
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(connectionString));
 
+// Enabling Sessions
+builder.Services.AddSession(options => {
+	options.IdleTimeout = TimeSpan.FromMinutes(30);
+	options.Cookie.HttpOnly = true;
+	options.Cookie.IsEssential = true;
+});
+
 var app = builder.Build();
+
+/**
+ * MIDDLEWARE
+ */
+// Turn on sessions
+app.UseSession();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
