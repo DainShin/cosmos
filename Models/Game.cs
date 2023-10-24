@@ -26,6 +26,11 @@ namespace Cosmos.Models
 		public DateTime ReleaseDate { get; set; } = DateTime.Now;
 
 		[Required]
+        [Range(0.00, 999999.99)]
+        [DataType(DataType.Currency)]
+        public decimal Price {get; set;} = 0.01M;
+
+		[Required]
 		[Display(Name = "Status")]
 		public bool Enabled { get; set; } = true;
 
