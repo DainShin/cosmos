@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
-using Microsoft.Extensions.FileProviders;
 using Cosmos.Data;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +12,16 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("Default") ?? throw new InvalidOperationException("Connection string not found");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(connectionString));
+
+// Redefining Folder Structure
+builder.Services.Configure<RazorViewEngineOptions>(options =>
+{
+    options.ViewLocationFormats.Clear();
+    options.ViewLocationFormats.Add("/Views/Frontend/{1}/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/Backend/{1}/{0}" + RazorViewEngine.ViewExtension);
+    options.ViewLocationFormats.Add("/Views/Shared/{0}" + RazorViewEngine.ViewExtension);
+});
+
 
 // Enabling Sessions
 builder.Services.AddSession(options => {
@@ -45,11 +55,6 @@ app.UseAuthorization();
 
 // Seed the database
 ApplicationDbInitializer.Seed(app);
-
-app.MapControllerRoute(
-	name: "brief",
-	pattern: "brief",
-	defaults: new { controller = "Home", action = "Brief" });
 
 /**
  * ADMIN ROUTES
@@ -205,25 +210,30 @@ app.MapControllerRoute(
 app.MapControllerRoute(
 	name: "overview",
 	pattern: "admin/documentation/overview",
-	defaults: new { controller = "Home", action = "Overview" });
+	defaults: new { controller = "Documentation", action = "Overview" });
 
 app.MapControllerRoute(
 	name: "database",
 	pattern: "admin/documentation/database",
-	defaults: new { controller = "Home", action = "Database" });
+	defaults: new { controller = "Documentation", action = "Database" });
 
 app.MapControllerRoute(
 	name: "sample-game-art",
 	pattern: "admin/documentation/sample-game-art",
-	defaults: new { controller = "Home", action = "SampleGameArt" });
+	defaults: new { controller = "Documentation", action = "SampleGameArt" });
 
 app.MapControllerRoute(
 	name: "how-to-add-game",
 	pattern: "admin/documentation/how-to-add-game",
-	defaults: new { controller = "Home", action = "HowToAddGame" });
+	defaults: new { controller = "Documentation", action = "HowToAddGame" });
+
+app.MapControllerRoute(
+	name: "brief",
+	pattern: "brief",
+	defaults: new { controller = "Pages", action = "Brief" });
 
 app.MapControllerRoute(
 	name: "default",
-	pattern: "{controller=Home}/{action=Index}/{id?}");
+	pattern: "{controller=Pages}/{action=Index}/{id?}");
 
 app.Run();

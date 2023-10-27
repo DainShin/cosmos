@@ -9,11 +9,11 @@ namespace Cosmos.Components.ViewComponents
         {
             var mainMenuItem = new List<MainMenuItem>
             {
-                  new MainMenuItem {Controller = "Home", Action = "Index", Label = "Home"},  
-                  new MainMenuItem {Controller = "Home", Action = "Brief", Label = "Brief"},  
-                  new MainMenuItem {Controller = "Home", Action = "Index", Label = "Membership"},  
-                  new MainMenuItem {Controller = "Home", Action = "Index", Label = "Download"},  
-                  new MainMenuItem {Controller = "Home", Action = "Index", Label = "How to Play"},  
+                  new MainMenuItem {Controller = "Pages", Action = "Index", Label = "Home"},  
+                  new MainMenuItem {Controller = "Pages", Action = "Brief", Label = "Brief"},  
+                  new MainMenuItem {Controller = "Pages", Action = "Index", Label = "Membership"},  
+                  new MainMenuItem {Controller = "Pages", Action = "Index", Label = "Download"},  
+                  new MainMenuItem {Controller = "Pages", Action = "Index", Label = "How to Play"},  
             };
             
             return View(mainMenuItem);

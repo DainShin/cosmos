@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Cosmos.Models;
-using System.Collections.Generic;
 
 namespace Cosmos.Components.ViewComponents
 {
@@ -14,16 +13,16 @@ namespace Cosmos.Components.ViewComponents
 					Title = "Getting Started",
 					SubMenuItems = new List<DocumentationSubMenuItem>
 					{
-						new DocumentationSubMenuItem { Controller = "Home", Action = "Overview", Label = "Overview" },
-						new DocumentationSubMenuItem { Controller = "Home", Action = "Database", Label = "Database" },
-						new DocumentationSubMenuItem { Controller = "Home", Action = "SampleGameArt", Label = "Sample Game Art" },
+						new DocumentationSubMenuItem { Controller = "Documentation", Action = "Overview", Label = "Overview" },
+						new DocumentationSubMenuItem { Controller = "Documentation", Action = "Database", Label = "Database" },
+						new DocumentationSubMenuItem { Controller = "Documentation", Action = "SampleGameArt", Label = "Sample Game Art" },
 					}
 				},
 				new DocumentationMenuItem { 
 					Title = "Core Features",
 					SubMenuItems = new List<DocumentationSubMenuItem>
 					{
-						new DocumentationSubMenuItem { Controller = "Home", Action = "HowToAddGame", Label = "How to Add a Game" },
+						new DocumentationSubMenuItem { Controller = "Documentation", Action = "HowToAddGame", Label = "How to Add a Game" },
 					}
 				},
 				
