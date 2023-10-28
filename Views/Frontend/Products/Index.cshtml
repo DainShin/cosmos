@@ -3,32 +3,30 @@
 	ViewData["Title"] = "Browse Games";
 }
 
-<div class="container-fluid bg-light text-dark">
-	<div class="container page-padding h100">
-		<div class="row">
-			<div class="col-lg-2 col-md-4">
-				<aside>
-					@await Component.InvokeAsync("GamesFilterMenu")
-				</aside>
-			</div>
-			<div class="col-lg-10 col-md-8">
-				<div class="row">
-					@foreach (var item in Model)
-					{
-						<div class="col-lg-2 col-md-3">
-							<div class="card game-card">
-								<img src="~/@item.ImagePath" class="game-card-img-top"
-									alt="@Html.DisplayFor(modelItem => item.Name)">
-								<div class="card-body">
-									<h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
-									@* <p class="card-text">Some quick example text to build on the card title and make up the
-										bulk of the card's content.</p>
-									<a href="#" class="btn btn-primary">Go somewhere</a> *@
-								</div>
+<div class="container-fluid bg-light text-dark p-5">
+	<div class="row">
+		<div class="col-lg-2 col-md-4">
+			<aside class="card p-4">
+				@await Component.InvokeAsync("GamesFilterMenu")
+			</aside>
+		</div>
+		<div class="col-lg-10 col-md-8">
+			<div class="row">
+				@foreach (var item in Model)
+				{
+					<div class="col-lg-2 col-md-3 mb-3">
+						<div class="card game-card">
+							<img src="~/@item.ImagePath" class="game-card-img-top"
+								alt="@Html.DisplayFor(modelItem => item.Name)">
+							<div class="card-body">
+								<h6 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h6>
+								@* <p class="card-text">Some quick example text to build on the card title and make up the
+							bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a> *@
 							</div>
 						</div>
-					}
-				</div>
+					</div>
+				}
 			</div>
 		</div>
 	</div>
