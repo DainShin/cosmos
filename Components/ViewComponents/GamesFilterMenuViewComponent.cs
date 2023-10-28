@@ -7,42 +7,42 @@ namespace Cosmos.Components.ViewComponents
 	{
 		public IViewComponentResult Invoke()
 		{
-			var filterMenuItems = new List<FilterMenuItem>
+			var filterMenuItems = new List<GameFilterMenuItem>
 			{
 				
-				new FilterMenuItem { 
+				new GameFilterMenuItem { 
 					Title = "Subscription Tiers",
-					SubMenuItems = new List<FilterSubMenuItem>
+					SubMenuItems = new List<GameFilterSubMenuItem>
 					{
-						new FilterSubMenuItem { Category = "Products", Value = "Free", Label = "Free" },
-						new FilterSubMenuItem { Category = "Products", Value = "Advanced", Label = "Advanced" },
-						new FilterSubMenuItem { Category = "Products", Value = "Ultimate", Label = "Ultimate" },
+						new GameFilterSubMenuItem { Category = "subscription", Value = "Free", Label = "Free" },
+						new GameFilterSubMenuItem { Category = "subscription", Value = "Advanced", Label = "Advanced" },
+						new GameFilterSubMenuItem { Category = "subscription", Value = "Ultimate", Label = "Ultimate" },
 					}
 				},
-				new FilterMenuItem { 
+				new GameFilterMenuItem { 
 					Title = "Genres",
-					SubMenuItems = new List<FilterSubMenuItem>
+					SubMenuItems = new List<GameFilterSubMenuItem>
 					{
-						new FilterSubMenuItem { Controller = "Products", Action = "ActionGenre", Label = "Action" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Adventure", Label = "Adventure" },
-						new FilterSubMenuItem { Controller = "Products", Action = "RolePlaying", Label = "Role-playing" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Strategy", Label = "Strategy" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Racing", Label = "Racing" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Shooter", Label = "Shooter" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Sports", Label = "Sports" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Puzzle", Label = "Puzzle" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Platformer", Label = "Platformer" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Simulation", Label = "Simulation" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Action", Label = "Action" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Adventure", Label = "Adventure" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Role-playing", Label = "Role-playing" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Strategy", Label = "Strategy" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Racing", Label = "Racing" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Shooter", Label = "Shooter" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Sports", Label = "Sports" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Puzzle", Label = "Puzzle" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Platformer", Label = "Platformer" },
+						new GameFilterSubMenuItem { Category = "genre", Value = "Simulation", Label = "Simulation" },
 					}
 				},
-				new FilterMenuItem { 
+				new GameFilterMenuItem { 
 					Title = "Game Modes",
-					SubMenuItems = new List<FilterSubMenuItem>
+					SubMenuItems = new List<GameFilterSubMenuItem>
 					{
-						new FilterSubMenuItem { Controller = "Products", Action = "SinglePlayer", Label = "Single Player" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Multiplayer", Label = "Multiplayer" },
-						new FilterSubMenuItem { Controller = "Products", Action = "Coop", Label = "Co-op" },
-						new FilterSubMenuItem { Controller = "Products", Action = "MassivelyMultiplayerOnline", Label = "Massively Multiplayer Online" },
+						new GameFilterSubMenuItem { Category = "mode", Value = "Single Player", Label = "Single Player" },
+						new GameFilterSubMenuItem { Category = "mode", Value = "Multiplayer", Label = "Multiplayer" },
+						new GameFilterSubMenuItem { Category = "mode", Value = "Co-op", Label = "Co-op" },
+						new GameFilterSubMenuItem { Category = "mode", Value = "Massively Multiplayer Online", Label = "MMO" },
 					}
 				},
 				

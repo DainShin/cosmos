@@ -1,6 +1,6 @@
 namespace Cosmos.Models
 {
-	public struct FilterSubMenuItem
+	public struct GameFilterSubMenuItem
 	{
 		public string Category { get; set; }
 		public string Value { get; set; }

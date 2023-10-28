@@ -1,19 +1,30 @@
-@model List<SidebarMenuItem>
+@model List<GameFilterMenuItem>
 @{
 	var currentAction = ViewContext?.RouteData.Values["action"]?.ToString();
 }
 
 <ul class="sidebar-menu">
+	<h5>Game Filters</h5>
 	@foreach (var filterMenuItem in Model)
 	{
 		<li>
-			<h5>@filterMenuItem.Title</h5>
+			<h6>@filterMenuItem.Title</h6>
 			<ul>
 				@foreach (var subItem in filterMenuItem.SubMenuItems)
 				{
-					<li><a asp-controller="@subItem.Controller" asp-action="@subItem.Action"
-							class="@(currentAction == @subItem.Action ? "sidebar-link-active" : "")">@subItem.Label</a>
+					<li>
+						<a href="@Url.Action("Index", "Products", 
+							new { 
+									subscription = subItem.Category == "subscription" ? subItem.Value : "all", 
+									genre = subItem.Category == "genre" ? subItem.Value : "all", 
+									mode = subItem.Category == "mode" ? subItem.Value : "all" 
+								})">
+							@subItem.Label
+						</a>
 					</li>
+					@* <li><a asp-controller="@subItem.Controller" asp-action="@subItem.Action"
+			class="@(currentAction == @subItem.Action ? "sidebar-link-active" : "")">@subItem.Label</a>
+			</li> *@
 				}
 			</ul>
 		</li>

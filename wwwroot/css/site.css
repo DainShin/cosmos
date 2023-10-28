@@ -186,3 +186,23 @@ footer {
 .tertiary-box {
   background-color: var(--brand-tertiary);
 }
+
+.game-card {
+	border: none;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	transition: all 0.25s ease;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.game-card:hover {
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.game-card-img-top {
+	width: 100%;
+	height: auto;
+	border-radius: 10px 10px 0 0;
+	vertical-align: middle;
+	overflow: clip;
+}

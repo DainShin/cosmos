@@ -1,26 +1,29 @@
-﻿using System.Diagnostics;
+﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
 
-namespace Cosmos.Controllers.Frontend;
-
-public class ProductsController : Controller
+namespace Cosmos.Controllers.Frontend
 {
-	private readonly ILogger<ProductsController> _logger;
-
-	public ProductsController(ILogger<ProductsController> logger)
+	public class ProductsController : Controller
 	{
-		_logger = logger;
-	}
+		private readonly ApplicationDbContext _context;
 
-	public IActionResult Index()
-	{
-		return View();
-	}
+		public ProductsController(ApplicationDbContext context)
+		{
+			_context = context;
+		}
 
-	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-	public IActionResult Error()
-	{
-		return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+		// GET: Games
+		public async Task<IActionResult> Index()
+		{
+			var applicationDbContext = _context.Games
+				.Include(g => g.Developer)
+				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions);
+			return View(await applicationDbContext.ToListAsync());
+		}
 	}
 }
