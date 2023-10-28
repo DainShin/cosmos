@@ -30,7 +30,7 @@
 						@Html.DisplayNameFor(model => model.ReleaseDate)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.CreatedAt)
+						@Html.DisplayNameFor(model => model.Price)
 					</th>
 					<th class="brand-text-right">Actions</th>
 				</tr>
@@ -67,7 +67,8 @@
 							@{
 								if (item.Developer != null)
 								{
-									@Html.DisplayFor(modelItem => item.Developer.Name);
+									@Html.DisplayFor(modelItem => item.Developer.Name)
+									;
 								}
 							}
 						</td>
@@ -85,7 +86,10 @@
 							@item.ReleaseDate.ToString("dd/MM/yyyy")
 						</td>
 						<td>
-							@item.CreatedAt.ToString("dd/MM/yyyy")
+							@if (@item.Price > 0.01M)
+							{
+								@Html.DisplayFor(modelItem => item.Price)
+							}
 						</td>
 						<td>
 							@await Component.InvokeAsync("ActionButtonSet", new { id = item.Id, controller = "Games" })
