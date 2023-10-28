@@ -1,72 +1,74 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;700&family=Poppins:wght@100;200;300;400;700&family=Ubuntu:wght@300;400;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
 
 :root {
   --brand-primary: #7d30dc;
-  --brand-secondary: #FC28A0;
-  --brand-tertiary: #191C20;
+  --brand-secondary: #fc28a0;
+  --brand-tertiary: #191c20;
   --brand-dark: #222222;
   --brand-light-gray: #545454;
   --transition: all 0.3s ease-in-out;
-  --text-brand-light: #EBEBEB;
+  --text-brand-light: #ebebeb;
   --text-brand-muted: #8a8a8a;
   --text-brand-dark: #212529;
-  --brand-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-  --brand-shadow-lg: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  --brand-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+  --brand-shadow-lg: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 /** General **/
 
 html {
-	font-size: 14px;
-  }
-  
-  @media (min-width: 768px) {
-	html {
-	  font-size: 16px;
-	}
-  }
+  font-size: 14px;
+}
 
+@media (min-width: 768px) {
   html {
-	position: relative;
-	min-height: 100%;
+    font-size: 16px;
   }
+}
 
-  .page-padding {
-	padding: 60px 0;
-  }
+html {
+  position: relative;
+  min-height: 100%;
+}
 
-  /** Typography **/
-  
-  h1,
-  h2 {
-	font-family: "Poppins", sans-serif;
-  }
-  
-  h3,
-  h4,
-  h5,
-  h6 {
-	font-family: "Ubuntu", sans-serif;
-  }
-  
-  p,
-  a {
-	font-family: "Mulish", sans-serif;
-  }
+.page-padding {
+  padding: 60px 0;
+}
 
-  /** Colors **/
+/** Typography **/
+
+h1,
+h2 {
+  font-family: "Poppins", sans-serif;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Ubuntu", sans-serif;
+}
+
+p,
+a {
+  font-family: "Mulish", sans-serif;
+}
+
+/** Colors **/
 
 .brand-gradient {
   background: #0b8491; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #191C20,
+    #191c20,
     #7d30dc
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #191C20,
+    #191c20,
     #7d30dc
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
@@ -80,92 +82,131 @@ html {
 }
 
 .text-brand-primary {
-	color: var(--brand-primary);
+  color: var(--brand-primary);
 }
 
 .text-brand-secondary {
-	color: var(--brand-secondary);
+  color: var(--brand-secondary);
 }
 
 .text-brand-muted {
-	color: var(--text-brand-muted);
+  color: var(--text-brand-muted);
 }
 
 .bg-brand-dark {
-	background-color: var(--brand-dark);
+  background-color: var(--brand-dark);
 }
 
 .hr-brand-primary {
-	border-color: var(--brand-primary);
+  border-color: var(--brand-primary);
 }
 
 .bg-black {
-	background-color: #000000;
+  background-color: #000000;
 }
 
 .btn-brand-primary {
-	background-color: var(--brand-primary);
-	/* border-radius: 0; */
-	color: #ffffff;
-	transition: var(--transition);
+  background-color: var(--brand-primary);
+  /* border-radius: 0; */
+  color: #ffffff;
+  transition: var(--transition);
 }
 
 .btn-brand-primary:hover {
-	background-color: #3F2465;
-	color: #ffffff;
+  background-color: #3f2465;
+  color: #ffffff;
 }
 
 .btn-brand-secondary {
-	background-color: var(--brand-secondary);
-	/* border-radius: 0; */
-	color: #ffffff;
-	transition: var(--transition);
+  background-color: var(--brand-secondary);
+  /* border-radius: 0; */
+  color: #ffffff;
+  transition: var(--transition);
 }
 
 .btn-brand-secondary:hover {
-	background-color: #c92481;
-	color: #ffffff;
+  background-color: #c92481;
+  color: #ffffff;
 }
 
 .btn-brand-outline-primary {
-	background-color: transparent;
-	border: 1px solid var(--brand-primary);
-	/* border-radius: 0; */
-	color: var(--brand-primary);
-	transition: var(--transition);
+  background-color: transparent;
+  border: 1px solid var(--brand-primary);
+  /* border-radius: 0; */
+  color: var(--brand-primary);
+  transition: var(--transition);
 }
 
 .btn-brand-outline-primary:hover {
-	background-color: var(--brand-primary);
-	color: #ffffff;
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  background-color: var(--brand-primary);
+  color: #ffffff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .btn-brand-outline-secondary {
-	background-color: transparent;
-	border: 1px solid var(--brand-secondary);
-	/* border-radius: 0; */
-	color: var(--brand-secondary);
-	transition: var(--transition);
+  background-color: transparent;
+  border: 1px solid var(--brand-secondary);
+  /* border-radius: 0; */
+  color: var(--brand-secondary);
+  transition: var(--transition);
 }
 
 .btn-brand-outline-secondary:hover {
-	background-color: var(--brand-secondary);
-	color: #ffffff;
-	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+  background-color: var(--brand-secondary);
+  color: #ffffff;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
 .brand-shadow {
-	box-shadow: var(--brand-shadow);
-	transition: all 0.3s ease-in-out;
+  box-shadow: var(--brand-shadow);
+  transition: all 0.3s ease-in-out;
 }
-
 
 .brand-shadow:hover {
-	box-shadow: var(--brand-shadow-lg);
+  box-shadow: var(--brand-shadow-lg);
 }
 
-.brand-text-right {	
-	text-align: right;
-	padding-right: 2.25em !important;
+.brand-text-right {
+  text-align: right;
+  padding-right: 2.25em !important;
+}
+
+.sidebar-menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.sidebar-menu ul {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  padding-bottom: 0.5em;
+}
+
+.sidebar-menu li a,
+.sidebar-menu ul li a {
+  padding: 5px 15px;
+  text-decoration: none;
+}
+
+.sidebar-menu ul li a,
+.sidebar-menu ul li a:link,
+.sidebar-menu ul li a:visited {
+  border-left: 3px solid #eee;
+  color: var(--text-brand-muted);
+  transition: all 0.25s ease;
+}
+
+.sidebar-menu ul li a:focus,
+.sidebar-menu ul li a:hover,
+.sidebar-menu ul li a:active {
+  border-left: 3px solid var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+.sidebar-link-active {
+  border-left: 3px solid var(--brand-primary) !important;
+  color: var(--brand-primary) !important;
 }

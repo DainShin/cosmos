@@ -4,12 +4,12 @@
 }
 
 <ul class="sidebar-menu">
-	@foreach (var documentationMenuItem in Model)
+	@foreach (var filterMenuItem in Model)
 	{
 		<li>
-			<h5>@documentationMenuItem.Title</h5>
+			<h5>@filterMenuItem.Title</h5>
 			<ul>
-				@foreach (var subItem in documentationMenuItem.SubMenuItems)
+				@foreach (var subItem in filterMenuItem.SubMenuItems)
 				{
 					<li><a asp-controller="@subItem.Controller" asp-action="@subItem.Action"
 							class="@(currentAction == @subItem.Action ? "sidebar-link-active" : "")">@subItem.Label</a>

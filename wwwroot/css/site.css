@@ -69,40 +69,6 @@
   background-color: var(--brand-secondary) !important;
 }
 
-/* .subscription-tier-ultimate:hover {
-	box-shadow: 0 0 5px #FC28A0, 0 0 5px #c5197b, 0 0 60px #FC28A0;
-}
-
-.subscription-tier-glow:before,
-.subscription-tier-glow:after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  background: linear-gradient(
-    45deg,
-    #fb0094,
-    #0000ff,
-    #00ff00,
-    #ffff00,
-    #ff0000,
-    #fb0094,
-    #0000ff,
-    #00ff00,
-    #ffff00,
-    #ff0000
-  );
-  background-size: 400%;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  z-index: -1;
-  animation: steam 20s linear infinite;
-}
-
-.subscription-tier-glow:after {
-  filter: blur(50px);
-} */
-
 .subscription-tier-card-content-sm {
   height: 450px;
 }
@@ -185,18 +151,6 @@ footer {
 .footer-nav li {
   padding: 8px 0;
 }
-
-/* @keyframes steam {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-} */
 
 .art-separator-1 {
   background-image: url("../images/art-separator-1.jpg");
