@@ -86,9 +86,11 @@
 							@item.ReleaseDate.ToString("dd/MM/yyyy")
 						</td>
 						<td>
-							@if (@item.Price > 0.01M)
+							@if (@item.Price > 0.00M)
 							{
 								@Html.DisplayFor(modelItem => item.Price)
+							} else {
+								<span>-</span>
 							}
 						</td>
 						<td>

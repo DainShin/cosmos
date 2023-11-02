@@ -25,5 +25,27 @@ namespace Cosmos.Controllers.Frontend
 				.Include(g => g.Subscriptions);
 			return View(await applicationDbContext.ToListAsync());
 		}
+		
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null || _context.Games == null)
+			{
+				return NotFound();
+			}
+
+			var game = await _context.Games
+				.Include(g => g.Developer)
+				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
+				.FirstOrDefaultAsync(m => m.Id == id);
+			if (game == null)
+			{
+				return NotFound();
+			}
+
+			return View(game);
+		}
 	}
 }

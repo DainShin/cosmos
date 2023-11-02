@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.Identity.Client;
 
 namespace Cosmos.Models
 {
@@ -25,10 +26,9 @@ namespace Cosmos.Models
 		[Display(Name = "Release")]
 		public DateTime ReleaseDate { get; set; } = DateTime.Now;
 
-		[Required]
         [Range(0.00, 999999.99)]
         [DataType(DataType.Currency)]
-        public decimal Price {get; set;} = 0.01M;
+        public decimal Price {get; set;} = 0.00M;
 
 		[Required]
 		[Display(Name = "Status")]
@@ -44,6 +44,9 @@ namespace Cosmos.Models
 		[Required]
 		[Display(Name = "Publisher")]
 		public int PublisherId { get; set; } = 0;
+
+		[Required]
+		public bool IsProtected { get; set; } = false;
 
 		[ForeignKey("DeveloperId")]
 		public virtual Developer? Developer { get; set; }

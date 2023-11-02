@@ -5,6 +5,8 @@
   --brand-primary: #7d30dc;
   --brand-secondary: #fc28a0;
   --brand-tertiary: #191c20;
+  --brand-success: #10b981;
+  --brand-success-darker: #047857;
   --brand-dark: #222222;
   --brand-light-gray: #545454;
   --transition: all 0.3s ease-in-out;
@@ -107,7 +109,6 @@ a {
 
 .btn-brand-primary {
   background-color: var(--brand-primary);
-  /* border-radius: 0; */
   color: #ffffff;
   transition: var(--transition);
 }
@@ -119,7 +120,6 @@ a {
 
 .btn-brand-secondary {
   background-color: var(--brand-secondary);
-  /* border-radius: 0; */
   color: #ffffff;
   transition: var(--transition);
 }
@@ -132,7 +132,6 @@ a {
 .btn-brand-outline-primary {
   background-color: transparent;
   border: 1px solid var(--brand-primary);
-  /* border-radius: 0; */
   color: var(--brand-primary);
   transition: var(--transition);
 }
@@ -146,7 +145,6 @@ a {
 .btn-brand-outline-secondary {
   background-color: transparent;
   border: 1px solid var(--brand-secondary);
-  /* border-radius: 0; */
   color: var(--brand-secondary);
   transition: var(--transition);
 }
@@ -156,6 +154,17 @@ a {
   color: #ffffff;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
+
+.btn-brand-success {
+	background-color: var(--brand-success);
+	color: #ffffff;
+	transition: var(--transition);
+  }
+  
+  .btn-brand-success:hover {
+	background-color: var(--brand-success-darker);
+	color: #ffffff;
+  }
 
 .brand-shadow {
   box-shadow: var(--brand-shadow);
@@ -209,4 +218,29 @@ a {
 .sidebar-link-active {
   border-left: 3px solid var(--brand-primary) !important;
   color: var(--brand-primary) !important;
+}
+
+.game-art-thumbnail {
+  width: 75px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: var(--transition);
+}
+
+.game-art-thumbnail:hover {
+  /* transform: scale(1.025); */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
+}
+
+.game-art {
+  border-radius: 25px;
+}
+
+.dot-separator::before {
+    content: '•';
+    font-size: 2rem;
+    /* vertical-align: middle;  */
+    padding: 0 0.5em; 
 }
