@@ -1,0 +1,55 @@
+﻿@model Cosmos.Models.Game
+@{
+	ViewData["Title"] = "Game";
+
+	int genreCount = Model.Genres.Count;
+	int counter = 0;
+}
+
+<div class="container-fluid bg-dark text-light">
+	<div class="container page-padding">
+		@if (@Model != null)
+		{
+			<div class="row">
+				<div class="col-md-4 col-lg-3 py-3 rounded-3" data-tilt data-tilt-glare data-tilt-max-glare="0.65">
+					<img src="~/@Model.ImagePath" alt="@Model.Name" class="img-fluid game-art shadow"/>
+				</div>
+				<div class="col-md-8 col-lg-9 pt-3">
+					<div class="row">
+						<div class="col-12">
+							@{
+								//TODO: FIX Dynamic Background Image
+							}
+							@* <div class="game-details-background"></div> *@
+							<h1 class="mb-0">@Html.DisplayFor(model => model.Name)</h1>
+							<div class="d-flex align-items-center text-muted mb-4">
+								<h5 class="mb-0">@Model.Publisher?.Name</h5>
+								<span class="dot-separator"></span>
+								<h5 class="mb-0">
+									@foreach (var genre in Model.Genres)
+									{
+										<span>@genre.Name</span>
+										counter++;
+										if (counter < genreCount)
+										{
+											<span>, </span>
+										}
+									}
+								</h5>
+							</div>
+							<p class="mb-4">@Html.DisplayFor(model => model.Description)</p>
+							<form asp-controller="Carts" asp-action="AddToCart">
+								<input type="hidden" name="gameId" value="@Model.Id">
+								<input type="hidden" name="quantity" value="1">
+								<button type="submit" class="btn btn-brand-success text-left game-buy-btn">Add to Cart
+									<br /> <span class="fw-bold">@Html.DisplayFor(model => model.Price)</span></button>
+							</form>
+							@* <a href="#" class="btn btn-brand-success text-left game-buy-btn">Add to Cart <br /> <span
+						class="fw-bold">@Html.DisplayFor(model => model.Price)</span></a> *@
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</div>

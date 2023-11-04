@@ -92,7 +92,7 @@ namespace Cosmos.Data
 					if (!context.Subscriptions.Any())
 					{
 						context.Subscriptions.AddRange(new List<Subscription>() {
-						new Subscription {Id = 1, Name = "Free", Price = 0.00M },
+						new Subscription {Id = 1, Name = "Basic", Price = 0.00M },
 						new Subscription {Id = 2, Name = "Advanced", Price = 19.99M },
 						new Subscription {Id = 3, Name = "Ultimate", Price = 24.99M }
 					});

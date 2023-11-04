@@ -1,0 +1,103 @@
+@model Cosmos.Models.Cart
+
+@{
+	ViewData["Title"] = "My Cart";
+}
+
+<div class="container-fluid">
+	<div class="container page-padding h100">
+		<div class="row">
+			@if (Model.CartItems != null)
+			{
+				<div class="col-12">
+					<h1>Shopping Cart</h1>
+				</div>
+				<div class="col-md-8 col-lg-9">
+					@foreach (var cartItem in Model.CartItems)
+					{
+						<div class="row mt-3 mb-3">
+							<div class="col-12">
+								<hr>
+							</div>
+							<div class="col-12 d-flex justify-content-between">
+								<div class="d-flex">
+									<img src="~/@cartItem.Game.ImagePath" alt="@cartItem.Game.Name"
+										class="cart-game-art-thumbnail me-3" />
+									<div>
+										<h4>@cartItem.Game.Name</h4>
+										<p>Quanity: @cartItem.Quantity</p>
+									</div>
+								</div>
+								<p class="fw-bolder">@cartItem.Game.Price.ToString("C")</p>
+							</div>
+						</div>
+					}
+				</div>
+				<div class="col-md-4 col-lg-3 mt-4">
+					<div class="card bg-dark border-0 p-3">
+						<div class="card-body">
+							<h4>Order Summary</h4>
+							<div class="d-flex justify-content-between">
+								<p>Items (@Model.CartItems.Count)</p>
+								<p>@(Model.CartItems.Sum(c => (decimal)(c.Quantity * c.Game.Price)).ToString("C"))</p>
+							</div>
+							<div class="d-flex justify-content-between">
+								<p>Estimated tax: </p>
+								<p>-</p>
+							</div>
+							<hr>
+							<div class="d-flex justify-content-between">
+								<p class="fw-bolder">Total</p>
+								<p class="fw-bolder">@(Model.CartItems.Sum(c => (decimal)(c.Quantity *
+											c.Game.Price)).ToString("C"))</p>
+							</div>
+							<a href="#" class="btn btn-brand-success d-block">Checkout</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+		@* <div class="row">
+		<div class="col-12">
+		@if (Model.CartItems != null)
+		{
+		<table class="table table-striped table-bordered">
+		<thead>
+		<tr>
+		<th>Product</th>
+		<th>Quantity</th>
+		<th>Price</th>
+		<th>Subtotal</th>
+		</tr>
+		</thead>
+		<tbody>
+		@foreach (var cartItem in Model.CartItems)
+		{
+		<tr>
+		<td>@cartItem.Game.Name</td>
+		<td>@cartItem.Quantity</td>
+		<td>@cartItem.Game.Price</td>
+		<td>
+		@((decimal)(cartItem.Quantity * cartItem.Game.Price))
+		</td>
+		</tr>
+		}
+		</tbody>
+		<tfoot>
+		<tr>
+		<th>Total</th>
+		<td colspan="3">
+		@(Model.CartItems.Sum(c => (decimal)(c.Quantity * c.Game.Price)))
+		</td>
+		</tr>
+		</tfoot>
+		</table>
+		}
+		else
+		{
+		<p>Your cart is empty</p>
+		}
+		</div>
+		</div> *@
+	</div>
+</div>
