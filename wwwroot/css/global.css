@@ -37,7 +37,8 @@ html {
 }
 
 .page-padding {
-  padding: 60px 0;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 /** Typography **/
@@ -156,15 +157,15 @@ a {
 }
 
 .btn-brand-success {
-	background-color: var(--brand-success);
-	color: #ffffff;
-	transition: var(--transition);
-  }
-  
-  .btn-brand-success:hover {
-	background-color: var(--brand-success-darker);
-	color: #ffffff;
-  }
+  background-color: var(--brand-success);
+  color: #ffffff;
+  transition: var(--transition);
+}
+
+.btn-brand-success:hover {
+  background-color: var(--brand-success-darker);
+  color: #ffffff;
+}
 
 .brand-shadow {
   box-shadow: var(--brand-shadow);
@@ -239,8 +240,8 @@ a {
 }
 
 .dot-separator::before {
-    content: '•';
-    font-size: 2rem;
-    /* vertical-align: middle;  */
-    padding: 0 0.5em; 
+  content: "•";
+  font-size: 2rem;
+  /* vertical-align: middle;  */
+  padding: 0 0.5em;
 }

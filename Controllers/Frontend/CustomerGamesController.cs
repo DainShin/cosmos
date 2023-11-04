@@ -5,11 +5,11 @@ using Cosmos.Models;
 
 namespace Cosmos.Controllers.Frontend
 {
-	public class ProductsController : Controller
+	public class CustomerGamesController : Controller
 	{
 		private readonly ApplicationDbContext _context;
 
-		public ProductsController(ApplicationDbContext context)
+		public CustomerGamesController(ApplicationDbContext context)
 		{
 			_context = context;
 		}

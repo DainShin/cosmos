@@ -8,7 +8,14 @@ public static class FrontendRouteConfig
 			endpoints.MapControllerRoute(
 				name: "games",
 				pattern: "browse/games",
-				defaults: new { controller = "Products", action = "Index" });
+				defaults: new { controller = "CustomerGames", action = "Index" });
+
+			// Products
+			endpoints.MapControllerRoute(
+				name: "cart",
+				pattern: "cart",
+				defaults: new { controller = "Carts", action = "Index" });
+
 
 			// Pages
 			endpoints.MapControllerRoute(
