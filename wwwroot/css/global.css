@@ -167,6 +167,18 @@ a {
   color: #ffffff;
 }
 
+.btn-brand-outline-muted {
+  background-color: transparent;
+  border: 1px solid var(--text-brand-muted);
+  color: var(--text-brand-muted);
+  transition: var(--transition);
+}
+
+.btn-brand-outline-muted:hover {
+  background-color: transparent;
+  color: var(--text-brand-muted);
+}
+
 .brand-shadow {
   box-shadow: var(--brand-shadow);
   transition: all 0.3s ease-in-out;

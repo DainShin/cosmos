@@ -57,11 +57,7 @@ namespace Cosmos.Controllers
 			// Checking if the item is already in the cart
 			var cartItem = cart.CartItems.Find(cartItem => cartItem.GameId == gameId);
 
-			if (cartItem != null && cartItem.Game != null)
-			{
-				cartItem.Quantity += quantity;
-			}
-			else
+			if (cartItem == null)
 			{
 				var game = await _context.Games.FirstOrDefaultAsync(g => g.Id == gameId);
 
@@ -82,7 +78,7 @@ namespace Cosmos.Controllers
 
 			SaveCart(cart);
 
-			return RedirectToAction("Index");
+			return RedirectToAction("Details", "CustomerGames", new { id = gameId });
 		}
 
 		private Cart? GetCart()
@@ -96,7 +92,6 @@ namespace Cosmos.Controllers
 			var cartJson = JsonConvert.SerializeObject(cart);
 			HttpContext.Session.SetString(_cartSessionKey, cartJson);
 		}
-
 
 	}
 
