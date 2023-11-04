@@ -84,6 +84,18 @@
 				}
 			</dd>
 			<dt class="col-lg-2 col-md-6">
+				@Html.DisplayNameFor(model => model.Price)
+			</dt>
+			<dd class="col-lg-10 col-md-6">
+				@if (Model?.Price > 0.00M) 
+				{
+					@Html.DisplayFor(model => model.Price)
+				} else {
+					<span>Free</span>
+				}
+				
+			</dd>
+			<dt class="col-lg-2 col-md-6">
 				@Html.DisplayNameFor(model => model.Developer)
 			</dt>
 			<dd class="col-lg-10 col-md-6">

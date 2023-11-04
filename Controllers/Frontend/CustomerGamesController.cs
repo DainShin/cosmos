@@ -1,0 +1,69 @@
+﻿
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Cosmos.Models;
+using Newtonsoft.Json;
+
+namespace Cosmos.Controllers.Frontend
+{
+	public class CustomerGamesController : Controller
+	{
+		private readonly string _cartSessionKey;
+		private readonly ApplicationDbContext _context;
+
+		public CustomerGamesController(ApplicationDbContext context)
+		{
+			_cartSessionKey = "Cart";
+			_context = context;
+		}
+
+		// GET: Games
+		public async Task<IActionResult> Index()
+		{
+			var applicationDbContext = _context.Games
+				.Include(g => g.Developer)
+				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions);
+			return View(await applicationDbContext.ToListAsync());
+		}
+
+		public async Task<IActionResult> Details(int? id)
+		{
+			if (id == null || _context.Games == null)
+			{
+				return NotFound();
+			}
+
+			var game = await _context.Games
+				.Include(g => g.Developer)
+				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
+				.FirstOrDefaultAsync(m => m.Id == id);
+			if (game == null)
+			{
+				return NotFound();
+			}
+
+			var cart = GetCart();
+			bool isInCart = false;
+			if (cart != null)
+			{
+				isInCart = cart.CartItems.Any(ci => ci.GameId == id);
+			}
+			// Pass the isInCart flag to the view using ViewBag or ViewData
+			ViewBag.IsInCart = isInCart;
+
+			return View(game);
+		}
+
+		private Cart? GetCart()
+		{
+			var cartJson = HttpContext.Session.GetString(_cartSessionKey);
+			return cartJson == null ? new Cart() : JsonConvert.DeserializeObject<Cart>(cartJson);
+		}
+	}
+}

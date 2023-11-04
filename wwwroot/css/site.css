@@ -69,40 +69,6 @@
   background-color: var(--brand-secondary) !important;
 }
 
-/* .subscription-tier-ultimate:hover {
-	box-shadow: 0 0 5px #FC28A0, 0 0 5px #c5197b, 0 0 60px #FC28A0;
-}
-
-.subscription-tier-glow:before,
-.subscription-tier-glow:after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  top: -2px;
-  background: linear-gradient(
-    45deg,
-    #fb0094,
-    #0000ff,
-    #00ff00,
-    #ffff00,
-    #ff0000,
-    #fb0094,
-    #0000ff,
-    #00ff00,
-    #ffff00,
-    #ff0000
-  );
-  background-size: 400%;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  z-index: -1;
-  animation: steam 20s linear infinite;
-}
-
-.subscription-tier-glow:after {
-  filter: blur(50px);
-} */
-
 .subscription-tier-card-content-sm {
   height: 450px;
 }
@@ -186,18 +152,6 @@ footer {
   padding: 8px 0;
 }
 
-/* @keyframes steam {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-} */
-
 .art-separator-1 {
   background-image: url("../images/art-separator-1.jpg");
   background-size: cover;
@@ -232,3 +186,62 @@ footer {
 .tertiary-box {
   background-color: var(--brand-tertiary);
 }
+
+.game-card-link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.game-card-link:hover {
+	color: inherit;
+}
+
+.game-card {
+	border: none;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+	transition: all 0.25s ease;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 0.9rem;
+	height: 440px;
+}
+
+.game-card:hover {
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+}
+
+.game-card-img-top {
+	width: 100%;
+	height: auto;
+	border-radius: 10px 10px 0 0;
+	vertical-align: middle;
+	overflow: clip;
+}
+
+.sidebar-card {
+	border: none;
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.game-buy-btn {
+	width: 150px;
+	padding: 0.5em 1em;
+	text-align: left !important;
+}
+
+.game-details-background{
+	background-color: red;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	/* background-size: cover; */
+}
+
+.cart-game-art-thumbnail {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	border-radius: 10px;
+	transition: var(--transition);
+  }
