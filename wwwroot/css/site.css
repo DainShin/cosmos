@@ -245,3 +245,10 @@ footer {
 	border-radius: 10px;
 	transition: var(--transition);
   }
+
+  .cart-count {
+	top: 10px;
+	left: 28px;
+	font-size: 0.55rem;
+	font-weight: bold;
+  }

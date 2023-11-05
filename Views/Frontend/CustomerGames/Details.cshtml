@@ -44,8 +44,8 @@
 							<p class="mb-4">@Html.DisplayFor(model => model.Description)</p>
 							@if (isInCart)
 							{
-								<button href="#" class="btn btn-brand-outline-muted text-left game-buy-btn" disabled>Already in cart <br /> <span
-										class="fw-bold">@Html.DisplayFor(model => model.Price)</span></button>
+								<a asp-area="" asp-controller="Carts" asp-action="Index" class="btn btn-brand-in-cart text-left game-buy-btn">Already in cart <br /> <span
+										class="fw-bold">@Html.DisplayFor(model => model.Price)</span></a>
 							}
 							else
 							{
