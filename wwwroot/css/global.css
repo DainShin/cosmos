@@ -179,6 +179,18 @@ a {
   color: var(--text-brand-muted);
 }
 
+.btn-brand-in-cart {
+  background-color: transparent;
+  border: 1px solid var(--text-brand-muted);
+  color: var(--text-brand-muted);
+  transition: var(--transition);
+}
+
+.btn-brand-in-cart:hover {
+  border: 1px solid var(--text-brand-light);
+  color: var(--text-brand-light);
+}
+
 .brand-shadow {
   box-shadow: var(--brand-shadow);
   transition: all 0.3s ease-in-out;

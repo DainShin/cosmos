@@ -91,6 +91,8 @@ namespace Cosmos.Controllers
 		{
 			var cartJson = JsonConvert.SerializeObject(cart);
 			HttpContext.Session.SetString(_cartSessionKey, cartJson);
+			// Updating the cart item count in the session
+			HttpContext.Session.SetInt32("CartItemCount", cart.CartItems.Count);
 		}
 
 	}
