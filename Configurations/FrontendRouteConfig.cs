@@ -27,6 +27,21 @@ public static class FrontendRouteConfig
 				pattern: "brief",
 				defaults: new { controller = "Pages", action = "Brief" });
 
+			endpoints.MapControllerRoute(
+				name: "games",
+				pattern: "games",
+				defaults: new { controller = "Pages", action = "Games" });
+
+			endpoints.MapControllerRoute(
+				name: "membership",
+				pattern: "membership",
+				defaults: new { controller = "Pages", action = "Membership" });
+
+			endpoints.MapControllerRoute(
+				name: "download",
+				pattern: "download",
+				defaults: new { controller = "Pages", action = "Download" });
+
 		});
 	}
 }
