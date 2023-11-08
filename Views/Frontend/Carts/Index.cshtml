@@ -24,7 +24,7 @@
 									<img src="~/@cartItem.Game.ImagePath" alt="@cartItem.Game.Name"
 										class="cart-game-art-thumbnail me-3" />
 									<div>
-										<h4>@cartItem.Game.Name</h4>
+										<a asp-controller="CustomerGames" asp-action="Details" asp-route-id="@cartItem.Game.Id" class="h4 cart-game-link">@cartItem.Game.Name</a>
 										<p>Quanity: @cartItem.Quantity</p>
 									</div>
 								</div>

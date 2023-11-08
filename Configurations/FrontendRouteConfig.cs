@@ -4,13 +4,24 @@ public static class FrontendRouteConfig
 	{
 		app.UseEndpoints(endpoints =>
 		{
-			// Products
+			// Games
 			endpoints.MapControllerRoute(
 				name: "games",
 				pattern: "browse/games",
 				defaults: new { controller = "CustomerGames", action = "Index" });
+			
+			endpoints.MapControllerRoute(
+				name: "games",
+				pattern: "browse/games/details",
+				defaults: new { controller = "CustomerGames", action = "Details" });
 
-			// Products
+			endpoints.MapControllerRoute(
+				name: "games",
+				pattern: "browse/games/filtered",
+				defaults: new { controller = "CustomerGames", action = "GetFilteredGames" });
+
+
+			// Cart
 			endpoints.MapControllerRoute(
 				name: "cart",
 				pattern: "cart",
