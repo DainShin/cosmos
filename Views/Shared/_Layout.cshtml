@@ -67,12 +67,14 @@
 			@RenderBody()
 
 			<div class="popup-wrapper">
-				<img src="#" alt="">
+				<img src="~/images/coffee.png" alt="Coffee">
 				<div class=".popup-content text-dark">
-					<header><h4>Important!</h4></header>
-					<p>We made some major database changes. Please do drop and update to get things working just right!</p>
+					<header>
+						<h4>Important!</h4>
+					</header>
+					<p>We made some major database changes. Please do a <strong><em>database drop</em></strong> and <strong><em>update</em></strong> to get things working just right!</p>
 					<div class=".popup-buttons">
-						<button class="btn btn-brand-primary shadow popup-close-btn">I understand</button>
+						<button class="btn btn-brand-primary shadow popup-accept-btn">I understand</button>
 						<a asp-controller="Documentation" asp-action="Changelog" class="btn btn-link">Learn more</a>
 					</div>
 				</div>

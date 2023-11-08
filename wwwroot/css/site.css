@@ -271,9 +271,9 @@ footer {
 }
 
 /** Popup **/
-.popup-wrapper{
-	position: absolute;
-	top: 750px;
+.popup-wrapper {
+	position:  fixed;
+	top:  750px;
 	right: 30px;
 	max-width: 365px;
 	background: #fff;
@@ -292,6 +292,7 @@ footer {
 
   .popup-wrapper img{
 	max-width: 90px;
+	margin-bottom: 20px;
   }
 
   .popup-content header{

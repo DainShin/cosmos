@@ -30,8 +30,18 @@ VanillaTilt.init(document.querySelector(".subscription-tier-ultimate"), {
 
 
 // Popup
-const popup = document.querySelector(".popup-wrapper"),
-acceptBtn = document.querySelector(".popup-close-btn");
-acceptBtn.onclick = ()=>{
-	popup.classList.add("hide")
+const popup = document.querySelector(".popup-wrapper");
+const acceptBtn = document.querySelector(".popup-accept-btn");
+
+// Check if the user has already clicked 'I understand'
+if (localStorage.getItem('popupClosed') === 'true') {
+	popup.style.display = 'none';
 }
+
+// Add event listener to the 'I understand' button
+acceptBtn.addEventListener('click', function() {
+	// Hide the popup
+	 popup.style.display = 'none';
+	// Set the item in localStorage so the popup doesn't show again
+	localStorage.setItem('popupClosed', 'true');
+});
