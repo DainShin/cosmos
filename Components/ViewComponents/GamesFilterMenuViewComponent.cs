@@ -13,7 +13,7 @@ namespace Cosmos.Components.ViewComponents
 					Title = "Subscription Tiers",
 					SubMenuItems = new List<GameFilterSubMenuItem>
 					{
-						new GameFilterSubMenuItem { Category = "subscription", Value = "Free", Label = "Free" },
+						new GameFilterSubMenuItem { Category = "subscription", Value = "Basic", Label = "Basic" },
 						new GameFilterSubMenuItem { Category = "subscription", Value = "Advanced", Label = "Advanced" },
 						new GameFilterSubMenuItem { Category = "subscription", Value = "Ultimate", Label = "Ultimate" },
 					}
