@@ -5,34 +5,30 @@
 
 <div class="card sidebar-card">
 	<div class="card-header bg-brand-dark text-light">
-		<h6 class="fw-bold">Game Filters</h6>
+		<h5 class="pt-2">Game Filters</h5>
 	</div>
 	<div class="card-body">
-		<ul class="sidebar-menu">
-			@foreach (var filterMenuItem in Model)
+		<form asp-controller="CustomerGames" asp-action="GetFilteredGames" method="get">
+			@foreach (var group in Model)
 			{
-				<li>
-					<h6>@filterMenuItem.Title</h6>
-					<ul>
-						@foreach (var subItem in filterMenuItem.SubMenuItems)
+				<div class="row mb-2">
+					<div class="col-12">
+						<h5>@group.Title</h5>
+						@foreach (var item in group.SubMenuItems)
 						{
-							<li>
-								<a href="@Url.Action("Index", "Products", 
-							new { 
-									subscription = subItem.Category == "subscription" ? subItem.Value : "all", 
-									genre = subItem.Category == "genre" ? subItem.Value : "all", 
-									mode = subItem.Category == "mode" ? subItem.Value : "all" 
-								})">
-									@subItem.Label
-								</a>
-							</li>
-							@* <li><a asp-controller="@subItem.Controller" asp-action="@subItem.Action"
-					class="@(currentAction == @subItem.Action ? "sidebar-link-active" : "")">@subItem.Label</a>
-					</li> *@
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="filter[@item.Category]" value="@item.Value"
+									id="@item.Value" @(item.IsSelected ? "checked" : "") />
+								<label class="form-check-label" for="@item.Value">@item.Label</label>
+							</div>
 						}
-					</ul>
-				</li>
+						<hr>
+					</div>
+				</div>
 			}
-		</ul>
+			<div class="d-grid">
+				<button type="submit" class="btn btn-brand-primary">Apply Filter</button>
+			</div>
+		</form>
 	</div>
 </div>
