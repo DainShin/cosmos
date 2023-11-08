@@ -17,16 +17,38 @@ namespace Cosmos.Controllers.Frontend
 			_context = context;
 		}
 
-		// GET: Games
-		public async Task<IActionResult> Index()
+		[HttpGet]
+		public async Task<IActionResult> Index([FromQuery(Name = "filter[subscription]")] string[] filterSubscription, [FromQuery(Name = "filter[genre]")] string[] filterGenre, [FromQuery(Name = "filter[mode]")] string[] filterMode)
 		{
-			var applicationDbContext = _context.Games
+			var gamesQuery = _context.Games
 				.Include(g => g.Developer)
 				.Include(g => g.Publisher)
 				.Include(g => g.Modes)
 				.Include(g => g.Genres)
-				.Include(g => g.Subscriptions);
-			return View(await applicationDbContext.ToListAsync());
+				.Include(g => g.Subscriptions)
+				.AsQueryable();
+
+			// Apply subscription filters
+			if (filterSubscription.Length > 0)
+			{
+				gamesQuery = gamesQuery.Where(game => game.Subscriptions.Any(subscription => filterSubscription.Contains(subscription.Name)));
+			}
+
+			// Apply genre filters
+			if (filterGenre.Length > 0)
+			{
+				gamesQuery = gamesQuery.Where(game => game.Genres.Any(genre => filterGenre.Contains(genre.Name)));
+			}
+
+			// Apply mode filters
+			if (filterMode.Length > 0)
+			{
+				gamesQuery = gamesQuery.Where(game => game.Modes.Any(mode => filterMode.Contains(mode.Name)));
+			}
+
+			var filteredGames = await gamesQuery.ToListAsync();
+
+			return View(filteredGames);
 		}
 
 		public async Task<IActionResult> Details(int? id)
