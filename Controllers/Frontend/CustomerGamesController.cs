@@ -1,4 +1,5 @@
 ﻿
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Cosmos.Models;
@@ -26,7 +27,50 @@ namespace Cosmos.Controllers.Frontend
 				.Include(g => g.Modes)
 				.Include(g => g.Genres)
 				.Include(g => g.Subscriptions);
+
+			ViewBag.Filters = null;
 			return View(await applicationDbContext.ToListAsync());
+		}
+
+		// Get: Games with filters
+		public async Task<IActionResult> GetFilteredGames([FromQuery(Name = "filter[subscription]")] string[] filterSubscription, [FromQuery(Name = "filter[genre]")] string[] filterGenre, [FromQuery(Name = "filter[mode]")] string[] filterMode)
+		{
+			var gamesQuery = _context.Games
+				.Include(g => g.Developer)
+				.Include(g => g.Publisher)
+				.Include(g => g.Modes)
+				.Include(g => g.Genres)
+				.Include(g => g.Subscriptions)
+				.AsQueryable();
+
+			List<string> filterList = new List<string>();
+
+			// Apply subscription filters
+			if (filterSubscription.Length > 0)
+			{
+				gamesQuery = gamesQuery.Where(game => game.Subscriptions.Any(subscription => filterSubscription.Contains(subscription.Name)));
+				filterList.AddRange(filterSubscription);
+			}
+
+			// Apply genre filters
+			if (filterGenre.Length > 0)
+			{
+				gamesQuery = gamesQuery.Where(game => game.Genres.Any(genre => filterGenre.Contains(genre.Name)));
+				filterList.AddRange(filterGenre);
+			}
+
+			// Apply mode filters
+			if (filterMode.Length > 0)
+			{
+				gamesQuery = gamesQuery.Where(game => game.Modes.Any(mode => filterMode.Contains(mode.Name)));
+				filterList.AddRange(filterMode);
+			}
+
+			var filteredGames = await gamesQuery.ToListAsync();
+
+
+			ViewBag.Filters = filterList;
+			return View("Index", filteredGames);
 		}
 
 		public async Task<IActionResult> Details(int? id)
