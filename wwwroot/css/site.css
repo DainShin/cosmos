@@ -269,3 +269,47 @@ footer {
 	color: #fff;
   text-decoration: underline;
 }
+
+/** Popup **/
+.popup-wrapper {
+	position:  fixed;
+	top:  750px;
+	right: 30px;
+	max-width: 365px;
+	background: #fff;
+	padding: 25px 25px 30px 25px;
+	border-radius: 15px;
+	box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.15);
+	text-align: center;
+  }
+
+  .popup-wrapper.hide{
+	opacity: 0;
+	pointer-events: none;
+	transform: scale(0.8);
+	transition: all 0.3s ease;
+  }
+
+  .popup-wrapper img{
+	max-width: 90px;
+	margin-bottom: 20px;
+  }
+
+  .popup-content header{
+	font-size: 25px;
+	font-weight: 600;
+  }
+
+  .popup-content{
+	margin-top: 10px;
+  }
+
+  .popup-content p{
+	margin: 5px 0 20px 0;
+  }
+
+  .popup-content .popup-buttons{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }

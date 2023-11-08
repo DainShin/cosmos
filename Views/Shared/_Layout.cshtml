@@ -40,8 +40,8 @@
 									class="fa-solid fa-magnifying-glass"></i></a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link position-relative text-dark" asp-area="" asp-controller="Carts" asp-action="Index"><i
-									class="fa-solid fa-cart-shopping"></i>
+							<a class="nav-link position-relative text-dark" asp-area="" asp-controller="Carts"
+								asp-action="Index"><i class="fa-solid fa-cart-shopping"></i>
 								@if (Context.Session.GetInt32("CartItemCount") > 0)
 								{
 									<span
@@ -65,6 +65,20 @@
 	<div class="container-fluid p-0">
 		<main role="main">
 			@RenderBody()
+
+			<div class="popup-wrapper">
+				<img src="~/images/coffee.png" alt="Coffee">
+				<div class=".popup-content text-dark">
+					<header>
+						<h4>Important!</h4>
+					</header>
+					<p>We made some major database changes. Please do a <strong><em>database drop</em></strong> and <strong><em>update</em></strong> to get things working just right!</p>
+					<div class=".popup-buttons">
+						<button class="btn btn-brand-primary shadow popup-accept-btn">I understand</button>
+						<a asp-controller="Documentation" asp-action="Changelog" class="btn btn-link">Learn more</a>
+					</div>
+				</div>
+			</div>
 		</main>
 	</div>
 
