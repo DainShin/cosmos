@@ -98,7 +98,6 @@ namespace Cosmos.Data
 						new Developer {Id = 40, Name = "ILCA"},
 						new Developer {Id = 41, Name = "Moon Studios"},
 						new Developer {Id = 42, Name = "Mobius Digital"},
-						new Developer {Id = 43, Name = "Blizzard Entertainment"},
 						new Developer {Id = 44, Name = "Ubisoft Montreal"},
 						new Developer {Id = 45, Name = "VOID Interactive"},
 						new Developer {Id = 46, Name = "Rockstar Games"},
@@ -114,6 +113,7 @@ namespace Cosmos.Data
 						new Developer {Id = 56, Name = "Gaijin Entertainment"},
 						new Developer {Id = 57, Name = "Ryu Ga Gotoku Studio"},
 						new Developer {Id = 58, Name = "Konami Digital Entertainment"},
+						new Developer {Id = 59, Name = "Playground Games"},
 					});
 						context.SaveChanges();
 					}
@@ -152,6 +152,8 @@ namespace Cosmos.Data
 						new Publisher {Id = 28, Name = "CD Projekt"},
 						new Publisher {Id = 29, Name = "Poncle"},
 						new Publisher {Id = 30, Name = "Gaijin Entertainment"},
+						new Publisher {Id = 31, Name = "Blizzard Entertainment"},
+						new Publisher {Id = 32, Name = "2K Games"},
 
 					});
 						context.SaveChanges();
@@ -165,6 +167,140 @@ namespace Cosmos.Data
 						new Subscription {Id = 2, Name = "Advanced", Price = 19.99M },
 						new Subscription {Id = 3, Name = "Ultimate", Price = 24.99M }
 					});
+						context.SaveChanges();
+					}
+
+					// Games
+					if (!context.Games.Any())
+					{
+						// Get modes
+						var singlePlayer = context.Modes.FirstOrDefault(m => m.Name == "Single Player") ?? new Mode { Name = "Single Player" };
+						var multiplayer = context.Modes.FirstOrDefault(m => m.Name == "Multiplayer") ?? new Mode { Name = "Multiplayer" };
+						var coop = context.Modes.FirstOrDefault(m => m.Name == "Co-op") ?? new Mode { Name = "Co-op" };
+						var mmo = context.Modes.FirstOrDefault(m => m.Name == "Massively Multiplayer Online") ?? new Mode { Name = "Massively Multiplayer Online" };
+
+						if (singlePlayer.Id == 0)
+							context.Modes.Add(singlePlayer);
+						if (multiplayer.Id == 0)
+							context.Modes.Add(multiplayer);
+						if (coop.Id == 0)
+							context.Modes.Add(coop);
+						if (mmo.Id == 0)
+							context.Modes.Add(mmo);
+
+						// Save modes to generate IDs
+						context.SaveChanges();
+
+						// Get Genres
+						var action = context.Genres.FirstOrDefault(g => g.Name == "Action") ?? new Genre { Name = "Action" };
+						var adventure = context.Genres.FirstOrDefault(g => g.Name == "Adventure") ?? new Genre { Name = "Adventure" };
+						var rolePlaying = context.Genres.FirstOrDefault(g => g.Name == "Role-playing") ?? new Genre { Name = "Role-playing" };
+						var strategy = context.Genres.FirstOrDefault(g => g.Name == "Strategy") ?? new Genre { Name = "Strategy" };
+						var racing = context.Genres.FirstOrDefault(g => g.Name == "Racing") ?? new Genre { Name = "Racing" };
+						var shooter = context.Genres.FirstOrDefault(g => g.Name == "Shooter") ?? new Genre { Name = "Shooter" };
+						var sports = context.Genres.FirstOrDefault(g => g.Name == "Sports") ?? new Genre { Name = "Sports" };
+						var puzzle = context.Genres.FirstOrDefault(g => g.Name == "Puzzle") ?? new Genre { Name = "Puzzle" };
+						var platformer = context.Genres.FirstOrDefault(g => g.Name == "Platformer") ?? new Genre { Name = "Platformer" };
+						var simulation = context.Genres.FirstOrDefault(g => g.Name == "Simulation") ?? new Genre { Name = "Simulation" };
+
+						if (action.Id == 0)
+							context.Genres.Add(action);
+						if (adventure.Id == 0)
+							context.Genres.Add(adventure);
+						if (rolePlaying.Id == 0)
+							context.Genres.Add(rolePlaying);
+						if (strategy.Id == 0)
+							context.Genres.Add(strategy);
+						if (racing.Id == 0)
+							context.Genres.Add(racing);
+						if (shooter.Id == 0)
+							context.Genres.Add(shooter);
+						if (sports.Id == 0)
+							context.Genres.Add(sports);
+						if (puzzle.Id == 0)
+							context.Genres.Add(puzzle);
+						if (platformer.Id == 0)
+							context.Genres.Add(platformer);
+						if (simulation.Id == 0)
+							context.Genres.Add(simulation);
+
+						// Save genres to generate IDs
+						context.SaveChanges();
+
+						// Get Subscriptions
+						var basic = context.Subscriptions.FirstOrDefault(s => s.Name == "Basic") ?? new Subscription { Name = "Basic" };
+						var advanced = context.Subscriptions.FirstOrDefault(s => s.Name == "Advanced") ?? new Subscription { Name = "Advanced" };
+						var ultimate = context.Subscriptions.FirstOrDefault(s => s.Name == "Ultimate") ?? new Subscription { Name = "Ultimate" };
+
+						if (basic.Id == 0)
+							context.Subscriptions.Add(basic);
+						if (advanced.Id == 0)
+							context.Subscriptions.Add(advanced);
+						if (ultimate.Id == 0)
+							context.Subscriptions.Add(ultimate);
+
+						// Save subscriptions to generate IDs
+						context.SaveChanges();
+
+						context.Games.AddRange(new List<Game>() {
+							new Game {
+								Id = 1,
+								Name = "Starfield",
+								Description = "Starfield is an action role-playing game developed by Bethesda Game Studios and published by Bethesda Softworks. It was announced during Bethesda's E3 presentation in 2018. The game takes place in a space-themed setting, and is the first new intellectual property developed by Bethesda in 25 years.",
+								ImagePath = "images/sample-game-art/starfield.jpeg",
+								ReleaseDate = DateTime.Parse("2023-10-29"),
+								Price = 89.99M,
+								DeveloperId = 1,
+								PublisherId = 7,
+								IsProtected = true,
+								Modes =  new List<Mode>() {singlePlayer},
+								Genres = new List<Genre>() {action, adventure, shooter, rolePlaying},
+								Subscriptions = new List<Subscription>() {advanced, ultimate}
+							},
+							new Game {
+								Id = 2,
+								Name = "Diablo 4",
+								Description = "Diablo IV is a 2023 online-only action role-playing game developed and published by Blizzard Entertainment. It is the fourth main installment in the Diablo series.",
+								ImagePath = "images/sample-game-art/diablo.jpg",
+								ReleaseDate = DateTime.Parse("2023-05-05"),
+								Price = 75.00M,
+								DeveloperId = 9,
+								PublisherId = 31,
+								IsProtected = true,
+								Modes =  new List<Mode>() {singlePlayer, mmo},
+								Genres = new List<Genre>() {action, adventure, rolePlaying},
+								Subscriptions = new List<Subscription>() {advanced}	
+							},
+							new Game {
+								Id = 3,
+								Name = "Forza Horizon 5",
+								Description = "Forza Horizon 5 is a 2021 racing video game developed by Playground Games and published by Xbox Game Studios. It is the fifth Forza Horizon title and twelfth main instalment in the Forza series. The game is set in a fictionalised representation of Mexico.",
+								ImagePath = "images/sample-game-art/forza.jpg",
+								ReleaseDate = DateTime.Parse("2021-11-01"),
+								Price = 79.99M,
+								DeveloperId = 58,
+								PublisherId = 20,
+								IsProtected = true,
+								Modes =  new List<Mode>() {singlePlayer, multiplayer},
+								Genres = new List<Genre>() {racing},
+								Subscriptions = new List<Subscription>() {basic, advanced}
+							},
+							new Game {
+								Id = 4,
+								Name = "NBA 2K23",
+								Description = "NBA 2K23 is a 2022 basketball video game developed by Visual Concepts and published by 2K, based on the National Basketball Association. It is the 24th installment in the NBA 2K franchise, the successor to NBA 2K22 and the predecessor to NBA 2K24",
+								ImagePath = "images/sample-game-art/2k23.jpg",
+								ReleaseDate = DateTime.Parse("2022-09-08"),
+								Price = 79.99M,
+								DeveloperId = 38,
+								PublisherId = 32,
+								IsProtected = true,
+								Modes =  new List<Mode>() {singlePlayer, multiplayer},
+								Genres = new List<Genre>() {sports, simulation},
+								Subscriptions = new List<Subscription>() {basic}	
+							},
+
+						});
 						context.SaveChanges();
 					}
 				}
