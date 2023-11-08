@@ -324,7 +324,7 @@ namespace Cosmos.Controllers
 			// Gets absolute path to the game image.
 			var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", game.ImagePath);
 
-			if (System.IO.File.Exists(imagePath))
+			if (System.IO.File.Exists(imagePath) && !imagePath.Contains("sample-game-art"))
 			{
 				// Deletes the game image.
 				System.IO.File.Delete(imagePath);
