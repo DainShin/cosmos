@@ -271,11 +271,9 @@ footer {
 }
 
 /** Popup **/
-
-
 .popup-wrapper{
 	position: absolute;
-	bottom: calc(100vh - 50px);
+	top: 750px;
 	right: 30px;
 	max-width: 365px;
 	background: #fff;
@@ -292,11 +290,6 @@ footer {
 	transition: all 0.3s ease;
   }
 
-  ::selection{
-	color: #fff;
-	background: #FCBA7F;
-  }
-
   .popup-wrapper img{
 	max-width: 90px;
   }
@@ -311,7 +304,6 @@ footer {
   }
 
   .popup-content p{
-	color: #858585;
 	margin: 5px 0 20px 0;
   }
 

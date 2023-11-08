@@ -31,7 +31,7 @@ VanillaTilt.init(document.querySelector(".subscription-tier-ultimate"), {
 
 // Popup
 const popup = document.querySelector(".popup-wrapper"),
-acceptBtn = cookieBox.querySelector(".popup-button");
+acceptBtn = document.querySelector(".popup-close-btn");
 acceptBtn.onclick = ()=>{
 	popup.classList.add("hide")
 }
