@@ -50,9 +50,17 @@ namespace Cosmos.Components.ViewComponents
 			// Check the current filters and set IsSelected accordingly
 			foreach (var item in filterMenuItems.SelectMany(menu => menu.SubMenuItems))
 			{
-				if (currentFilters.TryGetValue(item.Category, out var value))
+				// Ensure that the Category is not null before calling TryGetValue
+				if (!string.IsNullOrEmpty(item.Category) &&
+					currentFilters.TryGetValue(item.Category, out var value) &&
+					value != null)
 				{
-					item.IsSelected = value.Split(",").Contains(item.Value);
+					// Use StringComparer to handle case-insensitive comparison
+					item.IsSelected = value.Split(",").Contains(item.Value, StringComparer.OrdinalIgnoreCase);
+				}
+				else
+				{
+					item.IsSelected = false; // If the category is null or doesn't exist in the filters, set IsSelected to false
 				}
 			}
 
