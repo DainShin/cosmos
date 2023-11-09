@@ -254,7 +254,7 @@ namespace Cosmos.Data
 								Id = 1,
 								Name = "Starfield",
 								Description = "Starfield is an action role-playing game developed by Bethesda Game Studios and published by Bethesda Softworks. It was announced during Bethesda's E3 presentation in 2018. The game takes place in a space-themed setting, and is the first new intellectual property developed by Bethesda in 25 years.",
-								ImagePath = "images/sample-game-art/starfield.jpeg",
+								ImagePath = "images/sample-game-art/starfield.jpg",
 								ReleaseDate = DateTime.Parse("2023-10-29"),
 								Price = 89.99M,
 								DeveloperId = 1,
