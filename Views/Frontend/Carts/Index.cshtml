@@ -26,6 +26,10 @@
 									<div>
 										<a asp-controller="CustomerGames" asp-action="Details" asp-route-id="@cartItem.Game.Id" class="h4 cart-game-link">@cartItem.Game.Name</a>
 										<p>Quanity: @cartItem.Quantity</p>
+										<form asp-controller="Carts" asp-action="RemoveFromCart">
+											<input type="hidden" name="gameId" value="@cartItem.Game.Id">
+											<button type="submit" class="remove-btn">Remove</button>
+										</form>
 									</div>
 								</div>
 								<p class="fw-bolder">@cartItem.Game.Price.ToString("C")</p>
@@ -57,47 +61,5 @@
 				</div>
 			}
 		</div>
-		@* <div class="row">
-		<div class="col-12">
-		@if (Model.CartItems != null)
-		{
-		<table class="table table-striped table-bordered">
-		<thead>
-		<tr>
-		<th>Product</th>
-		<th>Quantity</th>
-		<th>Price</th>
-		<th>Subtotal</th>
-		</tr>
-		</thead>
-		<tbody>
-		@foreach (var cartItem in Model.CartItems)
-		{
-		<tr>
-		<td>@cartItem.Game.Name</td>
-		<td>@cartItem.Quantity</td>
-		<td>@cartItem.Game.Price</td>
-		<td>
-		@((decimal)(cartItem.Quantity * cartItem.Game.Price))
-		</td>
-		</tr>
-		}
-		</tbody>
-		<tfoot>
-		<tr>
-		<th>Total</th>
-		<td colspan="3">
-		@(Model.CartItems.Sum(c => (decimal)(c.Quantity * c.Game.Price)))
-		</td>
-		</tr>
-		</tfoot>
-		</table>
-		}
-		else
-		{
-		<p>Your cart is empty</p>
-		}
-		</div>
-		</div> *@
 	</div>
 </div>
