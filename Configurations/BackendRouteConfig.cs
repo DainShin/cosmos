@@ -149,7 +149,7 @@ public static class BackendRouteConfig
 			endpoints.MapControllerRoute(
 				name: "changelog",
 				pattern: "admin/changelog",
-				defaults: new { controller = "Home", action = "Changelog" });
+				defaults: new { controller = "Documentation", action = "Changelog" });
 
 			endpoints.MapControllerRoute(
 				name: "overview",
