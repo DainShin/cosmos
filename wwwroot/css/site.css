@@ -273,7 +273,7 @@ footer {
 /** Popup **/
 .popup-wrapper {
 	position:  fixed;
-	top:  750px;
+	top:  650px;
 	right: 30px;
 	max-width: 365px;
 	background: #fff;
@@ -312,4 +312,19 @@ footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+  }
+
+  .remove-btn {
+	color: #a5a5a5;
+	font-size: 0.85rem;
+	text-decoration: none;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	padding-left: 2px;
+  }
+
+  .remove-btn:hover {
+	text-decoration: underline;
+	color: #fff;
   }
