@@ -81,6 +81,37 @@ namespace Cosmos.Controllers
 			return RedirectToAction("Details", "CustomerGames", new { id = gameId });
 		}
 
+		[HttpPost]
+		public async Task<IActionResult> RemoveFromCart(int gameId)
+		{
+			// Getting the active cart
+			var cart = GetCart();
+
+			if (cart == null)
+			{
+				return NotFound();
+			}
+
+			// Checking if the item is already in the cart
+			var cartItem = cart.CartItems.Find(cartItem => cartItem.GameId == gameId);
+
+			if (cartItem != null)
+			{
+				var game = await _context.Games.FirstOrDefaultAsync(g => g.Id == gameId);
+
+				if (game == null)
+				{
+					return NotFound();
+				}
+
+				cart.CartItems.Remove(cartItem);
+			}
+
+			SaveCart(cart);
+
+			return RedirectToAction("Index", "Carts");
+		}
+
 		private Cart? GetCart()
 		{
 			var cartJson = HttpContext.Session.GetString(_cartSessionKey);
