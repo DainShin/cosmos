@@ -36,68 +36,6 @@ namespace Cosmos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Developers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2700),
-                            Name = "Bethesda Game Studios"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2705),
-                            Name = "CD Projekt Red"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2707),
-                            Name = "Rockstar Games"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2709),
-                            Name = "Ubisoft"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2711),
-                            Name = "Electronic Arts"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2712),
-                            Name = "Square Enix"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2714),
-                            Name = "Capcom"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2716),
-                            Name = "Activision"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2717),
-                            Name = "Blizzard Entertainment"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2719),
-                            Name = "Bungie"
-                        });
                 });
 
             modelBuilder.Entity("Cosmos.Models.Game", b =>
@@ -124,10 +62,16 @@ namespace Cosmos.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("varchar(300)");
 
+                    b.Property<bool>("IsProtected")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("varchar(300)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("PublisherId")
                         .HasColumnType("int");
@@ -165,78 +109,6 @@ namespace Cosmos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2498),
-                            Description = "Action games usually involve elements of physical conflict, such as fast paced fighting, combat, racing, platforming, and sometimes exploration.",
-                            Name = "Action"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2551),
-                            Description = "Adventure games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Adventure"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2554),
-                            Description = "Role-playing games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Role-playing"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2556),
-                            Description = "Strategy games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Strategy"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2558),
-                            Description = "Racing games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Racing"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2560),
-                            Description = "Shooter games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Shooter"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2561),
-                            Description = "Sports games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Sports"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2563),
-                            Description = "Puzzle games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Puzzle"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2565),
-                            Description = "Platformer games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Platformer"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2567),
-                            Description = "Simulation games are usually story-driven and focus on exploration, character interaction, puzzle solving, and sometimes item manipulation.",
-                            Name = "Simulation"
-                        });
                 });
 
             modelBuilder.Entity("Cosmos.Models.Mode", b =>
@@ -256,32 +128,6 @@ namespace Cosmos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Modes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2671),
-                            Name = "Single Player"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2676),
-                            Name = "Multiplayer"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2678),
-                            Name = "Co-op"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2680),
-                            Name = "Massively Multiplayer Online"
-                        });
                 });
 
             modelBuilder.Entity("Cosmos.Models.Publisher", b =>
@@ -301,68 +147,6 @@ namespace Cosmos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Publishers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2784),
-                            Name = "Microsoft Studios"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2790),
-                            Name = "Sony Interactive Entertainment"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2792),
-                            Name = "Nintendo"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2794),
-                            Name = "Sega"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2796),
-                            Name = "Konami"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2798),
-                            Name = "Bandai Namco Entertainment"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2799),
-                            Name = "Bethesda Softworks"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2801),
-                            Name = "Take-Two Interactive"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2803),
-                            Name = "Warner Bros. Interactive Entertainment"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2805),
-                            Name = "Deep Silver"
-                        });
                 });
 
             modelBuilder.Entity("Cosmos.Models.Subscription", b =>
@@ -385,29 +169,6 @@ namespace Cosmos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscriptions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2826),
-                            Name = "Free",
-                            Price = 0.00m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2832),
-                            Name = "Advanced",
-                            Price = 19.99m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2023, 10, 11, 23, 2, 51, 306, DateTimeKind.Local).AddTicks(2834),
-                            Name = "Ultimate",
-                            Price = 24.99m
-                        });
                 });
 
             modelBuilder.Entity("GameGenre", b =>

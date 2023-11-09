@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Cosmos.Models;
-using System.Collections.Generic;
 
 namespace Cosmos.Components.ViewComponents
 {
@@ -8,22 +7,22 @@ namespace Cosmos.Components.ViewComponents
 	{
 		public IViewComponentResult Invoke()
 		{
-			var documentationMenuItems = new List<DocumentationMenuItem>
+			var documentationMenuItems = new List<SidebarMenuItem>
 			{
-				new DocumentationMenuItem { 
+				new SidebarMenuItem { 
 					Title = "Getting Started",
-					SubMenuItems = new List<DocumentationSubMenuItem>
+					SubMenuItems = new List<SidebarSubMenuItem>
 					{
-						new DocumentationSubMenuItem { Controller = "Home", Action = "Overview", Label = "Overview" },
-						new DocumentationSubMenuItem { Controller = "Home", Action = "Database", Label = "Database" },
-						new DocumentationSubMenuItem { Controller = "Home", Action = "SampleGameArt", Label = "Sample Game Art" },
+						new SidebarSubMenuItem { Controller = "Documentation", Action = "Overview", Label = "Overview" },
+						new SidebarSubMenuItem { Controller = "Documentation", Action = "Database", Label = "Database" },
+						new SidebarSubMenuItem { Controller = "Documentation", Action = "SampleGameArt", Label = "Sample Game Art" },
 					}
 				},
-				new DocumentationMenuItem { 
+				new SidebarMenuItem { 
 					Title = "Core Features",
-					SubMenuItems = new List<DocumentationSubMenuItem>
+					SubMenuItems = new List<SidebarSubMenuItem>
 					{
-						new DocumentationSubMenuItem { Controller = "Home", Action = "HowToAddGame", Label = "How to Add a Game" },
+						new SidebarSubMenuItem { Controller = "Documentation", Action = "HowToAddGame", Label = "How to Add a Game" },
 					}
 				},
 				

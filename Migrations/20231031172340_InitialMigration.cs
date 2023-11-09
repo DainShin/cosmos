@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace Cosmos.Migrations
 {
     /// <inheritdoc />
-    public partial class IntialMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -102,10 +102,12 @@ namespace Cosmos.Migrations
                     Description = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: true),
                     ImagePath = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: false),
                     ReleaseDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Enabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     DeveloperId = table.Column<int>(type: "int", nullable: false),
-                    PublisherId = table.Column<int>(type: "int", nullable: false)
+                    PublisherId = table.Column<int>(type: "int", nullable: false),
+                    IsProtected = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -66,7 +66,7 @@ namespace Cosmos.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		// public async Task<IActionResult> Create([Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game)
-		public async Task<IActionResult> Create([Bind("Id,Name,Description,ReleaseDate,DeveloperId,PublisherId")] Game game, IFormFile gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
+		public async Task<IActionResult> Create([Bind("Id,Name,Description,ReleaseDate,DeveloperId,PublisherId,Price")] Game game, IFormFile gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			if (ModelState.IsValid)
 			{
@@ -135,7 +135,7 @@ namespace Cosmos.Controllers
 		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId")] Game game, IFormFile? gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
+		public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,ImagePath,ReleaseDate,Enabled,CreatedAt,DeveloperId,PublisherId,Price")] Game game, IFormFile? gameArt, List<int> selectedModes, List<int> selectedGenres, List<int> selectedSubscriptions)
 		{
 			// Load the existing game entity from the database
 			var existingGame = await _context.Games
@@ -148,11 +148,6 @@ namespace Cosmos.Controllers
 			{
 				return NotFound();
 			}
-
-			// if (id != game.Id)
-			// {
-			// 	return NotFound();
-			// }
 
 			if (ModelState.IsValid)
 			{
@@ -192,6 +187,7 @@ namespace Cosmos.Controllers
 					existingGame.ReleaseDate = game.ReleaseDate;
 					existingGame.DeveloperId = game.DeveloperId;
 					existingGame.PublisherId = game.PublisherId;
+					existingGame.Price = game.Price;
 
 					_context.Update(existingGame);
 					await _context.SaveChangesAsync();
@@ -328,7 +324,7 @@ namespace Cosmos.Controllers
 			// Gets absolute path to the game image.
 			var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", game.ImagePath);
 
-			if (System.IO.File.Exists(imagePath))
+			if (System.IO.File.Exists(imagePath) && !imagePath.Contains("sample-game-art"))
 			{
 				// Deletes the game image.
 				System.IO.File.Delete(imagePath);

@@ -27,7 +27,7 @@
 .nav-icon {
   fill: #fff;
 }
-
+/* 
 .documentation-menu {
   padding: 0;
   margin: 0;
@@ -66,7 +66,7 @@
 .documentation-link-active {
   border-left: 3px solid var(--brand-primary) !important;
   color: var(--brand-primary) !important;
-}
+} */
 
 .table {
   color: var(--text-brand-dark); /* Make this global */
@@ -116,24 +116,6 @@
   background-color: transparent;
   border: none;
   margin: 0 0.5em;
-}
-
-.game-art-thumbnail {
-  width: 75px;
-  height: 75px;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: var(--transition);
-}
-
-.game-art-thumbnail:hover {
-  /* transform: scale(1.025); */
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px; */
-}
-
-.game-art {
-  border-radius: 25px;
 }
 
 .changelog > li {

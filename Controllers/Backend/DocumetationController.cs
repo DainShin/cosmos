@@ -2,30 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Cosmos.Models;
 
-namespace Cosmos.Controllers;
+namespace Cosmos.Controllers.Backend;
 
-public class HomeController : Controller
+public class DocumentationController : Controller
 {
-	private readonly ILogger<HomeController> _logger;
+	private readonly ILogger<DocumentationController> _logger;
 
-	public HomeController(ILogger<HomeController> logger)
+	public DocumentationController(ILogger<DocumentationController> logger)
 	{
 		_logger = logger;
-	}
-
-	public IActionResult Index()
-	{
-		return View();
-	}
-
-	public IActionResult Privacy()
-	{
-		return View();
-	}
-
-	public IActionResult Brief()
-	{
-		return View();
 	}
 
 	public IActionResult Changelog()
@@ -51,8 +36,7 @@ public class HomeController : Controller
 	{
 		return View();
 	}
-
-
+	
 	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 	public IActionResult Error()
 	{
