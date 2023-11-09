@@ -7,11 +7,11 @@
 <div class="container-fluid">
 	<div class="container page-padding h100">
 		<div class="row">
-			@if (Model.CartItems != null)
+			<div class="col-12">
+				<h1>Shopping Cart</h1>
+			</div>
+			@if (Model.CartItems != null && Model.CartItems.Count > 0)
 			{
-				<div class="col-12">
-					<h1>Shopping Cart</h1>
-				</div>
 				<div class="col-md-8 col-lg-9">
 					@foreach (var cartItem in Model.CartItems)
 					{
@@ -58,6 +58,11 @@
 							<a href="#" class="btn btn-brand-success d-block">Checkout</a>
 						</div>
 					</div>
+				</div>
+			} else {
+				<div class="col-12">
+					<hr>
+					<p class="text-brand-muted">Your cart is empty.</p>
 				</div>
 			}
 		</div>
