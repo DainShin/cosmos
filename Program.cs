@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Identity;
 using Cosmos.Models;
 using Cosmos.Data;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,8 +30,16 @@ builder.Services.AddSession(options => {
 	options.Cookie.IsEssential = true;
 });
 
-var app = builder.Build();
+// Adding identity service and roles
+builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
+// Registering the ApplicationDbInitializer
+builder.Services.AddTransient<ApplicationDbInitializer>();
+
+var app = builder.Build();
+ 
 /** ==================================== */
 /** MIDDLEWARE                           */
 /** ==================================== */
@@ -47,16 +56,28 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
+
+// Setup Authentication and Authorization
+app. UseAuthentication();
+app.UseAuthorization();
 
 // Custom Route Configurations
 BackendRouteConfig.UseRoutes(app);
 FrontendRouteConfig.UseRoutes(app);
 
-app.UseAuthorization();
+app.MapRazorPages();
 
-// Seed the database
-ApplicationDbInitializer.Seed(app);
+// Seed Starting Data
+ApplicationDbInitializer.SeedData(app);
+
+// Seed Users
+var scopeFactory = app.Services.GetRequiredService<IServiceScopeFactory>();
+using var scope = scopeFactory.CreateScope();
+// var initializer = scope.ServiceProvider.GetRequiredService<ApplicationDbInitializer>();
+await ApplicationDbInitializer.SeedUsers(
+	scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>(),
+	scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>()
+);
 
 app.Run();
