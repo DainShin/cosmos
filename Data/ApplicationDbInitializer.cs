@@ -1,10 +1,11 @@
 using Cosmos.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Cosmos.Data
 {
 	public class ApplicationDbInitializer
 	{
-		public static void Seed(IApplicationBuilder applicationBuilder)
+		public static void SeedData(IApplicationBuilder applicationBuilder)
 		{
 			using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
 			{
@@ -396,6 +397,45 @@ namespace Cosmos.Data
 					}
 				}
 			}
+		}
+
+		public static async Task SeedUsers(
+			UserManager<IdentityUser> userManager,
+			RoleManager<IdentityRole> roleManager)
+		{
+			string[] roleNames = { "Admin", "Customer" };
+			foreach (var roleName in roleNames)
+			{
+				var roleExist = await roleManager.RoleExistsAsync(roleName);
+				if (!roleExist)
+					await roleManager.CreateAsync(new IdentityRole(roleName));
+			}
+
+			// Create default admin user
+			var admin = new IdentityUser
+			{
+				UserName = "admin@email.com",
+				Email = "admin@email.com"
+			};
+
+			string adminPassword = "Password@123";
+			var createAdmin = await userManager.CreateAsync(admin, adminPassword);
+
+			if (createAdmin.Succeeded)
+				await userManager.AddToRoleAsync(admin, "Admin");
+
+			// Create default customer
+			var customer = new IdentityUser
+			{
+				UserName = "customer@email.com",
+				Email = "customer@email.com",
+			};
+
+			string customerPassword = "Password@123";
+			var createCustomer = await userManager.CreateAsync(customer, customerPassword);
+
+			if (createCustomer.Succeeded)
+				await userManager.AddToRoleAsync(customer, "Customer");
 		}
 	}
 }
