@@ -45,3 +45,26 @@ acceptBtn.addEventListener('click', function() {
 	// Set the item in localStorage so the popup doesn't show again
 	localStorage.setItem('popupClosed', 'true');
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get all dropdown elements
+    var dropdowns = document.querySelectorAll('.nav-item.dropdown');
+
+    dropdowns.forEach(function (dropdown) {
+        // Show the dropdown menu on hover
+        dropdown.addEventListener('mouseover', function (e) {
+            var dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            if (dropdownMenu) {
+                new bootstrap.Dropdown(dropdownMenu).show();
+            }
+        });
+
+        // Hide the dropdown menu when not hovered
+        dropdown.addEventListener('mouseout', function (e) {
+            var dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            if (dropdownMenu) {
+                new bootstrap.Dropdown(dropdownMenu).hide();
+            }
+        });
+    });
+});
