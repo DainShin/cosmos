@@ -27,6 +27,25 @@
 .nav-icon {
   fill: #fff;
 }
+
+/* Initial state of the dropdown menu */
+.nav-item.dropdown .dropdown-menu {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, visibility 0.5s, transform 0.5s ease;
+	right: 0;
+    left: auto;
+}
+
+/* State of the dropdown menu when hovered */
+.nav-item.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 /* 
 .documentation-menu {
   padding: 0;
