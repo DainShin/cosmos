@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Cosmos.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cosmos.Controllers
 {
+	[Authorize(Roles = "Customer")]
 	public class CartsController : Controller
 	{
 		private readonly string _cartSessionKey;

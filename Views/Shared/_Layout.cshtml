@@ -33,22 +33,6 @@
 										Dashboard</a>
 								</li>
 							}
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="" asp-controller="Games" asp-action="Index">Hello
-									@User.Identity.Name</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Logout">Logout</a>
-							</li>
-						}
-						else
-						{
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-							</li>
 						}
 						<li class="nav-item">
 							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Shop</a>
@@ -74,10 +58,32 @@
 								}
 							</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i
-									class="fa-regular fa-circle-user"></i></a>
-						</li>
+						@if (User?.Identity?.IsAuthenticated == true)
+						{
+							<!-- Dropdown list item -->
+							<li class="nav-item dropdown">
+								<a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									@User.Identity.Name
+									<i class="fa-regular fa-circle-user"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+									<!-- Dropdown menu items -->
+									<li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">My Account</a></li>
+									<li>
+										<hr class="dropdown-divider">
+									</li>
+									<li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
+								</ul>
+							</li>
+						}
+						else
+						{
+							<li class="nav-item">
+								<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Sign
+									in <i class="fa-regular fa-circle-user"></i></a>
+							</li>
+						}
 					</ul>
 				</div>
 			</div>
@@ -95,7 +101,8 @@
 						<h4>Important!</h4>
 					</header>
 					<p>We made some major database changes. Please do a <strong><em>database drop</em></strong> and
-						<strong><em>update</em></strong> to get things working just right!</p>
+						<strong><em>update</em></strong> to get things working just right!
+					</p>
 					<div class=".popup-buttons">
 						<button class="btn btn-brand-primary shadow popup-accept-btn">I understand</button>
 						<a asp-controller="Documentation" asp-action="Changelog" class="btn btn-link">Learn more</a>

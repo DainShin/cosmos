@@ -424,18 +424,31 @@ namespace Cosmos.Data
 			if (createAdmin.Succeeded)
 				await userManager.AddToRoleAsync(admin, "Admin");
 
-			// Create default customer
-			var customer = new IdentityUser
+			// Create default customer 1
+			var customer1 = new IdentityUser
 			{
-				UserName = "customer@email.com",
-				Email = "customer@email.com",
+				UserName = "john@email.com",
+				Email = "john@email.com",
 			};
 
-			string customerPassword = "Password@123";
-			var createCustomer = await userManager.CreateAsync(customer, customerPassword);
+			string customerPassword1 = "Password@123";
+			var createCustomer1 = await userManager.CreateAsync(customer1, customerPassword1);
 
-			if (createCustomer.Succeeded)
-				await userManager.AddToRoleAsync(customer, "Customer");
+			if (createCustomer1.Succeeded)
+				await userManager.AddToRoleAsync(customer1, "Customer");
+				
+			// Create default customer 1
+			var customer2 = new IdentityUser
+			{
+				UserName = "jane@email.com",
+				Email = "jane@email.com",
+			};
+
+			string customerPassword2 = "Password@123";
+			var createCustomer2 = await userManager.CreateAsync(customer2, customerPassword2);
+
+			if (createCustomer2.Succeeded)
+				await userManager.AddToRoleAsync(customer2, "Customer");
 		}
 	}
 }
