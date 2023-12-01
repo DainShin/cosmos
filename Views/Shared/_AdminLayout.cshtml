@@ -18,23 +18,30 @@
 					<img src="~/images/logo-white.png" alt="Cosmos" class="image-fluid" />
 				</a>
 				<hr>
-				 @await Component.InvokeAsync("AdminNavigationMenu")
+				@await Component.InvokeAsync("AdminNavigationMenu")
 				<hr>
 				<div class="dropdown">
 					@if (User?.Identity?.IsAuthenticated == true)
 					{
 						<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
 							id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="https://www.eduopinions.com/wp-content/uploads/2018/09/GeorgianUniversity-logo.jpg" alt="" width="32" height="32" class="rounded-circle me-2">
+							<img src="https://www.eduopinions.com/wp-content/uploads/2018/09/GeorgianUniversity-logo.jpg"
+								alt="" width="32" height="32" class="rounded-circle me-2">
 							<strong>@User.Identity.Name</strong>
 						</a>
 					}
 					<ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-						<li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
+						<li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">My Account</a>
+						</li>
 						<li>
 							<hr class="dropdown-divider">
 						</li>
-						<li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Sign out</a></li>
+						<li>
+							<form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
+								asp-route-returnUrl="@Url.Action("Index", "Pages", new { area = "" })">
+								<button id="logout" type="submit" class="dropdown-item">Logout</button>
+							</form>
+						</li>
 					</ul>
 				</div>
 			</div>
