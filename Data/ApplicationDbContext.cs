@@ -16,5 +16,8 @@ namespace Cosmos.Models
 		public DbSet<Developer> Developers {get; set;}
 		public DbSet<Publisher> Publishers {get; set;}
         public DbSet<Subscription> Subscriptions {get; set;}
+		public DbSet<Order> Orders {get; set;}
+		public DbSet<OrderItem> OrderItems {get; set;}
+
     }
 }

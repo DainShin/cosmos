@@ -1,26 +1,26 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using Cosmos.Models;
 using Microsoft.AspNetCore.Authorization;
+using Cosmos.Services;
 
 namespace Cosmos.Controllers
 {
 	[Authorize(Roles = "Customer")]
 	public class CartsController : Controller
 	{
-		private readonly string _cartSessionKey;
 		private readonly ApplicationDbContext _context;
+		private readonly CartService _cartService;
 
-		public CartsController(ApplicationDbContext context)
+		public CartsController(ApplicationDbContext context, CartService cartService)
 		{
-			_cartSessionKey = "Cart";
 			_context = context;
+			_cartService = cartService;
 		}
 
 		public async Task<IActionResult> Index()
 		{
-			var cart = GetCart();
+			var cart = _cartService.GetCart();
 
 			if (cart == null)
 			{
@@ -49,7 +49,7 @@ namespace Cosmos.Controllers
 		public async Task<IActionResult> AddToCart(int gameId, int quantity)
 		{
 			// Getting the active cart
-			var cart = GetCart();
+			var cart = _cartService.GetCart();
 
 			if (cart == null)
 			{
@@ -78,7 +78,7 @@ namespace Cosmos.Controllers
 				cart.CartItems.Add(cartItem);
 			}
 
-			SaveCart(cart);
+			_cartService.SaveCart(cart);
 
 			return RedirectToAction("Details", "CustomerGames", new { id = gameId });
 		}
@@ -87,7 +87,7 @@ namespace Cosmos.Controllers
 		public async Task<IActionResult> RemoveFromCart(int gameId)
 		{
 			// Getting the active cart
-			var cart = GetCart();
+			var cart = _cartService.GetCart();
 
 			if (cart == null)
 			{
@@ -109,23 +109,9 @@ namespace Cosmos.Controllers
 				cart.CartItems.Remove(cartItem);
 			}
 
-			SaveCart(cart);
+			_cartService.SaveCart(cart);
 
 			return RedirectToAction("Index", "Carts");
-		}
-
-		private Cart? GetCart()
-		{
-			var cartJson = HttpContext.Session.GetString(_cartSessionKey);
-			return cartJson == null ? new Cart() : JsonConvert.DeserializeObject<Cart>(cartJson);
-		}
-
-		private void SaveCart(Cart cart)
-		{
-			var cartJson = JsonConvert.SerializeObject(cart);
-			HttpContext.Session.SetString(_cartSessionKey, cartJson);
-			// Updating the cart item count in the session
-			HttpContext.Session.SetInt32("CartItemCount", cart.CartItems.Count);
 		}
 
 	}
