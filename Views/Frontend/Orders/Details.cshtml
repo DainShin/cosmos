@@ -1,19 +1,19 @@
-@model Cosmos.Models.Cart
+@model Cosmos.Models.Order
 
 @{
-	ViewData["Title"] = "My Cart";
+	ViewData["Title"] = "Order Details";
 }
 
 <div class="container-fluid">
 	<div class="container page-padding h100">
 		<div class="row">
 			<div class="col-12">
-				<h1>Shopping Cart</h1>
+				<h1>Order Details</h1>
 			</div>
-			@if (Model.CartItems != null && Model.CartItems.Count > 0)
+			@if (Model.OrderItems != null && Model.OrderItems.Count > 0)
 			{
 				<div class="col-md-8 col-lg-9">
-					@foreach (var cartItem in Model.CartItems)
+					@foreach (var orderItem in Model.OrderItems)
 					{
 						<div class="row mt-3 mb-3">
 							<div class="col-12">
@@ -21,18 +21,12 @@
 							</div>
 							<div class="col-12 d-flex justify-content-between">
 								<div class="d-flex">
-									<img src="~/@cartItem.Game.ImagePath" alt="@cartItem.Game.Name"
-										class="cart-game-art-thumbnail me-3" />
 									<div>
-										<a asp-controller="CustomerGames" asp-action="Details" asp-route-id="@cartItem.Game.Id" class="h4 cart-game-link">@cartItem.Game.Name</a>
-										<p>Quanity: @cartItem.Quantity</p>
-										<form asp-controller="Carts" asp-action="RemoveFromCart">
-											<input type="hidden" name="gameId" value="@cartItem.Game.Id">
-											<button type="submit" class="remove-btn">Remove</button>
-										</form>
+										<p class="h4">@orderItem.ProductName</p>
+										<p>Quanity: @orderItem.Quantity</p>
 									</div>
 								</div>
-								<p class="fw-bolder">@cartItem.Game.Price.ToString("C")</p>
+								<p class="fw-bolder">@orderItem.Price.ToString("C")</p>
 							</div>
 						</div>
 					}
@@ -42,8 +36,8 @@
 						<div class="card-body">
 							<h4>Order Summary</h4>
 							<div class="d-flex justify-content-between">
-								<p>Items (@Model.CartItems.Count)</p>
-								<p>@(Model.CartItems.Sum(c => (decimal)(c.Quantity * c.Game.Price)).ToString("C"))</p>
+								<p>Items (@Model.OrderItems.Count)</p>
+								<p>@(Model.OrderItems.Sum(c => (decimal)(c.Quantity * c.Price)).ToString("C"))</p>
 							</div>
 							<div class="d-flex justify-content-between">
 								<p>Estimated tax: </p>
@@ -52,17 +46,17 @@
 							<hr>
 							<div class="d-flex justify-content-between">
 								<p class="fw-bolder">Total</p>
-								<p class="fw-bolder">@(Model.CartItems.Sum(c => (decimal)(c.Quantity *
-											c.Game.Price)).ToString("C"))</p>
+								<p class="fw-bolder">@(Model.OrderItems.Sum(c => (decimal)(c.Quantity *
+											c.Price)).ToString("C"))</p>
 							</div>
-							<a href="#" class="btn btn-brand-success d-block">Checkout</a>
+							<a href="#" class="btn btn-brand-success d-block">Buy now</a>
 						</div>
 					</div>
 				</div>
 			} else {
 				<div class="col-12">
 					<hr>
-					<p class="text-brand-muted">Your cart is empty.</p>
+					<p class="text-brand-muted">There are no orders!</p>
 				</div>
 			}
 		</div>
