@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Cosmos.Models;
 using Cosmos.Data;
 using Microsoft.Extensions.Options;
+using Cosmos.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,10 +40,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 // Registering the ApplicationDbInitializer
 builder.Services.AddTransient<ApplicationDbInitializer>();
 
+// Registering Google Authentication
 builder.Services.AddAuthentication().AddGoogle(options => {
 	options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
 	options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 });
+
+// Register Cart Service as a new scoped dependency
+builder.Services.AddScoped<CartService>();
 
 var app = builder.Build();
  

@@ -20,6 +20,17 @@ public static class FrontendRouteConfig
 				pattern: "browse/games/filtered",
 				defaults: new { controller = "CustomerGames", action = "GetFilteredGames" });
 
+			// Orders
+			endpoints.MapControllerRoute(
+				name: "orders",
+				pattern: "orders",
+				defaults: new { controller = "Orders", action = "Index" });
+
+			endpoints.MapControllerRoute(
+				name: "orders",
+				pattern: "orders/details",
+				defaults: new { controller = "Orders", action = "Details" });
+
 
 			// Cart
 			endpoints.MapControllerRoute(
