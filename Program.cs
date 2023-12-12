@@ -49,6 +49,9 @@ builder.Services.AddAuthentication().AddGoogle(options => {
 // Register Cart Service as a new scoped dependency
 builder.Services.AddScoped<CartService>();
 
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+
+
 var app = builder.Build();
  
 /** ==================================== */

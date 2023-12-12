@@ -49,7 +49,14 @@
 								<p class="fw-bolder">@(Model.OrderItems.Sum(c => (decimal)(c.Quantity *
 											c.Price)).ToString("C"))</p>
 							</div>
-							<a href="#" class="btn btn-brand-success d-block">Buy now</a>
+							<div>
+								@if (!Model.PaymentReceived)
+								{
+									<form asp-action="ProcessPayment">
+										<button class="btn btn-brand-success d-block">Buy now</button>
+									</form>
+								}
+							</div>
 						</div>
 					</div>
 				</div>

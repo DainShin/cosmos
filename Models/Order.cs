@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Identity;
 
 namespace Cosmos.Models
 {
     public class Order
     {
-        [Key]
+        [ForeignKey("UserId")]
 		public int Id {get; set;} = 0;
 
 		[Required]
@@ -19,6 +21,7 @@ namespace Cosmos.Models
 
 		public IdentityUser? User {get; set;}
 
+		[InverseProperty("Order")]
 		public virtual ICollection<OrderItem> OrderItems {get; set;} = new List<OrderItem>();
     }
 }
